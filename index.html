@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repositorio Académico | Tecnicatura en Comunicación Social — UNaM Sede Cerro Azul</title>
+  
+  <!-- Meta tags institucionales -->
+  <meta name="description" content="Repositorio abierto de trabajos prácticos, investigaciones y producciones discursivas del grupo de estudiantes de la Tecnicatura en Comunicación Social, Sede Cerro Azul - FHyCS - UNaM." />
+  <meta name="keywords" content="UNaM, FHyCS, Comunicación Social, Cerro Azul, Misiones, Repositorio Académico, Lengua y Comunicación" />
+  
+  <!-- Favicon y recursos institucionales -->
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <meta property="og:image" content="unam_imagotipo_horizontal.png" />
+
+  <!-- Tailwind CSS CDN con Sistema de Diseño StyleX (Facebook) y Paleta UNaM -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            // Tokens StyleX / Facebook
+            fb: {
+              canvas: '#f0f2f5',      // Fondo base de Facebook / StyleX
+              card: '#ffffff',        // Superficie de tarjetas
+              border: '#e4e6eb',      // Bordes sutiles
+              hover: '#f2f2f2',       // Hover suave
+              active: '#e7f3ff',      // Tinte activo estilo Facebook
+              text: '#050505',        // Texto primario de alto contraste
+              secondary: '#65676b',   // Texto secundario
+              divider: '#ced0d4'      // Divisores
+            },
+            // Colores extraídos fielmente de los logos oficiales (UNaM e Imagotipo)
+            unam: {
+              blue: '#0066b2',        // Azul institucional central (UNaM & FHyCS)
+              dark: '#003865',        // Azul noche profundo
+              sky: '#009fe3',         // Celeste / cian icónico de la curva UNaM
+              skyLight: '#e8f4fd',    // Tinte celeste sutil
+              green: '#1b873f',       // Verde de la araucaria del logo UNaM
+              greenLight: '#eafbe7',  // Tinte verde sutil para badges
+              active: '#e7f3ff'       // Azul interactivo StyleX
+            }
+          },
+          boxShadow: {
+            'fb': '0 1px 2px rgba(0, 0, 0, 0.1)',
+            'fb-hover': '0 4px 12px rgba(0, 0, 0, 0.12)',
+            'fb-card': '0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Plus Jakarta Sans', Roboto, Helvetica, Arial, sans-serif;
+    }
+    .font-serif-body {
+      font-family: 'Lora', serif;
+    }
+    .academic-prose p {
+      margin-bottom: 1rem;
+      line-height: 1.75;
+      color: #334155;
+    }
+  </style>
+</head>
+
+<body class="bg-fb-canvas text-fb-text antialiased flex flex-col min-h-screen selection:bg-unam-sky selection:text-white">
+
+  <!-- ==================== HEADER INSTITUCIONAL (ESTILO STYLEX / FACEBOOK) ==================== -->
+  <header class="bg-white/95 backdrop-blur-md text-fb-text border-b border-fb-border sticky top-0 z-50 shadow-fb transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-2.5 sm:py-3">
+        
+        <!-- Identidad Institucional y Escudos Oficiales -->
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <!-- Contenedor con los Logos Oficiales (Jerarquía: UNaM -> FHyCS) -->
+          <div class="bg-white px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl border border-fb-border shadow-xs flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            <!-- 1. Universidad Nacional de Misiones (Institución Madre) -->
+            <img 
+              src="unam_imagotipo_horizontal.png" 
+              alt="Universidad Nacional de Misiones" 
+              title="Universidad Nacional de Misiones (UNaM)"
+              class="h-6 sm:h-8 md:h-9 w-auto object-contain hover:scale-105 transition-transform" 
+              onerror="this.style.display='none'"
+            />
+            
+            <!-- Divisor Vertical Institucional -->
+            <div class="h-6 sm:h-7 md:h-8 w-[1px] bg-fb-border"></div>
+
+            <!-- 2. Facultad de Humanidades y Ciencias Sociales (Unidad Académica) -->
+            <img 
+              src="logo.png" 
+              alt="Facultad de Humanidades y Ciencias Sociales - UNaM" 
+              title="Facultad de Humanidades y Ciencias Sociales (FHyCS)"
+              class="h-8 sm:h-10 md:h-11 w-auto object-contain hover:scale-105 transition-transform" 
+              onerror="this.parentElement.innerHTML+='<span class=\'text-xs font-bold text-slate-800\'>FHyCS</span>'"
+            />
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="bg-unam-greenLight text-unam-green text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full border border-unam-green/20">
+                Sede Cerro Azul
+              </span>
+              <span class="text-fb-secondary text-xs hidden md:inline font-medium">• Cohorte 2026</span>
+            </div>
+            <h1 class="text-base sm:text-xl font-black tracking-tight text-fb-text leading-tight">
+              Tecnicatura en Comunicación Social
+            </h1>
+            <p class="text-xs text-fb-secondary font-normal">
+              Facultad de Humanidades y Ciencias Sociales — Universidad Nacional de Misiones
+            </p>
+          </div>
+        </div>
+
+        <!-- Botones de Navegación Segmentada (Pestañas estilo Facebook / StyleX) -->
+        <nav class="hidden lg:flex items-center gap-1.5 text-sm font-semibold">
+          <a href="#repositorio" class="px-3.5 py-2 rounded-xl text-unam-blue bg-unam-active hover:bg-sky-100/70 transition-all flex items-center gap-1.5">
+            <i data-lucide="book-open" class="w-4 h-4"></i> Trabajos
+          </a>
+          <a href="#institucional" class="px-3.5 py-2 rounded-xl text-fb-secondary hover:text-fb-text hover:bg-fb-hover transition-all flex items-center gap-1.5 font-medium">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Carrera & Cátedra
+          </a>
+          <a href="#equipo" class="px-3.5 py-2 rounded-xl text-fb-secondary hover:text-fb-text hover:bg-fb-hover transition-all flex items-center gap-1.5 font-medium">
+            <i data-lucide="users" class="w-4 h-4"></i> Integrantes
+          </a>
+        </nav>
+
+        <!-- CTA Móvil / Contacto Rápido -->
+        <div class="flex items-center gap-2">
+          <a href="https://wa.me/5493754406435" target="_blank" rel="noopener" class="bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold px-4 py-2 rounded-full transition-all flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">WhatsApp Grupo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== BANNER HERO (PORTADA COMUNIDAD UNaM) ==================== -->
+  <section class="bg-gradient-to-r from-unam-dark via-unam-blue to-unam-sky text-white py-12 sm:py-14 px-4 sm:px-6 lg:px-8 border-b border-fb-border relative overflow-hidden shadow-sm">
+    <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1.5px,transparent_1.5px)] [background-size:20px_20px]"></div>
+    <div class="max-w-5xl mx-auto relative z-10 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/30 text-white text-xs font-bold tracking-wide uppercase shadow-xs">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-unam-skyLight"></i> Espacio Colaborativo Estudiantil de Acceso Abierto
+      </div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
+        Producción de Sentido, Práctica Crítica y Comunicación Social
+      </h2>
+      <p class="text-base sm:text-lg text-white/90 max-w-3xl mx-auto font-normal leading-relaxed">
+        Repositorio digital que recopila análisis discursivos, piezas periodísticas, producciones transmedia e investigaciones desarrolladas durante el cursado regular en la Sede Cerro Azul.
+      </p>
+      <div class="pt-3 flex flex-wrap justify-center gap-3 text-xs sm:text-sm">
+        <div class="flex items-center gap-1.5 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 font-medium">
+          <i data-lucide="calendar" class="w-4 h-4 text-unam-skyLight"></i> Ciclo Lectivo 2026
+        </div>
+        <div class="flex items-center gap-1.5 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 font-medium">
+          <i data-lucide="map-pin" class="w-4 h-4 text-rose-300"></i> Cerro Azul, Misiones, Arg.
+        </div>
+        <div class="flex items-center gap-1.5 bg-unam-green/30 backdrop-blur-md text-emerald-200 px-3.5 py-1.5 rounded-full border border-emerald-400/30 font-semibold">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-300"></i> Universidad Pública y Gratuita
+        </div>
+        <a href="Secuencias.Ejercicios%202026.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/40 font-bold text-white shadow-xs transition hover:scale-105" title="Abrir PDF oficial de cátedra con consignas y lecturas">
+          <i data-lucide="file-text" class="w-4 h-4 text-white"></i> PDF Consignas y Lecturas 2026
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+  <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+    <!-- REPOSITORIO DE TRABAJOS (FEED DE PUBLICACIONES ACADÉMICAS) -->
+    <section id="repositorio" class="mb-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 pb-4 border-b border-fb-border gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-unam-blue flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-unam-sky"></i> Publicaciones Académicas Oficiales
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-fb-text flex items-center gap-2 mt-0.5">
+            <i data-lucide="folder-git-2" class="w-7 h-7 text-unam-blue"></i>
+            Entregas y Trabajos Prácticos
+          </h2>
+        </div>
+        
+        <!-- Filtro Dinámico por Materia estilo Facebook Chips / Selector -->
+        <div class="flex items-center gap-2">
+          <label for="filtroMateria" class="text-xs font-bold text-fb-secondary">Filtrar Asignatura:</label>
+          <select id="filtroMateria" onchange="filtrarTrabajos()" class="bg-white border border-fb-border text-fb-text text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-unam-blue focus:border-unam-blue block p-2.5 font-bold shadow-xs outline-none transition">
+            <option value="todas">Todas las Materias (1)</option>
+            <option value="lengua" selected>Lengua y Comunicación (1)</option>
+            <option value="proximas" disabled>— Próximas materias del plan —</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- FEED DE PUBLICACIONES (ESTILO STYLEX / FACEBOOK) -->
+      <div class="space-y-6" id="listaTrabajos">
+
+        <!-- TARJETA DEL TRABAJO: LENGUA Y COMUNICACIÓN 2026 (POST DE FACEBOOK / STYLEX) -->
+        <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="lengua">
+          
+          <!-- Encabezado del Post (Autoría Institucional estilo Facebook) -->
+          <div class="p-5 sm:p-6 bg-white border-b border-fb-border">
+            <div class="flex items-start justify-between gap-3">
+              
+              <!-- Avatar y Datos del Autor / Cátedra -->
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
+                  <img 
+                    src="logo.png" 
+                    alt="Cátedra Lengua y Comunicación" 
+                    class="w-full h-full object-contain" 
+                  />
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug hover:text-unam-blue transition cursor-pointer">
+                      Cátedra Lengua y Comunicación
+                    </h3>
+                    <i data-lucide="badge-check" class="w-4 h-4 text-unam-sky fill-unam-sky/20"></i>
+                  </div>
+                  <p class="text-xs text-fb-secondary flex items-center gap-1.5 mt-0.5">
+                    <span>FHyCS — UNaM</span>
+                    <span>•</span>
+                    <span>Septiembre 2026</span>
+                    <span>•</span>
+                    <i data-lucide="globe" class="w-3.5 h-3.5 text-fb-secondary" title="Acceso Abierto Público"></i>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Badges de Categoría -->
+              <div class="flex items-center gap-2 flex-wrap justify-end">
+                <span class="px-2.5 py-1 bg-unam-active text-unam-blue text-xs font-bold rounded-full uppercase tracking-wider">
+                  TP N° 1
+                </span>
+                <span class="px-2.5 py-1 bg-unam-greenLight text-unam-green text-xs font-bold rounded-full border border-unam-green/20">
+                  Sede Cerro Azul
+                </span>
+              </div>
+            </div>
+
+            <!-- Título y Resumen del Post -->
+            <div class="mt-4 space-y-2">
+              <h4 class="text-xl sm:text-2xl font-black text-fb-text tracking-tight leading-snug">
+                Análisis de Géneros Discursivos, Secuencias Textuales y Producción Multimodal
+              </h4>
+              <p class="text-fb-secondary text-sm sm:text-base leading-relaxed">
+                Estudio sistemático sobre el corpus de seis textos (Diaconú, Manuales de Emergencia, Astarita, Martini, Mayra Arena y Agencia Periodística del Mercosur) bajo los marcos de la tipología de géneros bajtinianos y las secuencias de Jean-Michel Adam. Incluye posteo de divulgación para plataformas digitales.
+              </p>
+            </div>
+
+            <!-- Estudiantes Integrantes para la Realización del TP (Etiquetado estilo Facebook / StyleX) -->
+            <div class="mt-5 pt-4 border-t border-fb-border/70 flex flex-col md:flex-row md:items-center justify-between text-xs text-fb-secondary gap-3">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-extrabold text-fb-text flex items-center gap-1">
+                  <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i>
+                  Estudiantes Integrantes (Realización del TP):
+                </span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Mario Prozapas</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Cathalina Turcheñuk</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Pedro Turcheñuk</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Marcelo Gimenez</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Gustavo Bachiller</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Gladys Rast</span>
+              </div>
+              <div class="text-[11px] text-unam-blue font-bold bg-unam-active px-2.5 py-1 rounded-full border border-unam-blue/20 self-start md:self-auto flex-shrink-0">
+                6 Integrantes • Producción Colectiva
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Acciones del Post estilo Facebook / StyleX -->
+          <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 flex-wrap">
+              <button onclick="toggleDocumento('doc-tp1')" class="inline-flex items-center gap-2 px-4 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
+                <i data-lucide="eye" class="w-4 h-4"></i>
+                <span id="btn-text-tp1">Desplegar Resolución Completa</span>
+              </button>
+              <a href="Secuencias.Ejercicios%202026.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs" title="Abrir Secuencias.Ejercicios 2026.pdf con lecturas y consignas de cátedra">
+                <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
+                <span>Ver PDF Oficial (Lecturas y Consignas)</span>
+              </a>
+              <a href="Secuencias.Ejercicios%202026.pdf" download="Secuencias.Ejercicios 2026.pdf" class="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-fb-canvas text-fb-secondary hover:text-fb-text border border-fb-border rounded-xl font-medium text-xs sm:text-sm transition-all shadow-xs" title="Descargar archivo PDF al dispositivo">
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span class="hidden md:inline">Descargar</span>
+              </a>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 text-xs font-bold text-unam-blue bg-unam-active px-3 py-1.5 rounded-xl">
+              <i data-lucide="file-check-2" class="w-4 h-4"></i>
+              <span>6 Textos Analizados</span>
+            </div>
+          </div>
+
+          <!-- CONTENIDO DESPLEGABLE CON LA RESOLUCIÓN ACADÉMICA (ESTILO STYLEX / FACEBOOK) -->
+          <div id="doc-tp1" class="hidden p-5 sm:p-8 md:p-10 bg-white border-t border-fb-border space-y-10 academic-prose">
+            
+            <!-- Membrete Institucional Académico Oficial (StyleX Card) -->
+            <div class="bg-fb-canvas border border-fb-border rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs">
+              <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+                <div class="flex items-center gap-3 sm:gap-4 bg-white px-4 py-2.5 rounded-xl shadow-xs border border-fb-border">
+                  <img 
+                    src="unam_imagotipo_horizontal.png" 
+                    alt="Universidad Nacional de Misiones" 
+                    title="Universidad Nacional de Misiones (UNaM)"
+                    class="h-7 sm:h-9 w-auto object-contain"
+                  />
+                  <div class="h-7 sm:h-8 w-[1px] bg-fb-border"></div>
+                  <img 
+                    src="logo.png" 
+                    alt="Facultad de Humanidades y Ciencias Sociales - UNaM" 
+                    title="Facultad de Humanidades y Ciencias Sociales (FHyCS)"
+                    class="h-9 sm:h-11 w-auto object-contain"
+                  />
+                </div>
+                <div class="text-center md:text-right space-y-0.5">
+                  <span class="inline-block px-2.5 py-0.5 rounded-full bg-unam-active text-unam-blue font-bold text-[10px] uppercase tracking-wider border border-unam-blue/20">
+                    Producción Académica Oficial
+                  </span>
+                  <h4 class="text-sm sm:text-base font-black text-fb-text tracking-tight">
+                    Universidad Nacional de Misiones — FHyCS
+                  </h4>
+                  <p class="text-xs text-fb-secondary font-medium">
+                    Tecnicatura en Comunicación Social • Extensión Áulica Sede Cerro Azul
+                  </p>
+                  <p class="text-[11px] text-fb-secondary">
+                    Cátedra: Lengua y Comunicación • Ciclo Lectivo 2026
+                  </p>
+                </div>
+              </div>
+
+              <!-- Fila con todos los Estudiantes Integrantes para la Realización del TP -->
+              <div class="pt-3.5 border-t border-fb-border/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <span class="font-extrabold text-fb-text flex items-center gap-1.5">
+                    <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i>
+                    Estudiantes Integrantes (Realización del TP):
+                  </span>
+                  <span class="text-fb-text font-semibold">Mario Prozapas, Cathalina Turcheñuk, Pedro Turcheñuk, Marcelo Gimenez, Gustavo Bachiller, Gladys Rast.</span>
+                </div>
+                <span class="text-[11px] text-unam-green font-bold bg-unam-greenLight px-2.5 py-0.5 rounded-full border border-unam-green/20 self-start sm:self-auto flex-shrink-0">
+                  Sede Cerro Azul
+                </span>
+              </div>
+            </div>
+
+            <!-- Consignas Oficiales estilo Facebook Callout -->
+            <div class="bg-unam-active/60 border-l-4 border-unam-blue p-5 sm:p-6 rounded-r-2xl border border-fb-border/70 space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <h4 class="text-sm font-bold uppercase tracking-wider text-unam-blue flex items-center gap-2">
+                  <i data-lucide="file-text" class="w-4 h-4 text-unam-blue"></i> Consignas del Trabajo Práctico (Cátedra Lengua y Comunicación)
+                </h4>
+                <div class="flex items-center gap-2">
+                  <a href="Secuencias.Ejercicios%202026.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-unam-active text-unam-blue border border-unam-blue/30 rounded-xl text-xs font-bold transition shadow-xs">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    <span>Abrir PDF Original</span>
+                  </a>
+                  <a href="Secuencias.Ejercicios%202026.pdf" download="Secuencias.Ejercicios 2026.pdf" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-unam-blue hover:bg-unam-dark text-white rounded-xl text-xs font-bold transition shadow-xs">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    <span>Descargar PDF</span>
+                  </a>
+                </div>
+              </div>
+
+              <ol class="list-decimal list-inside text-xs sm:text-sm text-fb-text space-y-1.5 font-medium">
+                <li>Reconocer el género discursivo de cada uno de los textos presentados. Justificar la respuesta.</li>
+                <li>Identificar todas las secuencias discursivas con las que se construyen cada uno de los textos y determinar cuál es la predominante. Justificar.</li>
+                <li>Cuál es la intencionalidad de los textos analizados.</li>
+                <li>Redactar un posteo de una red social acerca de uno de los temas expuestos en los textos leídos, que contenga cuatro secuencias discursivas: narrativa, descriptiva, explicativa y dialogal.</li>
+              </ol>
+
+              <!-- Tarjeta Adjunta del Documento PDF Fuente (StyleX / Facebook File Card) -->
+              <div class="bg-white border border-fb-border rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs mt-2">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-12 h-12 bg-rose-50 border border-rose-200 text-rose-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-xs">
+                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <h5 class="text-sm font-bold text-fb-text leading-tight">Secuencias.Ejercicios 2026.pdf</h5>
+                      <span class="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 border border-rose-200">PDF Oficial de Cátedra</span>
+                      <span class="text-[11px] text-fb-secondary font-medium">257 KB</span>
+                    </div>
+                    <p class="text-xs text-fb-secondary mt-1">
+                      Contiene las consignas completas y el corpus con los 6 textos fuente de lectura para el análisis de secuencias discursivas y géneros.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto justify-end flex-shrink-0">
+                  <a href="Secuencias.Ejercicios%202026.pdf" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none justify-center px-4 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-xs">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                    <span>Ver Lecturas en PDF</span>
+                  </a>
+                  <a href="Secuencias.Ejercicios%202026.pdf" download="Secuencias.Ejercicios 2026.pdf" class="flex-1 md:flex-none justify-center px-3.5 py-2 bg-fb-canvas hover:bg-fb-hover text-fb-text border border-fb-border rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Descargar</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Punto 1 -->
+            <div>
+              <div class="flex items-center gap-2 pb-3 mb-5 border-b border-fb-border">
+                <span class="w-7 h-7 bg-unam-blue text-white rounded-lg flex items-center justify-center font-bold text-xs shadow-xs">1</span>
+                <h4 class="text-lg sm:text-xl font-black text-fb-text">Reconocimiento y Justificación de los Géneros Discursivos</h4>
+              </div>
+              <p class="text-sm sm:text-base text-fb-secondary font-serif-body italic mb-5">
+                Marco conceptual: Siguiendo a Mijaíl Bajtín, concebimos a los géneros discursivos como tipos relativamente estables de enunciados construidos en las diferentes esferas de la praxis humana, identificables por su contenido temático, su estilo verbal y su estructuración compositiva.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                
+                <div class="bg-fb-canvas hover:bg-white border border-fb-border hover:border-unam-sky/50 hover:shadow-fb-card p-4 rounded-xl transition duration-150">
+                  <span class="text-xs font-bold text-unam-blue uppercase tracking-wider">Texto 1</span>
+                  <h5 class="font-bold text-fb-text text-sm mt-0.5">"El poder de las palabras" (Alina Diaconú — La Nación)</h5>
+                  <p class="text-xs text-fb-secondary mt-1.5"><strong>Género:</strong> Columna de Opinión / Ensayo Breve (Esfera Periodística de Opinión - Género Complejo/Secundario).</p>
+                  <p class="text-xs text-fb-secondary mt-2"><strong>Justificación:</strong> Posee autoría firmada, se publica en prensa gráfica masiva y se articula en torno a un juicio de valor subjetivo frente a un hábito comunicativo juvenil (el vocativo "boludo"). Predominan los subjetivemas afectivos y axiológicos con función apelativa hacia la sociedad.</p>
+                </div>
+
+                <div class="bg-fb-canvas hover:bg-white border border-fb-border hover:border-unam-sky/50 hover:shadow-fb-card p-4 rounded-xl transition duration-150">
+                  <span class="text-xs font-bold text-unam-blue uppercase tracking-wider">Texto 2</span>
+                  <h5 class="font-bold text-fb-text text-sm mt-0.5">"¿Qué hacer en caso de terremoto?"</h5>
+                  <p class="text-xs text-fb-secondary mt-1.5"><strong>Género:</strong> Folleto Instructivo / Protocolo Institucional de Emergencia y Defensa Civil.</p>
+                  <p class="text-xs text-fb-secondary mt-2"><strong>Justificación:</strong> Responde a la esfera institucional y de protección comunitaria. Presenta una partición secuencial operativa (Antes, Durante, Después) y un registro directivo formal con oraciones en imperativo que ordenan el comportamiento ciudadano ante situaciones de catástrofe.</p>
+                </div>
+
+                <div class="bg-fb-canvas hover:bg-white border border-fb-border hover:border-unam-sky/50 hover:shadow-fb-card p-4 rounded-xl transition duration-150">
+                  <span class="text-xs font-bold text-unam-blue uppercase tracking-wider">Texto 3</span>
+                  <h5 class="font-bold text-fb-text text-sm mt-0.5">"No estoy aquí para discutir con los alumnos" (Rolando Astarita)</h5>
+                  <p class="text-xs text-fb-secondary mt-1.5"><strong>Género:</strong> Entrada de Blog Académico / Manifiesto Pedagógico de Intervención Crítica.</p>
+                  <p class="text-xs text-fb-secondary mt-2"><strong>Justificación:</strong> Publicado originalmente en formato web digital y difundido en asambleas universitarias. Combina la crónica áulica testimonial con el debate epistemológico (teorías económicas, Marx, dialéctica) para denunciar el autoritarismo catedrático y reivindicar el pensamiento crítico.</p>
+                </div>
+
+                <div class="bg-fb-canvas hover:bg-white border border-fb-border hover:border-unam-sky/50 hover:shadow-fb-card p-4 rounded-xl transition duration-150">
+                  <span class="text-xs font-bold text-unam-blue uppercase tracking-wider">Texto 4</span>
+                  <h5 class="font-bold text-fb-text text-sm mt-0.5">"1.3. La información periodística..." (Stella Martini)</h5>
+                  <p class="text-xs text-fb-secondary mt-1.5"><strong>Género:</strong> Manual Teórico / Tratado Científico Universitario de Ciencias de la Comunicación.</p>
+                  <p class="text-xs text-fb-secondary mt-2"><strong>Justificación:</strong> Perteneciente al ámbito pedagógico-académico superior. Se destaca por la tercera persona formal, la utilización precisa de metalenguaje comunicacional ("construcción de sentido", "contexto metacomunicativo"), aparato crítico con citas estandarizadas (Geertz) y neutralidad enunciativa.</p>
+                </div>
+
+                <div class="bg-fb-canvas hover:bg-white border border-fb-border hover:border-unam-sky/50 hover:shadow-fb-card p-4 rounded-xl transition duration-150">
+                  <span class="text-xs font-bold text-unam-blue uppercase tracking-wider">Texto 5</span>
+                  <h5 class="font-bold text-fb-text text-sm mt-0.5">"El beneficio de ser pobres" (Mayra Arena)</h5>
+                  <p class="text-xs text-fb-secondary mt-1.5"><strong>Género:</strong> Crónica Autobiográfica / Relato Testimonial de Denuncia Social.</p>
+                  <p class="text-xs text-fb-secondary mt-2"><strong>Justificación:</strong> Construido desde una primera persona situada y popular ("mi vieja", "laburo", "lápices de porquería"). Disputa la representación hegemónica sobre la pobreza, articulando la vivencia cotidiana en las barriadas con el análisis sociopolítico de las políticas de ayuda estatal.</p>
+                </div>
+
+                <div class="bg-fb-canvas hover:bg-white border border-fb-border hover:border-unam-sky/50 hover:shadow-fb-card p-4 rounded-xl transition duration-150">
+                  <span class="text-xs font-bold text-unam-blue uppercase tracking-wider">Texto 6</span>
+                  <h5 class="font-bold text-fb-text text-sm mt-0.5">"Por un peso - A comer al comedor universitario" (M. López Melograno)</h5>
+                  <p class="text-xs text-fb-secondary mt-1.5"><strong>Género:</strong> Crónica Periodística de Investigación Territorial (Agencia APM - UNLP).</p>
+                  <p class="text-xs text-fb-secondary mt-2"><strong>Justificación:</strong> Pertenece al periodismo de agencia universitaria. Destaca por la inmersión del cronista en el espacio físico ("la cocina"), relevando olores, ruidos, proporciones de alimentos e intercalando voces directas de trabajadores y estudiantes.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Punto 2 -->
+            <div>
+              <div class="flex items-center gap-2 pb-3 mb-5 border-b border-fb-border">
+                <span class="w-7 h-7 bg-unam-blue text-white rounded-lg flex items-center justify-center font-bold text-xs shadow-xs">2</span>
+                <h4 class="text-lg sm:text-xl font-black text-fb-text">Secuencias Discursivas (Tipología de Jean-Michel Adam)</h4>
+              </div>
+              
+              <div class="overflow-x-auto border border-fb-border rounded-xl shadow-xs bg-white">
+                <table class="w-full text-xs sm:text-sm text-left">
+                  <thead class="bg-fb-canvas text-fb-secondary uppercase text-[11px] font-extrabold border-b border-fb-border">
+                    <tr>
+                      <th class="p-3.5 border-b border-fb-border">Texto Analizado</th>
+                      <th class="p-3.5 border-b border-fb-border">Secuencias Detectadas</th>
+                      <th class="p-3.5 border-b border-fb-border text-unam-blue">Secuencia Predominante</th>
+                      <th class="p-3.5 border-b border-fb-border">Fundamentación Discursiva</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-fb-border text-fb-text">
+                    <tr class="hover:bg-unam-active/30 transition">
+                      <td class="p-3.5 font-bold text-fb-text">Texto 1 (Diaconú)</td>
+                      <td class="p-3.5 text-fb-secondary">Narrativa (anécdota del subte), Descriptiva (los jóvenes), Argumentativa.</td>
+                      <td class="p-3.5 font-bold text-unam-blue bg-unam-active/50">Argumentativa</td>
+                      <td class="p-3.5 text-fb-secondary">La anécdota y la descripción física son recursos subordinados al objetivo principal: argumentar que el léxico devalúa la convivencia y proponer un cambio cultural.</td>
+                    </tr>
+                    <tr class="hover:bg-unam-active/30 transition">
+                      <td class="p-3.5 font-bold text-fb-text">Texto 2 (Terremoto)</td>
+                      <td class="p-3.5 text-fb-secondary">Descriptiva (puntos seguros), Instruccional / Prescriptiva.</td>
+                      <td class="p-3.5 font-bold text-unam-blue bg-unam-active/50">Instruccional (Prescriptiva)</td>
+                      <td class="p-3.5 text-fb-secondary">La totalidad del esquema está articulada mediante verbos en modo imperativo con pasos coordinados temporalmente.</td>
+                    </tr>
+                    <tr class="hover:bg-unam-active/30 transition">
+                      <td class="p-3.5 font-bold text-fb-text">Texto 3 (Astarita)</td>
+                      <td class="p-3.5 text-fb-secondary">Narrativa (el encuentro en el ágora), Dialogal (discurso directo), Argumentativa.</td>
+                      <td class="p-3.5 font-bold text-unam-blue bg-unam-active/50">Argumentativa</td>
+                      <td class="p-3.5 text-fb-secondary">El relato anecdótico sirve de premisa fáctica para estructurar una defensa razonada sobre el diálogo pedagógico y la refutación científica.</td>
+                    </tr>
+                    <tr class="hover:bg-unam-active/30 transition">
+                      <td class="p-3.5 font-bold text-fb-text">Texto 4 (Martini)</td>
+                      <td class="p-3.5 text-fb-secondary">Expositiva-Explicativa, Argumentativa teórica.</td>
+                      <td class="p-3.5 font-bold text-unam-blue bg-unam-active/50">Explicativa</td>
+                      <td class="p-3.5 text-fb-secondary">Prioriza la definición de nociones clave ("comunicación", "cultura") y el desdoblamiento conceptual sin confrontación polémica abierta.</td>
+                    </tr>
+                    <tr class="hover:bg-unam-active/30 transition">
+                      <td class="p-3.5 font-bold text-fb-text">Texto 5 (M. Arena)</td>
+                      <td class="p-3.5 text-fb-secondary">Descriptiva (hogar, trámites, útiles), Narrativa (comparación infancia-presente), Argumentativa sutil.</td>
+                      <td class="p-3.5 font-bold text-unam-blue bg-unam-active/50">Narrativa</td>
+                      <td class="p-3.5 text-fb-secondary">Se estructura a lo largo de una línea temporal biográfica (la década del 90 vs. la situación contemporánea de la familia).</td>
+                    </tr>
+                    <tr class="hover:bg-unam-active/30 transition">
+                      <td class="p-3.5 font-bold text-fb-text">Texto 6 (Comedor UNLP)</td>
+                      <td class="p-3.5 text-fb-secondary">Descriptiva (la cocina y los 900kg de papa), Dialogal (jefe y alumna), Narrativa.</td>
+                      <td class="p-3.5 font-bold text-unam-blue bg-unam-active/50">Narrativa / Descriptiva (Crónica Híbrida)</td>
+                      <td class="p-3.5 text-fb-secondary">Alterna la progresión de acciones del cocinero con la recreación vívida del espacio y los insumos a granel.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Punto 3 -->
+            <div>
+              <div class="flex items-center gap-2 pb-3 mb-5 border-b border-fb-border">
+                <span class="w-7 h-7 bg-unam-blue text-white rounded-lg flex items-center justify-center font-bold text-xs shadow-xs">3</span>
+                <h4 class="text-lg sm:text-xl font-black text-fb-text">Intencionalidad de los Textos</h4>
+              </div>
+
+              <div class="grid md:grid-cols-3 gap-4 text-xs sm:text-sm">
+                <div class="p-4 bg-fb-canvas hover:bg-white border border-fb-border rounded-xl transition shadow-xs">
+                  <h5 class="font-bold text-fb-text mb-1">Texto 1 (Diaconú)</h5>
+                  <p class="text-fb-secondary leading-relaxed">Interpelar la conciencia moral y cívica de la comunidad lectora para resignificar el uso social del lenguaje, alertando sobre la naturalización de descalificaciones verbales.</p>
+                </div>
+                <div class="p-4 bg-fb-canvas hover:bg-white border border-fb-border rounded-xl transition shadow-xs">
+                  <h5 class="font-bold text-fb-text mb-1">Texto 2 (Terremoto)</h5>
+                  <p class="text-fb-secondary leading-relaxed">Prevenir siniestros y regular conductas individuales y colectivas antes, durante y después de un temblor para minimizar riesgos vitales.</p>
+                </div>
+                <div class="p-4 bg-fb-canvas hover:bg-white border border-fb-border rounded-xl transition shadow-xs">
+                  <h5 class="font-bold text-fb-text mb-1">Texto 3 (Astarita)</h5>
+                  <p class="text-fb-secondary leading-relaxed">Deslegitimar las posturas de docencia autoritaria en las universidades e incentivar la duda constructiva y el debate científico entre el estudiantado.</p>
+                </div>
+                <div class="p-4 bg-fb-canvas hover:bg-white border border-fb-border rounded-xl transition shadow-xs">
+                  <h5 class="font-bold text-fb-text mb-1">Texto 4 (Martini)</h5>
+                  <p class="text-fb-secondary leading-relaxed">Aportar una herramienta epistémica rigurosa para desestimar el esquema lineal estímulo-respuesta y fundamentar la comunicación como producción de sentido situada.</p>
+                </div>
+                <div class="p-4 bg-fb-canvas hover:bg-white border border-fb-border rounded-xl transition shadow-xs">
+                  <h5 class="font-bold text-fb-text mb-1">Texto 5 (M. Arena)</h5>
+                  <p class="text-fb-secondary leading-relaxed">Desarmar estigmatizaciones de clase y visibilizar desde la intimidad testimonial los avances y las carencias que persisten en los sectores postergados.</p>
+                </div>
+                <div class="p-4 bg-fb-canvas hover:bg-white border border-fb-border rounded-xl transition shadow-xs">
+                  <h5 class="font-bold text-fb-text mb-1">Texto 6 (Comedor)</h5>
+                  <p class="text-fb-secondary leading-relaxed">Poner en valor la universidad pública y sus conquistas comunitarias, mostrando la trastienda de una política pública esencial de permanencia estudiantil.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Punto 4: Posteo para Red Social (ESTILO FACEBOOK / STYLEX AUTÉNTICO) -->
+            <div>
+              <div class="flex items-center gap-2 pb-3 mb-5 border-b border-fb-border">
+                <span class="w-7 h-7 bg-unam-blue text-white rounded-lg flex items-center justify-center font-bold text-xs shadow-xs">4</span>
+                <h4 class="text-lg sm:text-xl font-black text-fb-text">Producción: Posteo para Redes Sociales con 4 Secuencias</h4>
+              </div>
+              <p class="text-xs sm:text-sm text-fb-secondary mb-5">
+                <strong>Eje seleccionado:</strong> El pensamiento crítico y la escucha dialógica en la universidad pública (inspirado en el debate del Texto 3 de Rolando Astarita).
+              </p>
+
+              <!-- Simulación de Card de Red Social Facebook StyleX -->
+              <div class="max-w-xl mx-auto bg-white rounded-2xl border border-fb-border shadow-fb-card overflow-hidden text-xs sm:text-sm">
+                <!-- Header de usuario estilo Facebook -->
+                <div class="p-4 flex items-center justify-between border-b border-fb-border bg-white">
+                  <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-full bg-white p-1 border-2 border-unam-sky/40 shadow-xs flex items-center justify-center overflow-hidden flex-shrink-0">
+                      <img 
+                        src="logo.png" 
+                        alt="Logo FHyCS UNaM" 
+                        class="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div>
+                      <div class="flex items-center gap-1.5">
+                        <h5 class="font-bold text-fb-text leading-tight">comunicacion.unam.cerroazul</h5>
+                        <i data-lucide="badge-check" class="w-4 h-4 text-unam-sky fill-unam-sky/20"></i>
+                      </div>
+                      <p class="text-[11px] text-fb-secondary flex items-center gap-1 mt-0.5">
+                        <span>1 h</span>
+                        <span>•</span>
+                        <span>Sede Cerro Azul</span>
+                        <span>•</span>
+                        <i data-lucide="globe" class="w-3 h-3 inline text-fb-secondary" title="Público"></i>
+                      </p>
+                    </div>
+                  </div>
+                  <button class="p-1.5 text-fb-secondary hover:bg-fb-canvas rounded-full transition">
+                    <i data-lucide="more-horizontal" class="w-5 h-5"></i>
+                  </button>
+                </div>
+
+                <!-- Cuerpo del post con las 4 secuencias discursivas -->
+                <div class="p-5 space-y-3.5 font-sans leading-relaxed text-fb-text">
+                  <p class="font-black text-fb-text text-base">¿A la universidad venimos a repetir o a reflexionar? 🧠✊</p>
+                  
+                  <div class="p-3.5 bg-unam-active/80 rounded-xl border-l-4 border-unam-blue">
+                    <span class="text-[10px] uppercase font-bold text-unam-blue tracking-wider block mb-1">Secuencia 1: Narrativa</span>
+                    <p class="italic text-fb-text">
+                      "El otro día en el aula magna, un compañero levantó la mano para hacer una pregunta sobre un autor clásico. No buscaba confrontar; quería entender otra arista. Pero la respuesta del profe cayó como un portazo: <em>'Esto es lo que entra en el parcial y no estoy acá para perder tiempo discutiendo'</em>."
+                    </p>
+                  </div>
+
+                  <div class="p-3.5 bg-unam-greenLight rounded-xl border-l-4 border-unam-green">
+                    <span class="text-[10px] uppercase font-bold text-unam-green tracking-wider block mb-1">Secuencia 2: Descriptiva</span>
+                    <p class="text-fb-text">
+                      "El pizarrón quedó congelado con cuadros sinópticos inmutables y fechas fijas. En los bancos, treinta miradas agachadas volvieron a sus cuadernos en medio de un silencio denso y desierto de entusiasmo."
+                    </p>
+                  </div>
+
+                  <div class="p-3.5 bg-sky-50 rounded-xl border-l-4 border-unam-sky">
+                    <span class="text-[10px] uppercase font-bold text-unam-sky tracking-wider block mb-1">Secuencia 3: Expositiva-Explicativa</span>
+                    <p class="text-fb-text">
+                      "El conocimiento universitario no es un dogma sagrado para memorizar al dedillo; es un proceso colectivo de interrogación sistemática. Las ciencias sociales progresan cuando se contrastan perspectivas contrapuestas y se habilita el error metodológico como punto de partida epistemológico."
+                    </p>
+                  </div>
+
+                  <div class="p-3.5 bg-amber-50 rounded-xl border-l-4 border-amber-500">
+                    <span class="text-[10px] uppercase font-bold text-amber-800 tracking-wider block mb-1">Secuencia 4: Dialogal</span>
+                    <p class="text-fb-text">
+                      — <em>¿Para qué sirve cursar si no podemos poner en duda lo que nos dan?</em> —preguntó mi compa al salir al patio.<br>
+                      — <em>Para nada</em> —le contesté—. <em>Porque comunicar no es bajar línea: comunicar es escuchar, contradecir y construir juntos.</em>
+                    </p>
+                  </div>
+
+                  <p class="text-fb-secondary pt-2 border-t border-fb-border text-xs">
+                    💬 Desde Cerro Azul defendemos las aulas vivas, plurales y sin miedo a la pregunta. ¡Hacé oír tu voz!
+                  </p>
+                  <p class="text-unam-blue font-bold text-xs">
+                    #ComunicacionSocial #UNaM #CerroAzul #PensamientoCritico #UniversidadPublica #DebateEstudiantil
+                  </p>
+                </div>
+
+                <!-- Reacciones y Contador estilo Facebook -->
+                <div class="px-5 py-2.5 bg-white border-t border-fb-border flex items-center justify-between text-fb-secondary text-xs">
+                  <div class="flex items-center gap-1.5">
+                    <span class="flex -space-x-1">
+                      <span class="w-5 h-5 rounded-full bg-unam-blue text-white flex items-center justify-center text-[10px] shadow-xs">👍</span>
+                      <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
+                      <span class="w-5 h-5 rounded-full bg-unam-green text-white flex items-center justify-center text-[10px] shadow-xs">💡</span>
+                    </span>
+                    <span class="font-semibold text-fb-secondary ml-1">48</span>
+                  </div>
+                  <div class="flex items-center gap-3 font-medium">
+                    <span>14 comentarios</span>
+                    <span>•</span>
+                    <span>6 veces compartido</span>
+                  </div>
+                </div>
+
+                <!-- Barra de Acciones Facebook (Me gusta, Comentar, Compartir) -->
+                <div class="px-2 py-1 bg-white border-t border-b border-fb-border flex items-center justify-around text-xs font-bold text-fb-secondary">
+                  <button class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-unam-blue">
+                    <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+                    <span>Me gusta</span>
+                  </button>
+                  <button class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-fb-secondary hover:text-fb-text">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    <span>Comentar</span>
+                  </button>
+                  <button class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-fb-secondary hover:text-fb-text">
+                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                    <span>Compartir</span>
+                  </button>
+                </div>
+
+                <!-- Input mockup de comentarios estilo Facebook -->
+                <div class="p-3.5 bg-fb-canvas/60 flex items-center gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">
+                    YO
+                  </div>
+                  <div class="bg-white border border-fb-border rounded-full px-4 py-1.5 text-xs text-fb-secondary w-full shadow-xs">
+                    Escribe un comentario o reflexión estudiantil...
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Ocultar Documento -->
+            <div class="text-center pt-4">
+              <button onclick="toggleDocumento('doc-tp1')" class="inline-flex items-center gap-1.5 text-xs text-fb-secondary hover:text-fb-text font-bold bg-fb-canvas hover:bg-fb-border px-4 py-2 rounded-full border border-fb-border transition">
+                <i data-lucide="chevron-up" class="w-4 h-4"></i> Contraer documento
+              </button>
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== INFORMACIÓN INSTITUCIONAL (PERFIL DE PÁGINA STYLEX / FACEBOOK) ==================== -->
+    <section id="institucional" class="mb-12">
+      <div class="bg-white rounded-2xl border border-fb-border shadow-fb p-6 sm:p-8 space-y-6">
+        
+        <!-- Franja de Logos Oficiales en Alta Definición -->
+        <div class="bg-fb-canvas rounded-2xl p-5 sm:p-6 border border-fb-border flex flex-col sm:flex-row items-center justify-around gap-6">
+          <!-- 1. Universidad Nacional de Misiones -->
+          <div class="flex items-center gap-4">
+            <img 
+              src="unam_imagotipo_horizontal.png" 
+              alt="Universidad Nacional de Misiones" 
+              title="Universidad Nacional de Misiones (UNaM)"
+              class="h-11 sm:h-14 w-auto object-contain"
+            />
+            <div class="text-left hidden md:block border-l border-fb-border pl-3.5">
+              <p class="text-xs font-bold uppercase tracking-wider text-unam-blue">UNaM</p>
+              <p class="text-xs text-fb-secondary">Universidad Nacional</p>
+            </div>
+          </div>
+
+          <!-- Divisor -->
+          <div class="h-10 w-[1px] bg-fb-border hidden sm:block"></div>
+
+          <!-- 2. Facultad de Humanidades y Ciencias Sociales -->
+          <div class="flex items-center gap-4">
+            <img 
+              src="logo.png" 
+              alt="Facultad de Humanidades y Ciencias Sociales - UNaM" 
+              title="Facultad de Humanidades y Ciencias Sociales (FHyCS)"
+              class="h-12 sm:h-16 w-auto object-contain"
+            />
+            <div class="text-left">
+              <p class="text-xs font-bold uppercase tracking-wider text-unam-blue">FHyCS • Sede Cerro Azul</p>
+              <p class="text-xs text-fb-secondary">Departamento de Comunicación Social</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b border-fb-border pb-5">
+          <span class="text-xs font-bold text-unam-blue uppercase tracking-widest flex items-center gap-1.5">
+            <i data-lucide="award" class="w-4 h-4 text-unam-sky"></i> Marco Académico Oficial
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-black text-fb-text tracking-tight mt-1">
+            Perfil Profesional y Alcances del Título
+          </h3>
+          <p class="text-fb-secondary text-sm sm:text-base mt-2 max-w-3xl leading-relaxed">
+            La Tecnicatura en Comunicación Social es una propuesta de formación universitaria de pregrado de la Facultad de Humanidades y Ciencias Sociales (UNaM) con sede en Cerro Azul, orientada al desarrollo territorial y mediático de la provincia de Misiones.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 text-sm">
+          <div class="space-y-4 bg-fb-canvas p-6 rounded-2xl border border-fb-border hover:shadow-fb-card transition">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-unam-active text-unam-blue flex items-center justify-center flex-shrink-0 shadow-xs">
+                <i data-lucide="compass" class="w-5 h-5"></i>
+              </div>
+              <h4 class="font-bold text-fb-text text-base">Alcances e Incumbencias</h4>
+            </div>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-fb-secondary list-disc list-inside leading-relaxed">
+              <li>Diseño, redacción y gestión de piezas comunicacionales en formatos gráficos, radiales, audiovisuales y transmedia digitales.</li>
+              <li>Diagnóstico y ejecución de planes de comunicación en municipios, cooperativas, instituciones públicas y organismos comunitarios locales.</li>
+              <li>Gestión de redes sociales, comunicación comunitaria y facilitación de procesos participativos en territorio.</li>
+              <li>Operación técnica de coberturas informativas y producción de géneros periodísticos con perspectiva regional.</li>
+            </ul>
+          </div>
+
+          <div class="space-y-4 bg-fb-canvas p-6 rounded-2xl border border-fb-border hover:shadow-fb-card transition">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-unam-greenLight text-unam-green flex items-center justify-center flex-shrink-0 shadow-xs">
+                <i data-lucide="landmark" class="w-5 h-5"></i>
+              </div>
+              <h4 class="font-bold text-fb-text text-base">Autoridades y Articulación Institucional</h4>
+            </div>
+            <div class="space-y-2.5 text-xs sm:text-sm text-fb-secondary">
+              <p><strong class="text-fb-text">Universidad:</strong> Universidad Nacional de Misiones (UNaM)</p>
+              <p><strong class="text-fb-text">Facultad:</strong> Facultad de Humanidades y Ciencias Sociales (FHyCS)</p>
+              <p><strong class="text-fb-text">Sede Académica:</strong> Extensión Áulica Cerro Azul, Misiones</p>
+              <p><strong class="text-fb-text">Departamento:</strong> Departamento de Comunicación Social</p>
+              <p><strong class="text-fb-text">Cátedra Actual:</strong> Lengua y Comunicación (Ciclo 2026)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EQUIPO DE ESTUDIANTES (DIRECTORIO ESTILO FACEBOOK / STYLEX) ==================== -->
+    <section id="equipo" class="mb-12">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-unam-blue flex items-center justify-center gap-1.5">
+          <i data-lucide="users" class="w-4 h-4 text-unam-sky"></i> Comunidad de Estudiantes
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-fb-text tracking-tight mt-1">
+          Integrantes del Grupo de Trabajo
+        </h2>
+        <p class="text-fb-secondary text-xs sm:text-sm mt-2">
+          Estudiantes regulares de la Tecnicatura en Comunicación Social (UNaM - Cerro Azul), abocados a la producción colectiva, el registro periodístico y la alfabetización digital abierta.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- Pedro Turcheñuk -->
+        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
+              PT
+            </div>
+            <h4 class="text-base font-black text-fb-text">Pedro Turcheñuk</h4>
+            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
+              Estudiante Tec. en Comunicación Social
+            </span>
+            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
+              Producción de contenidos, articulación territorial y coordinación técnica de repositorio digital.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
+            <a href="mailto:ideincom@gmail.com" class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas hover:bg-fb-border px-3 py-2 rounded-xl transition">
+              <i data-lucide="mail" class="w-4 h-4 text-unam-blue"></i> ideincom@gmail.com
+            </a>
+            <a href="tel:3754406435" class="flex items-center gap-2 text-unam-green font-bold bg-unam-greenLight px-3 py-2 rounded-xl transition hover:opacity-90">
+              <i data-lucide="phone" class="w-4 h-4 text-unam-green"></i> +54 9 3754 40-6435
+            </a>
+          </div>
+        </div>
+
+        <!-- Mario Prozapas -->
+        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-dark to-unam-blue text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
+              MP
+            </div>
+            <h4 class="text-base font-black text-fb-text">Mario Prozapas</h4>
+            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
+              Estudiante Tec. en Comunicación Social
+            </span>
+            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
+              Investigación periodística, relevamiento temático y análisis discursivo situado.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
+            <a href="mailto:mariocityobera@gmail.com" class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas hover:bg-fb-border px-3 py-2 rounded-xl transition">
+              <i data-lucide="mail" class="w-4 h-4 text-unam-blue"></i> mariocityobera@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Cathalina Turcheñuk -->
+        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-sky to-sky-400 text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
+              CT
+            </div>
+            <h4 class="text-base font-black text-fb-text">Cathalina Turcheñuk</h4>
+            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
+              Estudiante Tec. en Comunicación Social
+            </span>
+            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
+              Redacción institucional, comunicación digital, dinámicas de divulgación y cultura visual.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
+            <a href="mailto:cathaturche@gmail.com" class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas hover:bg-fb-border px-3 py-2 rounded-xl transition">
+              <i data-lucide="mail" class="w-4 h-4 text-unam-blue"></i> cathaturche@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Marcelo Gimenez -->
+        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-green to-emerald-500 text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
+              MG
+            </div>
+            <h4 class="text-base font-black text-fb-text">Marcelo Gimenez</h4>
+            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
+              Estudiante Tec. en Comunicación Social
+            </span>
+            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
+              Producción comunicacional, apoyo en documentación de campo y archivo colectivo.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
+            <a href="mailto:marcelogimenez411@gmail.com" class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas hover:bg-fb-border px-3 py-2 rounded-xl transition">
+              <i data-lucide="mail" class="w-4 h-4 text-unam-blue"></i> marcelogimenez411@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Facundo Da Luz -->
+        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-blue to-teal-500 text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
+              FD
+            </div>
+            <h4 class="text-base font-black text-fb-text">Facundo Da Luz</h4>
+            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
+              Estudiante Tec. en Comunicación Social
+            </span>
+            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
+              Soportes multimedia, registro fotográfico y colaboración en producciones comunitarias.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
+            <a href="mailto:fdaluz83@gmail.com" class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas hover:bg-fb-border px-3 py-2 rounded-xl transition">
+              <i data-lucide="mail" class="w-4 h-4 text-unam-blue"></i> fdaluz83@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Gustavo Bachiller -->
+        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-600 to-unam-sky text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
+              GB
+            </div>
+            <h4 class="text-base font-black text-fb-text">Gustavo Bachiller</h4>
+            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
+              Estudiante Tec. en Comunicación Social
+            </span>
+            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
+              Locución, periodismo regional, producción sonora, radiodifusión y comunicación comunitaria en Cerro Azul.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
+            <span class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas px-3 py-2 rounded-xl">
+              <i data-lucide="radio" class="w-4 h-4 text-unam-sky"></i> Producción Radial & Periodística
+            </span>
+          </div>
+        </div>
+
+        <!-- Gladys Rast -->
+        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-dark to-indigo-600 text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
+              GR
+            </div>
+            <h4 class="text-base font-black text-fb-text">Gladys Rast</h4>
+            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
+              Estudiante Tec. en Comunicación Social
+            </span>
+            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
+              Producción de contenidos, relevamiento discursivo territorial y apoyo analítico en trabajos académicos.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
+            <span class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas px-3 py-2 rounded-xl">
+              <i data-lucide="file-check" class="w-4 h-4 text-unam-green"></i> Producción y Análisis Textual
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER (ESTILO STYLEX / FACEBOOK) ==================== -->
+  <footer class="bg-white text-fb-secondary py-8 border-t border-fb-border text-xs mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Bloque Institucional con Logos Oficiales -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+          <div class="bg-white px-3.5 py-2 rounded-xl border border-fb-border shadow-xs flex items-center gap-2.5 flex-shrink-0">
+            <img 
+              src="unam_imagotipo_horizontal.png" 
+              alt="Universidad Nacional de Misiones" 
+              title="Universidad Nacional de Misiones"
+              class="h-6 sm:h-7 w-auto object-contain" 
+            />
+            <div class="h-6 w-[1px] bg-fb-border"></div>
+            <img 
+              src="logo.png" 
+              alt="Facultad de Humanidades y Ciencias Sociales - UNaM" 
+              title="Facultad de Humanidades y Ciencias Sociales"
+              class="h-7 sm:h-8 w-auto object-contain" 
+            />
+          </div>
+          <div>
+            <div class="font-black text-fb-text text-sm tracking-wide">
+              UNaM <span class="text-fb-secondary">|</span> FHyCS Cerro Azul
+            </div>
+            <p class="text-fb-secondary text-xs mt-0.5">Repositorio Académico Comunitario Estudiantil</p>
+          </div>
+        </div>
+
+        <div class="text-center md:text-right text-fb-secondary space-y-1">
+          <p class="text-fb-text font-bold">Tecnicatura en Comunicación Social • Sede Cerro Azul</p>
+          <p class="text-[11px]">Universidad Nacional de Misiones — República Argentina • 2026</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS DE INTERACCIÓN ==================== -->
+  <script>
+    // Inicializar Iconos de Lucide
+    lucide.createIcons();
+
+    // Función para desplegar/contraer la resolución completa
+    function toggleDocumento(id) {
+      const el = document.getElementById(id);
+      const btnText = document.getElementById('btn-text-tp1');
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'Contraer Documento';
+        lucide.createIcons();
+      } else {
+        el.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Desplegar Resolución Completa';
+      }
+    }
+
+    // Filtro por materia
+    function filtrarTrabajos() {
+      const select = document.getElementById('filtroMateria');
+      const val = select.value;
+      const cards = document.querySelectorAll('#listaTrabajos > article');
+
+      cards.forEach(card => {
+        if (val === 'todas' || card.getAttribute('data-materia') === val) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
