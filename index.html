@@ -683,7 +683,7 @@
                     <span class="font-semibold text-fb-secondary ml-1" id="like-count-post-simulado">48</span>
                   </div>
                   <div class="flex items-center gap-3 font-medium">
-                    <button onclick="toggleComentarios('post-simulado')" class="hover:underline cursor-pointer" id="comment-count-post-simulado">14 comentarios</button>
+                    <button onclick="toggleComentarios('post-simulado')" class="hover:underline cursor-pointer" id="comment-count-post-simulado">0 comentarios</button>
                     <span>•</span>
                     <span id="share-count-post-simulado">6 veces compartido</span>
                   </div>
@@ -751,7 +751,7 @@
                 <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-post-lengua-tp1">48</span>
               </div>
               <div class="flex items-center gap-3 font-medium">
-                <button onclick="toggleComentarios('post-lengua-tp1')" class="hover:underline cursor-pointer" id="comment-count-post-lengua-tp1">2 comentarios</button>
+                <button onclick="toggleComentarios('post-lengua-tp1')" class="hover:underline cursor-pointer" id="comment-count-post-lengua-tp1">0 comentarios</button>
                 <span>•</span>
                 <span id="share-count-post-lengua-tp1">6 veces compartido</span>
               </div>
@@ -939,7 +939,7 @@
                 <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-post-lengua-tp2">19</span>
               </div>
               <div class="flex items-center gap-3 font-medium">
-                <button onclick="toggleComentarios('post-lengua-tp2')" class="hover:underline cursor-pointer" id="comment-count-post-lengua-tp2">1 comentario</button>
+                <button onclick="toggleComentarios('post-lengua-tp2')" class="hover:underline cursor-pointer" id="comment-count-post-lengua-tp2">0 comentarios</button>
                 <span>•</span>
                 <span id="share-count-post-lengua-tp2">3 veces compartido</span>
               </div>
@@ -1360,7 +1360,7 @@
                 <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-post-comunicacion1">35</span>
               </div>
               <div class="flex items-center gap-3 font-medium">
-                <button onclick="toggleComentarios('post-comunicacion1')" class="hover:underline cursor-pointer" id="comment-count-post-comunicacion1">2 comentarios</button>
+                <button onclick="toggleComentarios('post-comunicacion1')" class="hover:underline cursor-pointer" id="comment-count-post-comunicacion1">0 comentarios</button>
                 <span>•</span>
                 <span id="share-count-post-comunicacion1">5 veces compartido</span>
               </div>
@@ -1911,56 +1911,10 @@
     };
 
     const DEFAULT_COMMENTS = {
-      'post-lengua-tp1': [
-        {
-          author: 'Mario Prozapas',
-          initials: 'MP',
-          color: 'from-unam-dark to-unam-blue',
-          time: 'Hace 3 h',
-          text: 'Excelente la articulación de la teoría de géneros bajtinianos con el corpus. La distinción entre géneros primarios y secundarios en el texto de Mayra Arena quedó impecable.'
-        },
-        {
-          author: 'Cathalina Turcheñuk',
-          initials: 'CT',
-          color: 'from-unam-sky to-sky-400',
-          time: 'Hace 1 h',
-          text: 'La matriz comparativa de las secuencias de Jean-Michel Adam simplifica muchísimo la lectura analítica para el parcial integrador.'
-        }
-      ],
-      'post-lengua-tp2': [
-        {
-          author: 'Pedro Turcheñuk',
-          initials: 'PT',
-          color: 'from-unam-blue to-unam-sky',
-          time: 'Hace 2 h',
-          text: 'Dejamos este espacio listo para subir las primeras grabaciones y desgrabaciones de entrevistas con los pioneros y vecinos de Cerro Azul.'
-        }
-      ],
-      'post-comunicacion1': [
-        {
-          author: 'Marcelo Gimenez',
-          initials: 'MG',
-          color: 'from-unam-green to-emerald-500',
-          time: 'Hace 4 h',
-          text: 'El Eje 3 de Jesús Martín-Barbero y las mediaciones socioculturales va a ser fundamental para pensar las radios comunitarias de nuestra zona.'
-        },
-        {
-          author: 'Pedro Turcheñuk',
-          initials: 'PT',
-          color: 'from-unam-blue to-unam-sky',
-          time: 'Hace 2 h',
-          text: 'Ya tenemos seleccionada la bibliografía digitalizada para compartirla ni bien arranquen las comisiones prácticas.'
-        }
-      ],
-      'post-simulado': [
-        {
-          author: 'Mario Prozapas',
-          initials: 'MP',
-          color: 'from-unam-dark to-unam-blue',
-          time: 'Hace 45 min',
-          text: 'Totalmente de acuerdo. La universidad pública debe ser un espacio de debate vivo y no de mera repetición.'
-        }
-      ]
+      'post-lengua-tp1': [],
+      'post-lengua-tp2': [],
+      'post-comunicacion1': [],
+      'post-simulado': []
     };
 
     // Inicializar datos en localStorage si no existen
@@ -1981,9 +1935,14 @@
       }
     }
 
+    // Limpiar comentarios mock almacenados previamente si existían en el navegador
+    try {
+      localStorage.removeItem('unam_social_comments');
+    } catch(e) {}
+
     let socialLikes = getSocialStorage('unam_social_likes', DEFAULT_LIKES);
     let socialShares = getSocialStorage('unam_social_shares', DEFAULT_SHARES);
-    let socialComments = getSocialStorage('unam_social_comments', DEFAULT_COMMENTS);
+    let socialComments = getSocialStorage('unam_social_comments_v2', DEFAULT_COMMENTS);
 
     // Renderizar contadores y estados en pantalla
     function actualizarContadoresUI(postId) {
