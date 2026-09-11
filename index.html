@@ -1983,7 +1983,7 @@
       // Conteo de Compartidos
       const shareCountEl = document.getElementById(`share-count-${postId}`);
       if (shareCountEl) {
-        shareCountEl.textContent = `${shareCount} vez${shareCount === 1 ? '' : 'es'} compartido`;
+        shareCountEl.textContent = `${shareCount} ${shareCount === 1 ? 'vez' : 'veces'} compartido`;
       }
 
       // Render de comentarios
