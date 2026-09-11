@@ -7,7 +7,7 @@
   
   <!-- Meta tags institucionales -->
   <meta name="description" content="Repositorio abierto de trabajos prácticos, investigaciones y producciones discursivas del grupo de estudiantes de la Tecnicatura en Comunicación Social, Sede Cerro Azul - FHyCS - UNaM." />
-  <meta name="keywords" content="UNaM, FHyCS, Comunicación Social, Cerro Azul, Misiones, Repositorio Académico, Lengua y Comunicación" />
+  <meta name="keywords" content="UNaM, FHyCS, Comunicación Social, Cerro Azul, Misiones, Repositorio Académico, Lengua y Comunicación, Comunicación I" />
   
   <!-- Favicon y recursos institucionales -->
   <link rel="icon" type="image/png" href="logo.png" />
@@ -193,10 +193,40 @@
         <div class="flex items-center gap-2">
           <label for="filtroMateria" class="text-xs font-bold text-fb-secondary">Filtrar Asignatura:</label>
           <select id="filtroMateria" onchange="filtrarTrabajos()" class="bg-white border border-fb-border text-fb-text text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-unam-blue focus:border-unam-blue block p-2.5 font-bold shadow-xs outline-none transition">
-            <option value="todas">Todas las Materias (1)</option>
-            <option value="lengua" selected>Lengua y Comunicación (1)</option>
+            <option value="todas" selected>Todas las Materias (2)</option>
+            <option value="lengua">Lengua y Comunicación (1)</option>
+            <option value="comunicacion1">Comunicación I (1)</option>
             <option value="proximas" disabled>— Próximas materias del plan —</option>
           </select>
+        </div>
+      </div>
+
+      <!-- CAJA COMPOSITOR ESTILO FACEBOOK / STYLEX PARA SUBIR NUEVOS MATERIALES Y TRABAJOS -->
+      <div class="bg-white rounded-2xl border border-fb-border shadow-fb p-4 sm:p-5 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center font-black text-xs shadow-xs flex-shrink-0">
+            UNaM
+          </div>
+          <button onclick="abrirModalSubir()" class="flex-1 bg-fb-canvas hover:bg-fb-hover text-fb-secondary hover:text-fb-text text-left px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-fb-border transition-all flex items-center justify-between shadow-xs">
+            <span class="truncate">¿Tenés un nuevo Trabajo Práctico o material para subir al repositorio?</span>
+            <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold text-unam-blue bg-unam-active px-3 py-1 rounded-full flex-shrink-0 ml-2 border border-unam-blue/20">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Nueva Entrega
+            </span>
+          </button>
+        </div>
+        <div class="mt-3.5 pt-3 border-t border-fb-border flex items-center justify-around text-xs font-bold text-fb-secondary flex-wrap gap-2">
+          <button onclick="abrirModalSubir('tp')" class="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-unam-blue">
+            <i data-lucide="file-up" class="w-4 h-4 text-unam-blue"></i>
+            <span>Subir Trabajo Práctico</span>
+          </button>
+          <button onclick="abrirModalSubir('material')" class="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-rose-600">
+            <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
+            <span>Adjuntar PDF / Material</span>
+          </button>
+          <button onclick="abrirModalSubir('proximo')" class="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-emerald-600">
+            <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+            <span>Cargar Próximo TP (TP2, TP3...)</span>
+          </button>
         </div>
       </div>
 
@@ -268,11 +298,9 @@
                 <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Cathalina Turcheñuk</span>
                 <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Pedro Turcheñuk</span>
                 <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Marcelo Gimenez</span>
-                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Gustavo Bachiller</span>
-                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Gladys Rast</span>
               </div>
               <div class="text-[11px] text-unam-blue font-bold bg-unam-active px-2.5 py-1 rounded-full border border-unam-blue/20 self-start md:self-auto flex-shrink-0">
-                6 Integrantes • Producción Colectiva
+                4 Integrantes • Producción Colectiva
               </div>
             </div>
           </div>
@@ -280,9 +308,9 @@
           <!-- Barra de Acciones del Post estilo Facebook / StyleX -->
           <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center gap-2 flex-wrap">
-              <button onclick="toggleDocumento('doc-tp1')" class="inline-flex items-center gap-2 px-4 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
+              <button onclick="toggleDocumento('doc-tp1', 'btn-text-tp1')" class="inline-flex items-center gap-2 px-4 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
                 <i data-lucide="eye" class="w-4 h-4"></i>
-                <span id="btn-text-tp1">Desplegar Resolución Completa</span>
+                <span id="btn-text-tp1" data-default-text="Desplegar Resolución Completa">Desplegar Resolución Completa</span>
               </button>
               <a href="Secuencias.Ejercicios%202026.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs" title="Abrir Secuencias.Ejercicios 2026.pdf con lecturas y consignas exclusivas del TP1 de Lengua">
                 <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
@@ -343,7 +371,7 @@
                     <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i>
                     Estudiantes Integrantes (Realización del TP):
                   </span>
-                  <span class="text-fb-text font-semibold">Mario Prozapas, Cathalina Turcheñuk, Pedro Turcheñuk, Marcelo Gimenez, Gustavo Bachiller, Gladys Rast.</span>
+                  <span class="text-fb-text font-semibold">Mario Prozapas, Cathalina Turcheñuk, Pedro Turcheñuk, Marcelo Gimenez.</span>
                 </div>
                 <span class="text-[11px] text-unam-green font-bold bg-unam-greenLight px-2.5 py-0.5 rounded-full border border-unam-green/20 self-start sm:self-auto flex-shrink-0">
                   Sede Cerro Azul
@@ -652,38 +680,50 @@
                       <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
                       <span class="w-5 h-5 rounded-full bg-unam-green text-white flex items-center justify-center text-[10px] shadow-xs">💡</span>
                     </span>
-                    <span class="font-semibold text-fb-secondary ml-1">48</span>
+                    <span class="font-semibold text-fb-secondary ml-1" id="like-count-post-simulado">48</span>
                   </div>
                   <div class="flex items-center gap-3 font-medium">
-                    <span>14 comentarios</span>
+                    <button onclick="toggleComentarios('post-simulado')" class="hover:underline cursor-pointer" id="comment-count-post-simulado">14 comentarios</button>
                     <span>•</span>
-                    <span>6 veces compartido</span>
+                    <span id="share-count-post-simulado">6 veces compartido</span>
                   </div>
                 </div>
 
                 <!-- Barra de Acciones Facebook (Me gusta, Comentar, Compartir) -->
                 <div class="px-2 py-1 bg-white border-t border-b border-fb-border flex items-center justify-around text-xs font-bold text-fb-secondary">
-                  <button class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-unam-blue">
+                  <button onclick="toggleLike('post-simulado')" id="btn-like-post-simulado" class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-fb-secondary hover:text-unam-blue">
                     <i data-lucide="thumbs-up" class="w-4 h-4"></i>
-                    <span>Me gusta</span>
+                    <span id="btn-like-text-post-simulado">Me gusta</span>
                   </button>
-                  <button class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-fb-secondary hover:text-fb-text">
+                  <button onclick="toggleComentarios('post-simulado')" class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-fb-secondary hover:text-fb-text">
                     <i data-lucide="message-square" class="w-4 h-4"></i>
                     <span>Comentar</span>
                   </button>
-                  <button class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-fb-secondary hover:text-fb-text">
+                  <button onclick="abrirModalCompartir('post-simulado', '¿A la universidad venimos a repetir o a reflexionar? (Secuencias)', 'Lengua y Comunicación')" class="flex-1 py-2 rounded-lg hover:bg-fb-canvas flex items-center justify-center gap-1.5 transition text-fb-secondary hover:text-fb-text">
                     <i data-lucide="share-2" class="w-4 h-4"></i>
                     <span>Compartir</span>
                   </button>
                 </div>
 
-                <!-- Input mockup de comentarios estilo Facebook -->
-                <div class="p-3.5 bg-fb-canvas/60 flex items-center gap-2.5">
-                  <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">
-                    YO
-                  </div>
-                  <div class="bg-white border border-fb-border rounded-full px-4 py-1.5 text-xs text-fb-secondary w-full shadow-xs">
-                    Escribe un comentario o reflexión estudiantil...
+                <!-- Input interactivo de comentarios estilo Facebook -->
+                <div class="p-3.5 bg-fb-canvas/60 space-y-2.5">
+                  <div id="lista-comentarios-post-simulado" class="space-y-2"></div>
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0" id="avatar-comentador-post-simulado">
+                      PT
+                    </div>
+                    <div class="relative flex-1">
+                      <input 
+                        type="text" 
+                        id="input-comentario-post-simulado" 
+                        placeholder="Escribe un comentario o reflexión estudiantil..." 
+                        class="w-full bg-white border border-fb-border rounded-full pl-3.5 pr-10 py-1.5 text-xs text-fb-text placeholder-fb-secondary focus:outline-none focus:ring-1 focus:ring-unam-blue shadow-xs"
+                        onkeydown="if(event.key==='Enter') agregarComentario('post-simulado')"
+                      />
+                      <button onclick="agregarComentario('post-simulado')" class="absolute right-1 top-1 p-1 rounded-full bg-unam-blue hover:bg-unam-dark text-white text-[10px] transition" title="Enviar Comentario">
+                        <i data-lucide="send" class="w-3 h-3"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -691,11 +731,696 @@
 
             <!-- Botón de Ocultar Documento -->
             <div class="text-center pt-4">
-              <button onclick="toggleDocumento('doc-tp1')" class="inline-flex items-center gap-1.5 text-xs text-fb-secondary hover:text-fb-text font-bold bg-fb-canvas hover:bg-fb-border px-4 py-2 rounded-full border border-fb-border transition">
+              <button onclick="toggleDocumento('doc-tp1', 'btn-text-tp1')" class="inline-flex items-center gap-1.5 text-xs text-fb-secondary hover:text-fb-text font-bold bg-fb-canvas hover:bg-fb-border px-4 py-2 rounded-full border border-fb-border transition">
                 <i data-lucide="chevron-up" class="w-4 h-4"></i> Contraer documento
               </button>
             </div>
 
+          </div>
+
+          <!-- BARRA DE REACCIONES E INTERACCIONES SOCIALES ESTILO FACEBOOK / STYLEX (TP1) -->
+          <div class="border-t border-fb-border bg-white" id="social-block-post-lengua-tp1">
+            <!-- Conteo de Reacciones, Comentarios y Compartidos -->
+            <div class="px-5 py-2.5 flex items-center justify-between text-fb-secondary text-xs border-b border-fb-border/60">
+              <div class="flex items-center gap-1.5">
+                <span class="flex -space-x-1">
+                  <span class="w-5 h-5 rounded-full bg-unam-blue text-white flex items-center justify-center text-[10px] shadow-xs">👍</span>
+                  <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
+                  <span class="w-5 h-5 rounded-full bg-unam-green text-white flex items-center justify-center text-[10px] shadow-xs">👏</span>
+                </span>
+                <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-post-lengua-tp1">48</span>
+              </div>
+              <div class="flex items-center gap-3 font-medium">
+                <button onclick="toggleComentarios('post-lengua-tp1')" class="hover:underline cursor-pointer" id="comment-count-post-lengua-tp1">2 comentarios</button>
+                <span>•</span>
+                <span id="share-count-post-lengua-tp1">6 veces compartido</span>
+              </div>
+            </div>
+
+            <!-- Botones de Acción (Me gusta, Comentar, Compartir) -->
+            <div class="px-3 py-1 flex items-center justify-around text-xs font-bold text-fb-secondary">
+              <button onclick="toggleLike('post-lengua-tp1')" id="btn-like-post-lengua-tp1" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-unam-blue">
+                <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+                <span id="btn-like-text-post-lengua-tp1">Me gusta</span>
+              </button>
+              <button onclick="toggleComentarios('post-lengua-tp1')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+                <i data-lucide="message-square" class="w-4 h-4"></i>
+                <span>Comentar</span>
+              </button>
+              <button onclick="abrirModalCompartir('post-lengua-tp1', 'TP N° 1: Análisis de Géneros Discursivos y Secuencias', 'Lengua y Comunicación')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+                <span>Compartir</span>
+              </button>
+            </div>
+
+            <!-- Caja Desplegable de Comentarios -->
+            <div id="caja-comentarios-post-lengua-tp1" class="p-4 sm:p-5 bg-fb-canvas/50 border-t border-fb-border space-y-4">
+              <!-- Lista de Comentarios Dinámicos -->
+              <div class="space-y-3" id="lista-comentarios-post-lengua-tp1"></div>
+
+              <!-- Input para Agregar Nuevo Comentario -->
+              <div class="pt-2 border-t border-fb-border/60">
+                <div class="flex items-start gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1" id="avatar-comentador-post-lengua-tp1">
+                    PT
+                  </div>
+                  <div class="flex-1 space-y-2">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <label class="text-[11px] font-bold text-fb-secondary">Comentar como:</label>
+                      <select id="autor-comentario-post-lengua-tp1" onchange="cambiarAvatarComentador('post-lengua-tp1')" class="bg-white border border-fb-border text-fb-text text-xs rounded-lg px-2 py-1 font-semibold outline-none focus:ring-1 focus:ring-unam-blue">
+                        <option value="Pedro Turcheñuk|PT|unam-blue">Pedro Turcheñuk</option>
+                        <option value="Mario Prozapas|MP|unam-dark">Mario Prozapas</option>
+                        <option value="Cathalina Turcheñuk|CT|unam-sky">Cathalina Turcheñuk</option>
+                        <option value="Marcelo Gimenez|MG|unam-green">Marcelo Gimenez</option>
+                        <option value="Cátedra / Docente|DOC|purple-600">Cátedra / Docente</option>
+                        <option value="Estudiante Invitado|EST|amber-600">Estudiante Invitado</option>
+                      </select>
+                    </div>
+                    <div class="relative flex items-center">
+                      <input 
+                        type="text" 
+                        id="input-comentario-post-lengua-tp1" 
+                        placeholder="Escribe un comentario o devolución académica..." 
+                        class="w-full bg-white border border-fb-border rounded-full pl-4 pr-12 py-2 text-xs text-fb-text placeholder-fb-secondary focus:outline-none focus:ring-2 focus:ring-unam-blue shadow-xs"
+                        onkeydown="if(event.key === 'Enter') agregarComentario('post-lengua-tp1')"
+                      />
+                      <button onclick="agregarComentario('post-lengua-tp1')" class="absolute right-1.5 p-1.5 rounded-full bg-unam-blue hover:bg-unam-dark text-white transition shadow-xs" title="Publicar Comentario">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TARJETA DEL TRABAJO: TP N° 2 LENGUA Y COMUNICACIÓN 2026 (ESPACIO PREPARADO PARA PRÓXIMO TP) -->
+        <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="lengua" id="trabajo-lengua-tp2">
+          
+          <!-- Encabezado del Post -->
+          <div class="p-5 sm:p-6 bg-white border-b border-fb-border">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
+                  <img src="logo.png" alt="Cátedra Lengua y Comunicación" class="w-full h-full object-contain" />
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug hover:text-unam-blue transition cursor-pointer">
+                      Cátedra Lengua y Comunicación
+                    </h3>
+                    <i data-lucide="badge-check" class="w-4 h-4 text-unam-sky fill-unam-sky/20"></i>
+                  </div>
+                  <p class="text-xs text-fb-secondary flex items-center gap-1.5 mt-0.5">
+                    <span>FHyCS — UNaM</span>
+                    <span>•</span>
+                    <span>Ciclo 2026</span>
+                    <span>•</span>
+                    <i data-lucide="globe" class="w-3.5 h-3.5 text-fb-secondary" title="Acceso Abierto Público"></i>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Badges de Categoría -->
+              <div class="flex items-center gap-2 flex-wrap justify-end">
+                <span class="px-2.5 py-1 bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold rounded-full uppercase tracking-wider">
+                  TP N° 2 • Próxima Entrega
+                </span>
+                <span class="px-2.5 py-1 bg-unam-greenLight text-unam-green text-xs font-bold rounded-full border border-unam-green/20">
+                  Sede Cerro Azul
+                </span>
+              </div>
+            </div>
+
+            <!-- Título y Resumen -->
+            <div class="mt-4 space-y-2">
+              <h4 class="text-xl sm:text-2xl font-black text-fb-text tracking-tight leading-snug">
+                Producción Discursiva, Crónica Periodística y Narrativas Territoriales
+              </h4>
+              <p class="text-fb-secondary text-sm sm:text-base leading-relaxed">
+                Espacio académico habilitado para la elaboración, carga de fuentes documentales y presentación del Trabajo Práctico N° 2. La propuesta profundiza en la crónica periodística testimonial, el relato situado y la entrevista a actores de la comunidad de Cerro Azul.
+              </p>
+            </div>
+
+            <!-- Integrantes -->
+            <div class="mt-5 pt-4 border-t border-fb-border/70 flex flex-col md:flex-row md:items-center justify-between text-xs text-fb-secondary gap-3">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-extrabold text-fb-text flex items-center gap-1">
+                  <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i>
+                  Estudiantes Integrantes:
+                </span>
+                <span class="bg-fb-canvas px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border">Mario Prozapas</span>
+                <span class="bg-fb-canvas px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border">Cathalina Turcheñuk</span>
+                <span class="bg-fb-canvas px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border">Pedro Turcheñuk</span>
+                <span class="bg-fb-canvas px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border">Marcelo Gimenez</span>
+              </div>
+              <div class="text-[11px] text-unam-blue font-bold bg-unam-active px-2.5 py-1 rounded-full border border-unam-blue/20 self-start md:self-auto flex-shrink-0">
+                4 Integrantes • Producción Colectiva
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Acciones del Post -->
+          <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 flex-wrap">
+              <button onclick="abrirModalSubir('tp', 'lengua', 'TP N° 2')" class="inline-flex items-center gap-2 px-4 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
+                <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                <span>Subir Trabajo o Material para TP2</span>
+              </button>
+              <button onclick="toggleDocumento('doc-tp2', 'btn-text-tp2')" class="inline-flex items-center gap-2 px-3.5 py-2 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
+                <i data-lucide="file-text" class="w-4 h-4 text-unam-blue"></i>
+                <span id="btn-text-tp2" data-default-text="Ver Pautas y Ejes del TP2">Ver Pautas y Ejes del TP2</span>
+              </button>
+            </div>
+            <div class="flex items-center gap-2 text-xs font-bold text-amber-800 bg-amber-100 border border-amber-200 px-3 py-1.5 rounded-xl">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>Espacio Abierto a Entregas</span>
+            </div>
+          </div>
+
+          <!-- Pautas y Guía del TP2 (Desplegable) -->
+          <div id="doc-tp2" class="hidden p-5 sm:p-8 bg-white border-t border-fb-border space-y-6 academic-prose">
+            <div class="bg-fb-canvas border border-fb-border rounded-2xl p-5 space-y-3">
+              <h5 class="text-sm font-extrabold text-fb-text flex items-center gap-2">
+                <i data-lucide="target" class="w-4 h-4 text-unam-blue"></i>
+                Objetivos y Consignas Preliminares — TP N° 2
+              </h5>
+              <p class="text-xs sm:text-sm text-fb-secondary leading-relaxed">
+                El Trabajo Práctico N° 2 de Lengua y Comunicación aborda la articulación entre teoría discursiva y producción empírica territorial en la provincia de Misiones:
+              </p>
+              <ul class="text-xs text-fb-secondary space-y-2 list-disc list-inside">
+                <li>Selección de un hecho o práctica comunitaria en Cerro Azul (producción cooperativa, actividad agraria, expresiones culturales o memorias barriales).</li>
+                <li>Realización de entrevistas abiertas e indagación de fuentes directas.</li>
+                <li>Redacción de una crónica periodística que incorpore secuencias narrativas, descriptivas y dialogales con rigor de estilo.</li>
+              </ul>
+              <div class="pt-3">
+                <button onclick="abrirModalSubir('tp', 'lengua', 'TP N° 2')" class="inline-flex items-center gap-2 px-3.5 py-2 bg-unam-blue text-white font-bold text-xs rounded-xl hover:bg-unam-dark transition">
+                  <i data-lucide="file-up" class="w-4 h-4"></i> Adjuntar Archivo o Avance del TP2
+                </button>
+              </div>
+            </div>
+            <div class="text-center pt-2">
+              <button onclick="toggleDocumento('doc-tp2', 'btn-text-tp2')" class="inline-flex items-center gap-1.5 text-xs text-fb-secondary hover:text-fb-text font-bold bg-fb-canvas hover:bg-fb-border px-4 py-2 rounded-full border border-fb-border transition">
+                <i data-lucide="chevron-up" class="w-4 h-4"></i> Contraer pautas
+              </button>
+            </div>
+          </div>
+
+          <!-- BARRA DE REACCIONES E INTERACCIONES SOCIALES ESTILO FACEBOOK / STYLEX (TP2) -->
+          <div class="border-t border-fb-border bg-white" id="social-block-post-lengua-tp2">
+            <!-- Conteo de Reacciones, Comentarios y Compartidos -->
+            <div class="px-5 py-2.5 flex items-center justify-between text-fb-secondary text-xs border-b border-fb-border/60">
+              <div class="flex items-center gap-1.5">
+                <span class="flex -space-x-1">
+                  <span class="w-5 h-5 rounded-full bg-unam-blue text-white flex items-center justify-center text-[10px] shadow-xs">👍</span>
+                  <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
+                </span>
+                <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-post-lengua-tp2">19</span>
+              </div>
+              <div class="flex items-center gap-3 font-medium">
+                <button onclick="toggleComentarios('post-lengua-tp2')" class="hover:underline cursor-pointer" id="comment-count-post-lengua-tp2">1 comentario</button>
+                <span>•</span>
+                <span id="share-count-post-lengua-tp2">3 veces compartido</span>
+              </div>
+            </div>
+
+            <!-- Botones de Acción (Me gusta, Comentar, Compartir) -->
+            <div class="px-3 py-1 flex items-center justify-around text-xs font-bold text-fb-secondary">
+              <button onclick="toggleLike('post-lengua-tp2')" id="btn-like-post-lengua-tp2" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-unam-blue">
+                <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+                <span id="btn-like-text-post-lengua-tp2">Me gusta</span>
+              </button>
+              <button onclick="toggleComentarios('post-lengua-tp2')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+                <i data-lucide="message-square" class="w-4 h-4"></i>
+                <span>Comentar</span>
+              </button>
+              <button onclick="abrirModalCompartir('post-lengua-tp2', 'TP N° 2: Producción Discursiva y Crónica Territorial', 'Lengua y Comunicación')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+                <span>Compartir</span>
+              </button>
+            </div>
+
+            <!-- Caja Desplegable de Comentarios -->
+            <div id="caja-comentarios-post-lengua-tp2" class="p-4 sm:p-5 bg-fb-canvas/50 border-t border-fb-border space-y-4">
+              <!-- Lista de Comentarios Dinámicos -->
+              <div class="space-y-3" id="lista-comentarios-post-lengua-tp2"></div>
+
+              <!-- Input para Agregar Nuevo Comentario -->
+              <div class="pt-2 border-t border-fb-border/60">
+                <div class="flex items-start gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1" id="avatar-comentador-post-lengua-tp2">
+                    PT
+                  </div>
+                  <div class="flex-1 space-y-2">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <label class="text-[11px] font-bold text-fb-secondary">Comentar como:</label>
+                      <select id="autor-comentario-post-lengua-tp2" onchange="cambiarAvatarComentador('post-lengua-tp2')" class="bg-white border border-fb-border text-fb-text text-xs rounded-lg px-2 py-1 font-semibold outline-none focus:ring-1 focus:ring-unam-blue">
+                        <option value="Pedro Turcheñuk|PT|unam-blue">Pedro Turcheñuk</option>
+                        <option value="Mario Prozapas|MP|unam-dark">Mario Prozapas</option>
+                        <option value="Cathalina Turcheñuk|CT|unam-sky">Cathalina Turcheñuk</option>
+                        <option value="Marcelo Gimenez|MG|unam-green">Marcelo Gimenez</option>
+                        <option value="Cátedra / Docente|DOC|purple-600">Cátedra / Docente</option>
+                        <option value="Estudiante Invitado|EST|amber-600">Estudiante Invitado</option>
+                      </select>
+                    </div>
+                    <div class="relative flex items-center">
+                      <input 
+                        type="text" 
+                        id="input-comentario-post-lengua-tp2" 
+                        placeholder="Escribe un comentario sobre el TP2 o fuentes sugeridas..." 
+                        class="w-full bg-white border border-fb-border rounded-full pl-4 pr-12 py-2 text-xs text-fb-text placeholder-fb-secondary focus:outline-none focus:ring-2 focus:ring-unam-blue shadow-xs"
+                        onkeydown="if(event.key === 'Enter') agregarComentario('post-lengua-tp2')"
+                      />
+                      <button onclick="agregarComentario('post-lengua-tp2')" class="absolute right-1.5 p-1.5 rounded-full bg-unam-blue hover:bg-unam-dark text-white transition shadow-xs" title="Publicar Comentario">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TARJETA DE LA MATERIA: COMUNICACIÓN I 2026 (POST DE FACEBOOK / STYLEX) -->
+        <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="comunicacion1">
+          
+          <!-- Encabezado del Post (Autoría Institucional estilo Facebook) -->
+          <div class="p-5 sm:p-6 bg-white border-b border-fb-border">
+            <div class="flex items-start justify-between gap-3">
+              
+              <!-- Avatar y Datos del Autor / Cátedra -->
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
+                  <img 
+                    src="logo.png" 
+                    alt="Cátedra Comunicación I" 
+                    class="w-full h-full object-contain" 
+                  />
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug hover:text-unam-blue transition cursor-pointer">
+                      Cátedra Comunicación I
+                    </h3>
+                    <i data-lucide="badge-check" class="w-4 h-4 text-unam-sky fill-unam-sky/20"></i>
+                  </div>
+                  <p class="text-xs text-fb-secondary flex items-center gap-1.5 mt-0.5">
+                    <span>FHyCS — UNaM</span>
+                    <span>•</span>
+                    <span>Septiembre 2026</span>
+                    <span>•</span>
+                    <i data-lucide="globe" class="w-3.5 h-3.5 text-fb-secondary" title="Acceso Abierto Público"></i>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Badges de Categoría -->
+              <div class="flex items-center gap-2 flex-wrap justify-end">
+                <span class="px-2.5 py-1 bg-unam-active text-unam-blue text-xs font-bold rounded-full uppercase tracking-wider">
+                  Materia Troncal
+                </span>
+                <span class="px-2.5 py-1 bg-unam-greenLight text-unam-green text-xs font-bold rounded-full border border-unam-green/20">
+                  Sede Cerro Azul
+                </span>
+              </div>
+            </div>
+
+            <!-- Título y Resumen del Post -->
+            <div class="mt-4 space-y-2">
+              <h4 class="text-xl sm:text-2xl font-black text-fb-text tracking-tight leading-snug">
+                Teorías de la Comunicación, Procesos de Mediación y Matrices Socioculturales
+              </h4>
+              <p class="text-fb-secondary text-sm sm:text-base leading-relaxed">
+                Fundamentos epistémicos y corrientes clásicas, críticas y latinoamericanas del campo comunicacional. Análisis de los modelos matemáticos y funcionales, la teoría crítica de las industrias culturales, los estudios culturales y la perspectiva situada de la comunicación en territorio comunitario.
+              </p>
+            </div>
+
+            <!-- Estudiantes Integrantes / Participación Cátedra -->
+            <div class="mt-5 pt-4 border-t border-fb-border/70 flex flex-col md:flex-row md:items-center justify-between text-xs text-fb-secondary gap-3">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-extrabold text-fb-text flex items-center gap-1">
+                  <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i>
+                  Estudiantes Integrantes (Producción y Cursado):
+                </span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Mario Prozapas</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Cathalina Turcheñuk</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Pedro Turcheñuk</span>
+                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Marcelo Gimenez</span>
+              </div>
+              <div class="text-[11px] text-unam-blue font-bold bg-unam-active px-2.5 py-1 rounded-full border border-unam-blue/20 self-start md:self-auto flex-shrink-0">
+                4 Integrantes • Producción Colectiva
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra de Acciones del Post estilo Facebook / StyleX -->
+          <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 flex-wrap">
+              <button onclick="toggleDocumento('doc-com1', 'btn-text-com1')" class="inline-flex items-center gap-2 px-4 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
+                <i data-lucide="book-open" class="w-4 h-4"></i>
+                <span id="btn-text-com1" data-default-text="Desplegar Programa y Ejes Temáticos">Desplegar Programa y Ejes Temáticos</span>
+              </button>
+              <div class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm shadow-xs">
+                <i data-lucide="layers" class="w-4 h-4 text-unam-blue"></i>
+                <span>3 Ejes Curriculares</span>
+              </div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-2 bg-white text-fb-secondary border border-fb-border rounded-xl font-medium text-xs sm:text-sm shadow-xs">
+                <i data-lucide="calendar" class="w-4 h-4 text-emerald-600"></i>
+                <span>1° Año • Ciclo 2026</span>
+              </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 text-xs font-bold text-unam-blue bg-unam-active px-3 py-1.5 rounded-xl">
+              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+              <span>Cátedra en Cursado Regular</span>
+            </div>
+          </div>
+
+          <!-- CONTENIDO DESPLEGABLE CON EL PROGRAMA Y EJES ACADÉMICOS (ESTILO STYLEX / FACEBOOK) -->
+          <div id="doc-com1" class="hidden p-5 sm:p-8 md:p-10 bg-white border-t border-fb-border space-y-10 academic-prose">
+            
+            <!-- Membrete Institucional Académico Oficial (StyleX Card) -->
+            <div class="bg-fb-canvas border border-fb-border rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs">
+              <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+                <div class="flex items-center gap-3 sm:gap-4 bg-white px-4 py-2.5 rounded-xl shadow-xs border border-fb-border">
+                  <img 
+                    src="unam_imagotipo_horizontal.png" 
+                    alt="Universidad Nacional de Misiones" 
+                    title="Universidad Nacional de Misiones (UNaM)" 
+                    class="h-7 sm:h-9 w-auto object-contain"
+                  />
+                  <div class="h-7 sm:h-8 w-[1px] bg-fb-border"></div>
+                  <img 
+                    src="logo.png" 
+                    alt="Facultad de Humanidades y Ciencias Sociales - UNaM" 
+                    title="Facultad de Humanidades y Ciencias Sociales (FHyCS)" 
+                    class="h-9 sm:h-11 w-auto object-contain"
+                  />
+                </div>
+                <div class="text-center md:text-right space-y-1">
+                  <span class="inline-block text-[10px] uppercase font-black tracking-widest px-2.5 py-0.5 rounded-md bg-unam-blue text-white shadow-xs">
+                    Plan Curricular Oficial
+                  </span>
+                  <p class="text-xs font-extrabold text-fb-text">
+                    UNIVERSIDAD NACIONAL DE MISIONES
+                  </p>
+                  <p class="text-xs text-fb-secondary">
+                    Facultad de Humanidades y Ciencias Sociales (FHyCS)
+                  </p>
+                  <p class="text-xs font-bold text-unam-blue">
+                    Tecnicatura en Comunicación Social — Extensión Áulica Sede Cerro Azul
+                  </p>
+                  <p class="text-xs text-fb-secondary">
+                    Cátedra: Comunicación I — Ciclo Lectivo 2026
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Presentación y Fundamentación de la Materia -->
+            <div class="bg-unam-active/60 border-l-4 border-unam-blue p-5 sm:p-6 rounded-r-2xl border border-fb-border/70 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-unam-blue bg-white px-2 py-0.5 rounded-md border border-unam-blue/20 inline-block">
+                  Cátedra Comunicación I • Ciclo 2026
+                </span>
+              </div>
+              <h4 class="text-sm sm:text-base font-black uppercase tracking-wider text-unam-blue flex items-center gap-2">
+                <i data-lucide="compass" class="w-4 h-4 text-unam-blue"></i> Fundamentación Pedagógica y Enfoque de la Materia
+              </h4>
+              <p class="text-xs sm:text-sm text-fb-secondary leading-relaxed">
+                <strong>Comunicación I</strong> constituye el espacio fundacional para la comprensión de los fenómenos comunicativos desde una perspectiva integral, crítica y situada. La materia propone superar las concepciones puramente técnico-instrumentales o mecanicistas de la información, para concebir a la comunicación como un proceso social de producción recíproca de sentidos, atravesado por relaciones de poder, configuraciones culturales e identidades comunitarias en constante disputa.
+              </p>
+            </div>
+
+            <!-- Ejes Temáticos del Programa Curricular -->
+            <div class="space-y-4">
+              <h4 class="text-lg font-extrabold text-fb-text flex items-center gap-2 pb-2 border-b border-fb-border">
+                <i data-lucide="bookmark" class="w-5 h-5 text-unam-blue"></i>
+                Ejes Temáticos y Contenidos Programáticos
+              </h4>
+              
+              <div class="grid md:grid-cols-3 gap-5">
+                <!-- Eje 1 -->
+                <div class="bg-white border border-fb-border rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:shadow-fb transition">
+                  <div class="space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-unam-active text-unam-blue flex items-center justify-center font-black text-sm">
+                      Eje 1
+                    </div>
+                    <h5 class="font-extrabold text-fb-text text-base leading-snug">
+                      Modelos Clásicos y Teoría Informacional
+                    </h5>
+                    <p class="text-xs text-fb-secondary leading-relaxed">
+                      Evolución histórica y surgimiento del campo científico de la comunicación. El modelo matemático informacional de Shannon y Weaver (emisor, canal, código, ruido y receptor). El paradigma funcionalista de Lasswell y la Mass Communication Research. Crítica a la linealidad estímulo-respuesta.
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-fb-border text-[11px] font-bold text-unam-blue flex items-center gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-unam-sky"></i> Shannon, Weaver, Lasswell, Lazarsfeld
+                  </div>
+                </div>
+
+                <!-- Eje 2 -->
+                <div class="bg-white border border-fb-border rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:shadow-fb transition">
+                  <div class="space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-unam-greenLight text-unam-green flex items-center justify-center font-black text-sm">
+                      Eje 2
+                    </div>
+                    <h5 class="font-extrabold text-fb-text text-base leading-snug">
+                      Teoría Crítica e Industrias Culturales
+                    </h5>
+                    <p class="text-xs text-fb-secondary leading-relaxed">
+                      La Escuela de Frankfurt y el concepto de Industria Cultural (Adorno y Horkheimer). Reproducibilidad técnica del arte y experiencia estética (Walter Benjamin). Emergencia de los Estudios Culturales de Birmingham: Stuart Hall y los modelos de codificación/decodificación. Resignificación activa de las audiencias.
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-fb-border text-[11px] font-bold text-unam-green flex items-center gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-unam-green"></i> Adorno, Horkheimer, Benjamin, Hall
+                  </div>
+                </div>
+
+                <!-- Eje 3 -->
+                <div class="bg-white border border-fb-border rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:shadow-fb transition">
+                  <div class="space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center font-black text-sm">
+                      Eje 3
+                    </div>
+                    <h5 class="font-extrabold text-fb-text text-base leading-snug">
+                      Comunicación Latinoamericana y Territorial
+                    </h5>
+                    <p class="text-xs text-fb-secondary leading-relaxed">
+                      El pensamiento comunicacional de nuestra región. De los medios a las mediaciones culturales (Jesús Martín-Barbero). Culturas híbridas y procesos de desterritorialización (García Canclini). Comunicación popular, dialógica y transformadora (Mario Kaplún). Aplicación e impacto en el entramado socio-comunitario de Misiones.
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-fb-border text-[11px] font-bold text-purple-700 flex items-center gap-1.5">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-purple-600"></i> Martín-Barbero, Canclini, Kaplún
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Matriz Comparativa de Paradigmas -->
+            <div class="space-y-4">
+              <h4 class="text-lg font-extrabold text-fb-text flex items-center gap-2 pb-2 border-b border-fb-border">
+                <i data-lucide="table-2" class="w-5 h-5 text-unam-blue"></i>
+                Matriz Comparativa de Paradigmas Comunicacionales
+              </h4>
+              <div class="overflow-x-auto rounded-2xl border border-fb-border shadow-xs">
+                <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
+                  <thead class="bg-fb-canvas border-b border-fb-border text-fb-text font-black text-xs uppercase tracking-wider">
+                    <tr>
+                      <th class="p-3.5">Paradigma / Corriente</th>
+                      <th class="p-3.5">Autores Clave</th>
+                      <th class="p-3.5">Definición de Comunicación</th>
+                      <th class="p-3.5">Concepción del Receptor</th>
+                      <th class="p-3.5">Relevancia en Sede Cerro Azul</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-fb-border">
+                    <tr class="hover:bg-fb-hover/50 transition">
+                      <td class="p-3.5 font-bold text-fb-text">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 mr-1.5"></span>
+                        Informacional / Matemático
+                      </td>
+                      <td class="p-3.5 text-fb-secondary">Shannon, Weaver</td>
+                      <td class="p-3.5 text-fb-secondary">Transmisión lineal y óptima de señales a través de un canal técnico con codificación binaria.</td>
+                      <td class="p-3.5 text-fb-secondary">Destinatario pasivo / decodificador de impulsos.</td>
+                      <td class="p-3.5 text-fb-secondary">Comprender la infraestructura de telecomunicaciones y soportes digitales básicos.</td>
+                    </tr>
+                    <tr class="hover:bg-fb-hover/50 transition">
+                      <td class="p-3.5 font-bold text-fb-text">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 mr-1.5"></span>
+                        Funcionalismo / Mass Communication
+                      </td>
+                      <td class="p-3.5 text-fb-secondary">Lasswell, Lazarsfeld</td>
+                      <td class="p-3.5 text-fb-secondary">Proceso de influencia unidireccional orientado a generar conductas y efectos mensurables en masa.</td>
+                      <td class="p-3.5 text-fb-secondary">Masa atomizada influenciable según estímulos mediáticos.</td>
+                      <td class="p-3.5 text-fb-secondary">Análisis crítico de campañas publicitarias y discursos propagandísticos.</td>
+                    </tr>
+                    <tr class="hover:bg-fb-hover/50 transition">
+                      <td class="p-3.5 font-bold text-fb-text">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-500 mr-1.5"></span>
+                        Teoría Crítica / Frankfurt
+                      </td>
+                      <td class="p-3.5 text-fb-secondary">Adorno, Horkheimer, Benjamin</td>
+                      <td class="p-3.5 text-fb-secondary">Aparato de reproducción ideológica que mercantiliza la cultura para la dominación social.</td>
+                      <td class="p-3.5 text-fb-secondary">Consumidor estandarizado bajo alienación cultural.</td>
+                      <td class="p-3.5 text-fb-secondary">Desnaturalización de consumos audiovisuales y monopolios de medios hegemónicos.</td>
+                    </tr>
+                    <tr class="hover:bg-fb-hover/50 transition">
+                      <td class="p-3.5 font-bold text-fb-text">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 mr-1.5"></span>
+                        Estudios Culturales
+                      </td>
+                      <td class="p-3.5 text-fb-secondary">Stuart Hall, Raymond Williams</td>
+                      <td class="p-3.5 text-fb-secondary">Lucha discursiva y hegemónica donde el sentido es codificado por emisores y negociado por audiencias.</td>
+                      <td class="p-3.5 text-fb-secondary">Sujeto activo capaz de lecturas dominantes, negociadas u oposicionales.</td>
+                      <td class="p-3.5 text-fb-secondary">Investigación de recepción comunitaria y prácticas de apropiación local.</td>
+                    </tr>
+                    <tr class="hover:bg-fb-hover/50 transition">
+                      <td class="p-3.5 font-bold text-fb-text">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-unam-blue mr-1.5"></span>
+                        Mediaciones Latinoamericanas
+                      </td>
+                      <td class="p-3.5 text-fb-secondary">Martín-Barbero, Kaplún</td>
+                      <td class="p-3.5 text-fb-secondary">Práctica social e intersubjetiva donde la cultura y la memoria popular median toda interacción comunicativa.</td>
+                      <td class="p-3.5 text-fb-secondary">Interlocutor dialógico y productor colectivo de sentido histórico.</td>
+                      <td class="p-3.5 text-fb-secondary">Desarrollo territorial, radios comunitarias y proyectos populares en la provincia de Misiones.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Estado de Actividades y Trabajos Prácticos de la Materia -->
+            <div class="bg-fb-canvas rounded-2xl border border-fb-border p-6 space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-unam-blue text-white flex items-center justify-center shadow-xs">
+                    <i data-lucide="folder-clock" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h5 class="text-sm sm:text-base font-extrabold text-fb-text">
+                      Producciones Académicas y Trabajos Prácticos en Curso
+                    </h5>
+                    <p class="text-xs text-fb-secondary">
+                      Entregas y ejercitaciones asignadas para el cursado de Comunicación I (Ciclo 2026)
+                    </p>
+                  </div>
+                </div>
+                <span class="px-3 py-1 bg-amber-100 text-amber-800 border border-amber-200 rounded-full text-xs font-bold self-start sm:self-auto">
+                  Cursada en Progreso
+                </span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 bg-white rounded-xl border border-fb-border space-y-2 shadow-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-unam-blue">TP N° 1 — Comunicación I</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-unam-active text-unam-blue">Próxima Publicación</span>
+                  </div>
+                  <h6 class="text-xs font-bold text-fb-text">
+                    Cartografía de Modelos Teóricos y Estudio de Medios Locales
+                  </h6>
+                  <p class="text-[11px] text-fb-secondary leading-relaxed">
+                    Aplicación del modelo de codificación/decodificación y análisis de la circulación de noticias en emisoras y portales de Cerro Azul y la zona Centro de Misiones.
+                  </p>
+                </div>
+                <div class="p-4 bg-white rounded-xl border border-fb-border space-y-2 shadow-xs">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-fb-secondary">Lecturas de Cátedra</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-fb-canvas text-fb-secondary border border-fb-border">Bibliografía</span>
+                  </div>
+                  <h6 class="text-xs font-bold text-fb-text">
+                    Textos de Cátedra y Corpus Bibliográfico
+                  </h6>
+                  <p class="text-[11px] text-fb-secondary leading-relaxed">
+                    Textos seleccionados de Jesús Martín-Barbero ("De los medios a las mediaciones"), Stuart Hall ("Codificar/Decodificar") y Mario Kaplún ("El comunicador popular").
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Ocultar Documento -->
+            <div class="text-center pt-4">
+              <button onclick="toggleDocumento('doc-com1', 'btn-text-com1')" class="inline-flex items-center gap-1.5 text-xs text-fb-secondary hover:text-fb-text font-bold bg-fb-canvas hover:bg-fb-border px-4 py-2 rounded-full border border-fb-border transition">
+                <i data-lucide="chevron-up" class="w-4 h-4"></i> Contraer documento
+              </button>
+            </div>
+
+          </div>
+
+          <!-- BARRA DE REACCIONES E INTERACCIONES SOCIALES ESTILO FACEBOOK / STYLEX (COMUNICACIÓN I) -->
+          <div class="border-t border-fb-border bg-white" id="social-block-post-comunicacion1">
+            <!-- Conteo de Reacciones, Comentarios y Compartidos -->
+            <div class="px-5 py-2.5 flex items-center justify-between text-fb-secondary text-xs border-b border-fb-border/60">
+              <div class="flex items-center gap-1.5">
+                <span class="flex -space-x-1">
+                  <span class="w-5 h-5 rounded-full bg-unam-blue text-white flex items-center justify-center text-[10px] shadow-xs">👍</span>
+                  <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
+                  <span class="w-5 h-5 rounded-full bg-sky-500 text-white flex items-center justify-center text-[10px] shadow-xs">💡</span>
+                </span>
+                <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-post-comunicacion1">35</span>
+              </div>
+              <div class="flex items-center gap-3 font-medium">
+                <button onclick="toggleComentarios('post-comunicacion1')" class="hover:underline cursor-pointer" id="comment-count-post-comunicacion1">2 comentarios</button>
+                <span>•</span>
+                <span id="share-count-post-comunicacion1">5 veces compartido</span>
+              </div>
+            </div>
+
+            <!-- Botones de Acción (Me gusta, Comentar, Compartir) -->
+            <div class="px-3 py-1 flex items-center justify-around text-xs font-bold text-fb-secondary">
+              <button onclick="toggleLike('post-comunicacion1')" id="btn-like-post-comunicacion1" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-unam-blue">
+                <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+                <span id="btn-like-text-post-comunicacion1">Me gusta</span>
+              </button>
+              <button onclick="toggleComentarios('post-comunicacion1')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+                <i data-lucide="message-square" class="w-4 h-4"></i>
+                <span>Comentar</span>
+              </button>
+              <button onclick="abrirModalCompartir('post-comunicacion1', 'Cátedra Comunicación I: Teorías, Procesos y Matrices', 'Comunicación I')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+                <span>Compartir</span>
+              </button>
+            </div>
+
+            <!-- Caja Desplegable de Comentarios -->
+            <div id="caja-comentarios-post-comunicacion1" class="p-4 sm:p-5 bg-fb-canvas/50 border-t border-fb-border space-y-4">
+              <!-- Lista de Comentarios Dinámicos -->
+              <div class="space-y-3" id="lista-comentarios-post-comunicacion1"></div>
+
+              <!-- Input para Agregar Nuevo Comentario -->
+              <div class="pt-2 border-t border-fb-border/60">
+                <div class="flex items-start gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1" id="avatar-comentador-post-comunicacion1">
+                    PT
+                  </div>
+                  <div class="flex-1 space-y-2">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <label class="text-[11px] font-bold text-fb-secondary">Comentar como:</label>
+                      <select id="autor-comentario-post-comunicacion1" onchange="cambiarAvatarComentador('post-comunicacion1')" class="bg-white border border-fb-border text-fb-text text-xs rounded-lg px-2 py-1 font-semibold outline-none focus:ring-1 focus:ring-unam-blue">
+                        <option value="Pedro Turcheñuk|PT|unam-blue">Pedro Turcheñuk</option>
+                        <option value="Mario Prozapas|MP|unam-dark">Mario Prozapas</option>
+                        <option value="Cathalina Turcheñuk|CT|unam-sky">Cathalina Turcheñuk</option>
+                        <option value="Marcelo Gimenez|MG|unam-green">Marcelo Gimenez</option>
+                        <option value="Cátedra / Docente|DOC|purple-600">Cátedra / Docente</option>
+                        <option value="Estudiante Invitado|EST|amber-600">Estudiante Invitado</option>
+                      </select>
+                    </div>
+                    <div class="relative flex items-center">
+                      <input 
+                        type="text" 
+                        id="input-comentario-post-comunicacion1" 
+                        placeholder="Escribe un comentario sobre los ejes temáticos o bibliografía..." 
+                        class="w-full bg-white border border-fb-border rounded-full pl-4 pr-12 py-2 text-xs text-fb-text placeholder-fb-secondary focus:outline-none focus:ring-2 focus:ring-unam-blue shadow-xs"
+                        onkeydown="if(event.key === 'Enter') agregarComentario('post-comunicacion1')"
+                      />
+                      <button onclick="agregarComentario('post-comunicacion1')" class="absolute right-1.5 p-1.5 rounded-full bg-unam-blue hover:bg-unam-dark text-white transition shadow-xs" title="Publicar Comentario">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -780,7 +1505,7 @@
               <p><strong class="text-fb-text">Facultad:</strong> Facultad de Humanidades y Ciencias Sociales (FHyCS)</p>
               <p><strong class="text-fb-text">Sede Académica:</strong> Extensión Áulica Cerro Azul, Misiones</p>
               <p><strong class="text-fb-text">Departamento:</strong> Departamento de Comunicación Social</p>
-              <p><strong class="text-fb-text">Cátedra Actual:</strong> Lengua y Comunicación (Ciclo 2026)</p>
+              <p><strong class="text-fb-text">Cátedras Actuales:</strong> Lengua y Comunicación | Comunicación I (Ciclo 2026)</p>
             </div>
           </div>
         </div>
@@ -801,7 +1526,7 @@
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
         <!-- Pedro Turcheñuk -->
         <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
@@ -890,69 +1615,6 @@
           </div>
         </div>
 
-        <!-- Facundo Da Luz -->
-        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-blue to-teal-500 text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
-              FD
-            </div>
-            <h4 class="text-base font-black text-fb-text">Facundo Da Luz</h4>
-            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
-              Estudiante Tec. en Comunicación Social
-            </span>
-            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
-              Soportes multimedia, registro fotográfico y colaboración en producciones comunitarias.
-            </p>
-          </div>
-          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
-            <a href="mailto:fdaluz83@gmail.com" class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas hover:bg-fb-border px-3 py-2 rounded-xl transition">
-              <i data-lucide="mail" class="w-4 h-4 text-unam-blue"></i> fdaluz83@gmail.com
-            </a>
-          </div>
-        </div>
-
-        <!-- Gustavo Bachiller -->
-        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-600 to-unam-sky text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
-              GB
-            </div>
-            <h4 class="text-base font-black text-fb-text">Gustavo Bachiller</h4>
-            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
-              Estudiante Tec. en Comunicación Social
-            </span>
-            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
-              Locución, periodismo regional, producción sonora, radiodifusión y comunicación comunitaria en Cerro Azul.
-            </p>
-          </div>
-          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
-            <span class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas px-3 py-2 rounded-xl">
-              <i data-lucide="radio" class="w-4 h-4 text-unam-sky"></i> Producción Radial & Periodística
-            </span>
-          </div>
-        </div>
-
-        <!-- Gladys Rast -->
-        <div class="bg-white rounded-2xl border border-fb-border p-5 shadow-fb hover:shadow-fb-card transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-unam-dark to-indigo-600 text-white flex items-center justify-center font-black text-base mb-3 shadow-xs">
-              GR
-            </div>
-            <h4 class="text-base font-black text-fb-text">Gladys Rast</h4>
-            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
-              Estudiante Tec. en Comunicación Social
-            </span>
-            <p class="text-xs text-fb-secondary leading-relaxed mb-4">
-              Producción de contenidos, relevamiento discursivo territorial y apoyo analítico en trabajos académicos.
-            </p>
-          </div>
-          <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
-            <span class="flex items-center gap-2 text-fb-text font-medium bg-fb-canvas px-3 py-2 rounded-xl">
-              <i data-lucide="file-check" class="w-4 h-4 text-unam-green"></i> Producción y Análisis Textual
-            </span>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -996,22 +1658,222 @@
     </div>
   </footer>
 
-  <!-- ==================== SCRIPTS DE INTERACCIÓN ==================== -->
+  <!-- ==================== MODAL PARA SUBIR MATERIALES Y TRABAJOS PRÁCTICOS ==================== -->
+  <div id="modal-subir-trabajo" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl border border-fb-border shadow-2xl w-full max-w-xl overflow-hidden animate-in fade-in zoom-in duration-150">
+      
+      <!-- Header del Modal -->
+      <div class="p-5 sm:p-6 border-b border-fb-border flex items-center justify-between bg-fb-canvas/50">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-unam-active text-unam-blue flex items-center justify-center shadow-xs">
+            <i data-lucide="file-up" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-fb-text text-lg leading-tight">Subir Material o Trabajo Práctico</h3>
+            <p class="text-xs text-fb-secondary">Publicación directa en el repositorio institucional de la Sede Cerro Azul</p>
+          </div>
+        </div>
+        <button onclick="cerrarModalSubir()" class="w-8 h-8 rounded-full bg-fb-canvas hover:bg-fb-border flex items-center justify-center text-fb-secondary hover:text-fb-text transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Formulario de Carga -->
+      <form id="form-subir-trabajo" onsubmit="guardarNuevoTrabajo(event)" class="p-5 sm:p-6 space-y-4 text-xs sm:text-sm">
+        
+        <!-- Asignatura y Número de TP -->
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label for="subir-materia" class="font-bold text-fb-text flex items-center gap-1.5">
+              <i data-lucide="book-open" class="w-3.5 h-3.5 text-unam-blue"></i> Asignatura / Cátedra:
+            </label>
+            <select id="subir-materia" required class="w-full bg-white border border-fb-border rounded-xl px-3 py-2 text-xs font-semibold focus:ring-2 focus:ring-unam-blue outline-none shadow-xs">
+              <option value="lengua">Lengua y Comunicación</option>
+              <option value="comunicacion1">Comunicación I</option>
+              <option value="otra">Otra Materia del Plan de Estudios</option>
+            </select>
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="subir-tipo" class="font-bold text-fb-text flex items-center gap-1.5">
+              <i data-lucide="tag" class="w-3.5 h-3.5 text-unam-sky"></i> Tipo de Trabajo o Entrega:
+            </label>
+            <select id="subir-tipo" required class="w-full bg-white border border-fb-border rounded-xl px-3 py-2 text-xs font-semibold focus:ring-2 focus:ring-unam-blue outline-none shadow-xs">
+              <option value="TP N° 2">TP N° 2</option>
+              <option value="TP N° 3">TP N° 3</option>
+              <option value="TP N° 4">TP N° 4</option>
+              <option value="Material de Lectura">Material de Lectura / Apunte</option>
+              <option value="Producción Multimodal">Producción Multimodal / Cobertura</option>
+              <option value="Entrega Especial">Entrega Especial / Taller</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Título del Trabajo -->
+        <div class="space-y-1.5">
+          <label for="subir-titulo" class="font-bold text-fb-text flex items-center gap-1.5">
+            <i data-lucide="type" class="w-3.5 h-3.5 text-unam-blue"></i> Título del Trabajo o Documento:
+          </label>
+          <input 
+            type="text" 
+            id="subir-titulo" 
+            required 
+            placeholder="Ej: Crónica Comunitaria sobre la Cooperativa Agrícola de Cerro Azul" 
+            class="w-full bg-white border border-fb-border rounded-xl px-3.5 py-2.5 text-xs text-fb-text focus:ring-2 focus:ring-unam-blue outline-none shadow-xs"
+          />
+        </div>
+
+        <!-- Descripción / Resumen -->
+        <div class="space-y-1.5">
+          <label for="subir-descripcion" class="font-bold text-fb-text flex items-center gap-1.5">
+            <i data-lucide="align-left" class="w-3.5 h-3.5 text-unam-blue"></i> Descripción y Fundamentación:
+          </label>
+          <textarea 
+            id="subir-descripcion" 
+            rows="3" 
+            required 
+            placeholder="Breve resumen del contenido, objetivos pedagógicos, fuentes consultadas y conclusiones del trabajo..." 
+            class="w-full bg-white border border-fb-border rounded-xl p-3 text-xs text-fb-text focus:ring-2 focus:ring-unam-blue outline-none shadow-xs resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Autores / Integrantes -->
+        <div class="space-y-1.5">
+          <label for="subir-autores" class="font-bold text-fb-text flex items-center gap-1.5">
+            <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i> Estudiantes Autores / Equipo:
+          </label>
+          <input 
+            type="text" 
+            id="subir-autores" 
+            value="Pedro Turcheñuk, Mario Prozapas, Cathalina Turcheñuk, Marcelo Gimenez" 
+            required 
+            class="w-full bg-white border border-fb-border rounded-xl px-3.5 py-2 text-xs text-fb-text focus:ring-2 focus:ring-unam-blue outline-none shadow-xs"
+          />
+          <p class="text-[10px] text-fb-secondary">Podes editar los nombres o agregar docentes tutores.</p>
+        </div>
+
+        <!-- Zona de Carga de Archivo (PDF, Word, etc.) -->
+        <div class="space-y-2">
+          <label class="font-bold text-fb-text flex items-center gap-1.5">
+            <i data-lucide="paperclip" class="w-3.5 h-3.5 text-rose-600"></i> Archivo Adjunto (PDF, Word, etc.) o Enlace Externo:
+          </label>
+          
+          <div class="border-2 border-dashed border-fb-border hover:border-unam-blue/60 rounded-2xl p-4 text-center bg-fb-canvas/40 transition cursor-pointer relative" onclick="document.getElementById('subir-archivo').click()">
+            <input 
+              type="file" 
+              id="subir-archivo" 
+              accept=".pdf,.doc,.docx,.ppt,.pptx,.odt,.txt,.png,.jpg" 
+              class="hidden" 
+              onchange="manejarArchivoSeleccionado(this)"
+            />
+            <div id="dropzone-contenido" class="space-y-1">
+              <i data-lucide="upload-cloud" class="w-7 h-7 mx-auto text-unam-blue/70"></i>
+              <p class="text-xs font-bold text-fb-text">Haz clic aquí para seleccionar el archivo</p>
+              <p class="text-[11px] text-fb-secondary">PDF, DOCX, diapositivas o imágenes (hasta 25 MB)</p>
+            </div>
+            <div id="dropzone-seleccionado" class="hidden text-xs font-bold text-unam-blue flex items-center justify-center gap-2">
+              <i data-lucide="file-check" class="w-4 h-4 text-unam-green"></i>
+              <span id="nombre-archivo-seleccionado">archivo.pdf</span>
+              <span class="text-[10px] text-fb-secondary" id="tamano-archivo-seleccionado">(240 KB)</span>
+            </div>
+          </div>
+
+          <!-- O enlace externo alternativo -->
+          <div class="flex items-center gap-2 pt-1">
+            <span class="text-[11px] font-bold text-fb-secondary">O Enlace en la Nube (Google Drive / OneDrive):</span>
+            <input 
+              type="url" 
+              id="subir-enlace" 
+              placeholder="https://drive.google.com/..." 
+              class="flex-1 bg-white border border-fb-border rounded-xl px-3 py-1.5 text-xs text-fb-text focus:ring-1 focus:ring-unam-blue outline-none"
+            />
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="pt-3 border-t border-fb-border flex items-center justify-end gap-3">
+          <button type="button" onclick="cerrarModalSubir()" class="px-4 py-2 rounded-xl text-xs font-bold text-fb-secondary hover:bg-fb-canvas transition">
+            Cancelar
+          </button>
+          <button type="submit" class="px-5 py-2.5 bg-unam-blue hover:bg-unam-dark text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-xs">
+            <i data-lucide="check" class="w-4 h-4"></i> Publicar en Repositorio
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL DE COMPARTIR ==================== -->
+  <div id="modal-compartir" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-fb-border shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-5 border-b border-fb-border flex items-center justify-between bg-fb-canvas/50">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-unam-active text-unam-blue flex items-center justify-center">
+            <i data-lucide="share-2" class="w-4 h-4"></i>
+          </div>
+          <h4 class="font-black text-fb-text text-base">Compartir Publicación</h4>
+        </div>
+        <button onclick="cerrarModalCompartir()" class="w-7 h-7 rounded-full bg-fb-canvas hover:bg-fb-border flex items-center justify-center text-fb-secondary hover:text-fb-text transition">
+          <i data-lucide="x" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-4 text-xs">
+        <div>
+          <p class="font-extrabold text-fb-text text-sm" id="compartir-titulo">Título de la Publicación</p>
+          <p class="text-fb-secondary" id="compartir-materia">Lengua y Comunicación • Sede Cerro Azul</p>
+        </div>
+
+        <div class="space-y-1.5">
+          <label class="font-bold text-fb-secondary">Enlace Directo:</label>
+          <div class="flex items-center gap-2">
+            <input 
+              type="text" 
+              id="compartir-url" 
+              readonly 
+              class="flex-1 bg-fb-canvas border border-fb-border rounded-xl px-3 py-2 text-xs font-mono text-fb-text outline-none"
+            />
+            <button onclick="copiarEnlaceDirecto()" class="px-3 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs transition flex items-center gap-1.5 shadow-xs flex-shrink-0">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copiar
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-fb-border flex items-center justify-around gap-2">
+          <button onclick="compartirWhatsApp()" class="flex-1 py-2 px-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold rounded-xl border border-emerald-200 transition flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i> WhatsApp
+          </button>
+          <button onclick="compartirNativo()" id="btn-compartir-nativo" class="flex-1 py-2 px-3 bg-fb-canvas hover:bg-fb-hover text-fb-text font-bold rounded-xl border border-fb-border transition flex items-center justify-center gap-2">
+            <i data-lucide="share" class="w-4 h-4 text-unam-blue"></i> Más Opciones
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CONTENEDOR DE NOTIFICACIONES TOAST ==================== -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-none"></div>
+
+  <!-- ==================== SCRIPTS DE INTERACCIÓN, SOCIAL Y CARGA ==================== -->
   <script>
     // Inicializar Iconos de Lucide
     lucide.createIcons();
 
-    // Función para desplegar/contraer la resolución completa
-    function toggleDocumento(id) {
+    // Función para desplegar/contraer la resolución completa o programa
+    function toggleDocumento(id, btnTextId) {
       const el = document.getElementById(id);
-      const btnText = document.getElementById('btn-text-tp1');
+      if (!el) return;
+      const btnText = btnTextId ? document.getElementById(btnTextId) : (document.getElementById('btn-text-' + id) || document.getElementById('btn-text-tp1'));
       if (el.classList.contains('hidden')) {
         el.classList.remove('hidden');
         if (btnText) btnText.textContent = 'Contraer Documento';
         lucide.createIcons();
       } else {
         el.classList.add('hidden');
-        if (btnText) btnText.textContent = 'Desplegar Resolución Completa';
+        if (btnText) {
+          btnText.textContent = btnText.getAttribute('data-default-text') || (id === 'doc-tp1' ? 'Desplegar Resolución Completa' : 'Desplegar Programa y Ejes Temáticos');
+        }
       }
     }
 
@@ -1029,6 +1891,629 @@
         }
       });
     }
+
+    // ==========================================
+    // SISTEMA SOCIAL INTERACTIVO (LIKES, COMENTARIOS, COMPARTIR)
+    // ==========================================
+
+    const DEFAULT_LIKES = {
+      'post-lengua-tp1': { count: 48, liked: false },
+      'post-lengua-tp2': { count: 19, liked: false },
+      'post-comunicacion1': { count: 35, liked: false },
+      'post-simulado': { count: 48, liked: false }
+    };
+
+    const DEFAULT_SHARES = {
+      'post-lengua-tp1': 6,
+      'post-lengua-tp2': 3,
+      'post-comunicacion1': 5,
+      'post-simulado': 6
+    };
+
+    const DEFAULT_COMMENTS = {
+      'post-lengua-tp1': [
+        {
+          author: 'Mario Prozapas',
+          initials: 'MP',
+          color: 'from-unam-dark to-unam-blue',
+          time: 'Hace 3 h',
+          text: 'Excelente la articulación de la teoría de géneros bajtinianos con el corpus. La distinción entre géneros primarios y secundarios en el texto de Mayra Arena quedó impecable.'
+        },
+        {
+          author: 'Cathalina Turcheñuk',
+          initials: 'CT',
+          color: 'from-unam-sky to-sky-400',
+          time: 'Hace 1 h',
+          text: 'La matriz comparativa de las secuencias de Jean-Michel Adam simplifica muchísimo la lectura analítica para el parcial integrador.'
+        }
+      ],
+      'post-lengua-tp2': [
+        {
+          author: 'Pedro Turcheñuk',
+          initials: 'PT',
+          color: 'from-unam-blue to-unam-sky',
+          time: 'Hace 2 h',
+          text: 'Dejamos este espacio listo para subir las primeras grabaciones y desgrabaciones de entrevistas con los pioneros y vecinos de Cerro Azul.'
+        }
+      ],
+      'post-comunicacion1': [
+        {
+          author: 'Marcelo Gimenez',
+          initials: 'MG',
+          color: 'from-unam-green to-emerald-500',
+          time: 'Hace 4 h',
+          text: 'El Eje 3 de Jesús Martín-Barbero y las mediaciones socioculturales va a ser fundamental para pensar las radios comunitarias de nuestra zona.'
+        },
+        {
+          author: 'Pedro Turcheñuk',
+          initials: 'PT',
+          color: 'from-unam-blue to-unam-sky',
+          time: 'Hace 2 h',
+          text: 'Ya tenemos seleccionada la bibliografía digitalizada para compartirla ni bien arranquen las comisiones prácticas.'
+        }
+      ],
+      'post-simulado': [
+        {
+          author: 'Mario Prozapas',
+          initials: 'MP',
+          color: 'from-unam-dark to-unam-blue',
+          time: 'Hace 45 min',
+          text: 'Totalmente de acuerdo. La universidad pública debe ser un espacio de debate vivo y no de mera repetición.'
+        }
+      ]
+    };
+
+    // Inicializar datos en localStorage si no existen
+    function getSocialStorage(key, defaults) {
+      try {
+        const stored = localStorage.getItem(key);
+        return stored ? JSON.parse(stored) : defaults;
+      } catch (e) {
+        return defaults;
+      }
+    }
+
+    function saveSocialStorage(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify(data));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    let socialLikes = getSocialStorage('unam_social_likes', DEFAULT_LIKES);
+    let socialShares = getSocialStorage('unam_social_shares', DEFAULT_SHARES);
+    let socialComments = getSocialStorage('unam_social_comments', DEFAULT_COMMENTS);
+
+    // Renderizar contadores y estados en pantalla
+    function actualizarContadoresUI(postId) {
+      const likeData = socialLikes[postId] || { count: 0, liked: false };
+      const shareCount = socialShares[postId] || 0;
+      const commentList = socialComments[postId] || [];
+
+      // Conteo de Me gusta
+      const likeCountEl = document.getElementById(`like-count-${postId}`);
+      if (likeCountEl) likeCountEl.textContent = likeData.count;
+
+      // Botón Me gusta
+      const btnLike = document.getElementById(`btn-like-${postId}`);
+      const btnLikeText = document.getElementById(`btn-like-text-${postId}`);
+      if (btnLike) {
+        if (likeData.liked) {
+          btnLike.classList.add('text-unam-blue', 'font-black');
+          btnLike.classList.remove('text-fb-secondary');
+          if (btnLikeText) btnLikeText.textContent = 'Te gusta';
+          const icon = btnLike.querySelector('i, svg');
+          if (icon) icon.classList.add('fill-unam-blue');
+        } else {
+          btnLike.classList.remove('text-unam-blue', 'font-black');
+          btnLike.classList.add('text-fb-secondary');
+          if (btnLikeText) btnLikeText.textContent = 'Me gusta';
+          const icon = btnLike.querySelector('i, svg');
+          if (icon) icon.classList.remove('fill-unam-blue');
+        }
+      }
+
+      // Conteo de Comentarios
+      const commentCountEl = document.getElementById(`comment-count-${postId}`);
+      if (commentCountEl) {
+        const cLen = commentList.length;
+        commentCountEl.textContent = `${cLen} comentario${cLen === 1 ? '' : 's'}`;
+      }
+
+      // Conteo de Compartidos
+      const shareCountEl = document.getElementById(`share-count-${postId}`);
+      if (shareCountEl) {
+        shareCountEl.textContent = `${shareCount} vez${shareCount === 1 ? '' : 'es'} compartido`;
+      }
+
+      // Render de comentarios
+      renderComentariosLista(postId);
+    }
+
+    function renderComentariosLista(postId) {
+      const container = document.getElementById(`lista-comentarios-${postId}`);
+      if (!container) return;
+      const list = socialComments[postId] || [];
+      
+      if (list.length === 0) {
+        container.innerHTML = '<p class="text-[11px] text-fb-secondary italic text-center py-2">Sé el primero en dejar un comentario o reflexión sobre este trabajo.</p>';
+        return;
+      }
+
+      container.innerHTML = list.map(c => `
+        <div class="flex items-start gap-2.5 text-xs animate-in fade-in duration-150">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-tr ${c.color || 'from-unam-blue to-unam-sky'} text-white flex items-center justify-center font-bold text-[11px] flex-shrink-0 shadow-xs mt-0.5">
+            ${c.initials || 'EST'}
+          </div>
+          <div class="flex-1 bg-white border border-fb-border rounded-2xl px-3.5 py-2 shadow-2xs">
+            <div class="flex items-center justify-between gap-2 mb-0.5">
+              <span class="font-extrabold text-fb-text">${c.author}</span>
+              <span class="text-[10px] text-fb-secondary">${c.time}</span>
+            </div>
+            <p class="text-fb-text leading-relaxed font-sans">${c.text}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Toggle Me gusta
+    function toggleLike(postId) {
+      if (!socialLikes[postId]) {
+        socialLikes[postId] = { count: 0, liked: false };
+      }
+      const item = socialLikes[postId];
+      if (item.liked) {
+        item.count = Math.max(0, item.count - 1);
+        item.liked = false;
+        mostrarToast('Se quitó tu Me gusta');
+      } else {
+        item.count += 1;
+        item.liked = true;
+        mostrarToast('¡Te gusta esta publicación! 👍', 'success');
+      }
+      saveSocialStorage('unam_social_likes', socialLikes);
+      actualizarContadoresUI(postId);
+      lucide.createIcons();
+    }
+
+    // Desplegar/contraer comentarios
+    function toggleComentarios(postId) {
+      const caja = document.getElementById(`caja-comentarios-${postId}`);
+      if (caja) {
+        if (caja.classList.contains('hidden')) {
+          caja.classList.remove('hidden');
+        }
+        const input = document.getElementById(`input-comentario-${postId}`);
+        if (input) input.focus();
+      }
+    }
+
+    // Cambiar avatar visual del comentarista
+    function cambiarAvatarComentador(postId) {
+      const select = document.getElementById(`autor-comentario-${postId}`);
+      const avatar = document.getElementById(`avatar-comentador-${postId}`);
+      if (!select || !avatar) return;
+      const [name, initials, color] = select.value.split('|');
+      avatar.textContent = initials;
+      avatar.className = `w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1`;
+    }
+
+    // Agregar nuevo comentario
+    function agregarComentario(postId) {
+      const input = document.getElementById(`input-comentario-${postId}`);
+      const select = document.getElementById(`autor-comentario-${postId}`);
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) {
+        input.focus();
+        return;
+      }
+
+      let author = 'Pedro Turcheñuk';
+      let initials = 'PT';
+      let color = 'from-unam-blue to-unam-sky';
+
+      if (select) {
+        const parts = select.value.split('|');
+        author = parts[0];
+        initials = parts[1];
+      }
+
+      if (!socialComments[postId]) {
+        socialComments[postId] = [];
+      }
+
+      socialComments[postId].push({
+        author,
+        initials,
+        color,
+        time: 'Recién',
+        text
+      });
+
+      saveSocialStorage('unam_social_comments', socialComments);
+      input.value = '';
+      actualizarContadoresUI(postId);
+      lucide.createIcons();
+      mostrarToast('¡Comentario publicado con éxito! 💬', 'success');
+    }
+
+    // ==========================================
+    // SISTEMA DE COMPARTIR
+    // ==========================================
+    let postACompartir = null;
+
+    function abrirModalCompartir(postId, titulo, materia) {
+      postACompartir = { postId, titulo, materia };
+      const modal = document.getElementById('modal-compartir');
+      const tituloEl = document.getElementById('compartir-titulo');
+      const materiaEl = document.getElementById('compartir-materia');
+      const urlEl = document.getElementById('compartir-url');
+
+      if (tituloEl) tituloEl.textContent = titulo;
+      if (materiaEl) materiaEl.textContent = `${materia} • UNaM Sede Cerro Azul`;
+
+      const shareUrl = `${window.location.origin}${window.location.pathname}#${postId}`;
+      if (urlEl) urlEl.value = shareUrl;
+
+      if (modal) modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function cerrarModalCompartir() {
+      const modal = document.getElementById('modal-compartir');
+      if (modal) modal.classList.add('hidden');
+      postACompartir = null;
+    }
+
+    function registrarCompartido(postId) {
+      if (!socialShares[postId]) socialShares[postId] = 0;
+      socialShares[postId] += 1;
+      saveSocialStorage('unam_social_shares', socialShares);
+      actualizarContadoresUI(postId);
+    }
+
+    function copiarEnlaceDirecto() {
+      const urlEl = document.getElementById('compartir-url');
+      if (urlEl) {
+        navigator.clipboard.writeText(urlEl.value).then(() => {
+          if (postACompartir) registrarCompartido(postACompartir.postId);
+          mostrarToast('¡Enlace copiado al portapapeles! 🔗', 'success');
+          cerrarModalCompartir();
+        }).catch(() => {
+          mostrarToast('Enlace seleccionado para copiar');
+        });
+      }
+    }
+
+    function compartirWhatsApp() {
+      if (!postACompartir) return;
+      const url = `${window.location.origin}${window.location.pathname}#${postACompartir.postId}`;
+      const msg = `📌 *${postACompartir.titulo}*\nCátedra: ${postACompartir.materia} (UNaM Sede Cerro Azul)\nMirá este trabajo en el Repositorio Académico:\n${url}`;
+      registrarCompartido(postACompartir.postId);
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+      cerrarModalCompartir();
+      mostrarToast('Abriendo WhatsApp...', 'success');
+    }
+
+    function compartirNativo() {
+      if (!postACompartir) return;
+      const url = `${window.location.origin}${window.location.pathname}#${postACompartir.postId}`;
+      if (navigator.share) {
+        navigator.share({
+          title: postACompartir.titulo,
+          text: `Trabajo de ${postACompartir.materia} — Tecnicatura en Comunicación Social UNaM`,
+          url: url
+        }).then(() => {
+          registrarCompartido(postACompartir.postId);
+          cerrarModalCompartir();
+        }).catch(() => {});
+      } else {
+        copiarEnlaceDirecto();
+      }
+    }
+
+    // ==========================================
+    // SISTEMA PARA SUBIR TRABAJOS Y MATERIALES
+    // ==========================================
+    let archivoSubidoActual = null;
+
+    function abrirModalSubir(tipo = 'tp', materiaPref = 'lengua', tpPref = 'TP N° 2') {
+      const modal = document.getElementById('modal-subir-trabajo');
+      const selectMateria = document.getElementById('subir-materia');
+      const selectTipo = document.getElementById('subir-tipo');
+
+      if (selectMateria && materiaPref) selectMateria.value = materiaPref;
+      if (selectTipo) {
+        if (tipo === 'material') selectTipo.value = 'Material de Lectura';
+        else if (tpPref) selectTipo.value = tpPref;
+      }
+
+      if (modal) modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function cerrarModalSubir() {
+      const modal = document.getElementById('modal-subir-trabajo');
+      if (modal) modal.classList.add('hidden');
+      const form = document.getElementById('form-subir-trabajo');
+      if (form) form.reset();
+      archivoSubidoActual = null;
+      document.getElementById('dropzone-contenido')?.classList.remove('hidden');
+      document.getElementById('dropzone-seleccionado')?.classList.add('hidden');
+    }
+
+    function manejarArchivoSeleccionado(input) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        archivoSubidoActual = {
+          name: file.name,
+          size: `${Math.round(file.size / 1024)} KB`,
+          type: file.type
+        };
+        document.getElementById('nombre-archivo-seleccionado').textContent = file.name;
+        document.getElementById('tamano-archivo-seleccionado').textContent = `(${archivoSubidoActual.size})`;
+        document.getElementById('dropzone-contenido')?.classList.add('hidden');
+        document.getElementById('dropzone-seleccionado')?.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    }
+
+    function guardarNuevoTrabajo(e) {
+      e.preventDefault();
+      const materia = document.getElementById('subir-materia').value;
+      const tipo = document.getElementById('subir-tipo').value;
+      const titulo = document.getElementById('subir-titulo').value.trim();
+      const descripcion = document.getElementById('subir-descripcion').value.trim();
+      const autores = document.getElementById('subir-autores').value.trim();
+      const enlace = document.getElementById('subir-enlace')?.value.trim() || '';
+
+      if (!titulo || !descripcion) {
+        mostrarToast('Por favor completá los campos obligatorios', 'error');
+        return;
+      }
+
+      const id = 'trabajo-nuevo-' + Date.now();
+      const nuevoTrabajo = {
+        id,
+        materia,
+        tipo,
+        titulo,
+        descripcion,
+        autores,
+        enlace,
+        archivo: archivoSubidoActual ? archivoSubidoActual.name : null,
+        archivoTamano: archivoSubidoActual ? archivoSubidoActual.size : null,
+        fecha: 'Septiembre 2026'
+      };
+
+      // Guardar en localStorage
+      const trabajos = getSocialStorage('unam_trabajos_subidos', []);
+      trabajos.unshift(nuevoTrabajo);
+      saveSocialStorage('unam_trabajos_subidos', trabajos);
+
+      // Iniciar likes y comentarios para el nuevo post
+      socialLikes[id] = { count: 1, liked: true };
+      socialShares[id] = 0;
+      socialComments[id] = [];
+      saveSocialStorage('unam_social_likes', socialLikes);
+
+      // Renderizar en el feed
+      renderizarTarjetaTrabajo(nuevoTrabajo, true);
+      cerrarModalSubir();
+      mostrarToast('¡Trabajo publicado con éxito en el repositorio! 🚀', 'success');
+      window.location.hash = id;
+    }
+
+    function renderizarTarjetaTrabajo(t, prepend = false) {
+      const lista = document.getElementById('listaTrabajos');
+      if (!lista) return;
+
+      const materiaNombre = t.materia === 'lengua' ? 'Cátedra Lengua y Comunicación' : 
+                           (t.materia === 'comunicacion1' ? 'Cátedra Comunicación I' : 'Cátedra Universitaria UNaM');
+
+      const card = document.createElement('article');
+      card.className = "bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200";
+      card.setAttribute('data-materia', t.materia);
+      card.id = t.id;
+
+      card.innerHTML = `
+        <div class="p-5 sm:p-6 bg-white border-b border-fb-border">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
+                <img src="logo.png" alt="${materiaNombre}" class="w-full h-full object-contain" />
+              </div>
+              <div>
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug hover:text-unam-blue transition cursor-pointer">
+                    ${materiaNombre}
+                  </h3>
+                  <i data-lucide="badge-check" class="w-4 h-4 text-unam-sky fill-unam-sky/20"></i>
+                </div>
+                <p class="text-xs text-fb-secondary flex items-center gap-1.5 mt-0.5">
+                  <span>FHyCS — UNaM</span>
+                  <span>•</span>
+                  <span>${t.fecha || 'Septiembre 2026'}</span>
+                  <span>•</span>
+                  <i data-lucide="globe" class="w-3.5 h-3.5 text-fb-secondary" title="Acceso Abierto Público"></i>
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap justify-end">
+              <span class="px-2.5 py-1 bg-unam-active text-unam-blue text-xs font-bold rounded-full uppercase tracking-wider">
+                ${t.tipo}
+              </span>
+              <span class="px-2.5 py-1 bg-unam-greenLight text-unam-green text-xs font-bold rounded-full border border-unam-green/20">
+                Sede Cerro Azul
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-4 space-y-2">
+            <h4 class="text-xl sm:text-2xl font-black text-fb-text tracking-tight leading-snug">
+              ${t.titulo}
+            </h4>
+            <p class="text-fb-secondary text-sm sm:text-base leading-relaxed">
+              ${t.descripcion}
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-fb-border/70 flex flex-col md:flex-row md:items-center justify-between text-xs text-fb-secondary gap-3">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="font-extrabold text-fb-text flex items-center gap-1">
+                <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i> Autores:
+              </span>
+              <span class="text-fb-text font-semibold">${t.autores}</span>
+            </div>
+            <div class="text-[11px] text-unam-green font-bold bg-unam-greenLight px-2.5 py-1 rounded-full border border-unam-green/20 self-start md:self-auto flex-shrink-0">
+              Producción Estudiantil
+            </div>
+          </div>
+        </div>
+
+        <!-- Archivo adjunto o enlace -->
+        ${t.archivo || t.enlace ? `
+        <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2 flex-wrap">
+            ${t.archivo ? `
+              <span class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm shadow-xs">
+                <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
+                <span>${t.archivo}</span>
+                <span class="text-[10px] text-fb-secondary font-normal">${t.archivoTamano || ''}</span>
+              </span>
+            ` : ''}
+            ${t.enlace ? `
+              <a href="${t.enlace}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                <span>Abrir Enlace de Cátedra</span>
+              </a>
+            ` : ''}
+          </div>
+          <span class="text-xs font-bold text-unam-blue bg-unam-active px-3 py-1.5 rounded-xl">Material Oficial Adjunto</span>
+        </div>
+        ` : ''}
+
+        <!-- Bloque Social Interactivo -->
+        <div class="border-t border-fb-border bg-white" id="social-block-${t.id}">
+          <div class="px-5 py-2.5 flex items-center justify-between text-fb-secondary text-xs border-b border-fb-border/60">
+            <div class="flex items-center gap-1.5">
+              <span class="flex -space-x-1">
+                <span class="w-5 h-5 rounded-full bg-unam-blue text-white flex items-center justify-center text-[10px] shadow-xs">👍</span>
+                <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
+              </span>
+              <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-${t.id}">1</span>
+            </div>
+            <div class="flex items-center gap-3 font-medium">
+              <button onclick="toggleComentarios('${t.id}')" class="hover:underline cursor-pointer" id="comment-count-${t.id}">0 comentarios</button>
+              <span>•</span>
+              <span id="share-count-${t.id}">0 veces compartido</span>
+            </div>
+          </div>
+
+          <div class="px-3 py-1 flex items-center justify-around text-xs font-bold text-fb-secondary">
+            <button onclick="toggleLike('${t.id}')" id="btn-like-${t.id}" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-unam-blue">
+              <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+              <span id="btn-like-text-${t.id}">Me gusta</span>
+            </button>
+            <button onclick="toggleComentarios('${t.id}')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+              <i data-lucide="message-square" class="w-4 h-4"></i>
+              <span>Comentar</span>
+            </button>
+            <button onclick="abrirModalCompartir('${t.id}', '${t.titulo.replace(/'/g, "\\'")}', '${materiaNombre}')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
+              <i data-lucide="share-2" class="w-4 h-4"></i>
+              <span>Compartir</span>
+            </button>
+          </div>
+
+          <div id="caja-comentarios-${t.id}" class="p-4 sm:p-5 bg-fb-canvas/50 border-t border-fb-border space-y-4">
+            <div class="space-y-3" id="lista-comentarios-${t.id}"></div>
+            <div class="pt-2 border-t border-fb-border/60">
+              <div class="flex items-start gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1" id="avatar-comentador-${t.id}">
+                  PT
+                </div>
+                <div class="flex-1 space-y-2">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <label class="text-[11px] font-bold text-fb-secondary">Comentar como:</label>
+                    <select id="autor-comentario-${t.id}" onchange="cambiarAvatarComentador('${t.id}')" class="bg-white border border-fb-border text-fb-text text-xs rounded-lg px-2 py-1 font-semibold outline-none focus:ring-1 focus:ring-unam-blue">
+                      <option value="Pedro Turcheñuk|PT|unam-blue">Pedro Turcheñuk</option>
+                      <option value="Mario Prozapas|MP|unam-dark">Mario Prozapas</option>
+                      <option value="Cathalina Turcheñuk|CT|unam-sky">Cathalina Turcheñuk</option>
+                      <option value="Marcelo Gimenez|MG|unam-green">Marcelo Gimenez</option>
+                      <option value="Cátedra / Docente|DOC|purple-600">Cátedra / Docente</option>
+                      <option value="Estudiante Invitado|EST|amber-600">Estudiante Invitado</option>
+                    </select>
+                  </div>
+                  <div class="relative flex items-center">
+                    <input 
+                      type="text" 
+                      id="input-comentario-${t.id}" 
+                      placeholder="Escribe un comentario o devolución sobre este trabajo..." 
+                      class="w-full bg-white border border-fb-border rounded-full pl-4 pr-12 py-2 text-xs text-fb-text placeholder-fb-secondary focus:outline-none focus:ring-2 focus:ring-unam-blue shadow-xs"
+                      onkeydown="if(event.key === 'Enter') agregarComentario('${t.id}')"
+                    />
+                    <button onclick="agregarComentario('${t.id}')" class="absolute right-1.5 p-1.5 rounded-full bg-unam-blue hover:bg-unam-dark text-white transition shadow-xs" title="Publicar Comentario">
+                      <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (prepend && lista.firstChild) {
+        lista.insertBefore(card, lista.firstChild);
+      } else {
+        lista.appendChild(card);
+      }
+
+      actualizarContadoresUI(t.id);
+      lucide.createIcons();
+    }
+
+    // ==========================================
+    // TOAST FEEDBACK FLOTANTE
+    // ==========================================
+    function mostrarToast(mensaje, tipo = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      const bg = tipo === 'success' ? 'bg-slate-900 text-white' : (tipo === 'error' ? 'bg-rose-700 text-white' : 'bg-slate-800 text-white');
+      toast.className = `${bg} px-4 py-3 rounded-2xl shadow-xl border border-white/10 flex items-center gap-2.5 text-xs font-bold pointer-events-auto transition-all transform translate-y-2 opacity-0 animate-in fade-in duration-200`;
+      toast.innerHTML = `
+        <i data-lucide="${tipo === 'success' ? 'check-circle' : 'info'}" class="w-4 h-4 ${tipo === 'success' ? 'text-emerald-400' : 'text-unam-sky'}"></i>
+        <span>${mensaje}</span>
+      `;
+      container.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => {
+        toast.classList.remove('opacity-0', 'translate-y-2');
+      }, 10);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // ==========================================
+    // INICIALIZACIÓN GENERAL AL CARGAR PÁGINA
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      // Cargar trabajos dinámicos previos desde localStorage
+      const trabajosGuardados = getSocialStorage('unam_trabajos_subidos', []);
+      trabajosGuardados.forEach(t => renderizarTarjetaTrabajo(t, true));
+
+      // Actualizar contadores iniciales de posts predefinidos
+      ['post-lengua-tp1', 'post-lengua-tp2', 'post-comunicacion1', 'post-simulado'].forEach(id => {
+        actualizarContadoresUI(id);
+      });
+
+      lucide.createIcons();
+    });
   </script>
 </body>
 </html>
