@@ -193,9 +193,9 @@
         <div class="flex items-center gap-2">
           <label for="filtroMateria" class="text-xs font-bold text-fb-secondary">Filtrar Asignatura:</label>
           <select id="filtroMateria" onchange="filtrarTrabajos()" class="bg-white border border-fb-border text-fb-text text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-unam-blue focus:border-unam-blue block p-2.5 font-bold shadow-xs outline-none transition">
-            <option value="todas" selected>Todas las Materias (2)</option>
-            <option value="lengua">Lengua y Comunicación (1)</option>
-            <option value="comunicacion1">Comunicación I (1)</option>
+            <option value="todas" selected>Todas las Materias</option>
+            <option value="lengua">Lengua y Comunicación (TP1 y TP2)</option>
+            <option value="comunicacion1">Comunicación I (Vacío)</option>
             <option value="proximas" disabled>— Próximas materias del plan —</option>
           </select>
         </div>
@@ -1262,10 +1262,10 @@
           </div>
         </article>
 
-        <!-- TARJETA DE LA MATERIA: COMUNICACIÓN I 2026 (POST DE FACEBOOK / STYLEX) -->
+        <!-- TARJETA DE LA MATERIA: COMUNICACIÓN I (REPOSITORIO VACÍO) -->
         <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="comunicacion1">
           
-          <!-- Encabezado del Post (Autoría Institucional estilo Facebook) -->
+          <!-- Encabezado del Post -->
           <div class="p-5 sm:p-6 bg-white border-b border-fb-border">
             <div class="flex items-start justify-between gap-3">
               
@@ -1288,20 +1288,20 @@
                   <p class="text-xs text-fb-secondary flex items-center gap-1.5 mt-0.5">
                     <span>FHyCS — UNaM</span>
                     <span>•</span>
-                    <span>Septiembre 2026</span>
+                    <span>Sede Cerro Azul</span>
                     <span>•</span>
-                    <i data-lucide="globe" class="w-3.5 h-3.5 text-fb-secondary" title="Acceso Abierto Público"></i>
+                    <span>Ciclo 2026</span>
                   </p>
                 </div>
               </div>
 
               <!-- Badges de Categoría -->
               <div class="flex items-center gap-2 flex-wrap justify-end">
-                <span class="px-2.5 py-1 bg-unam-active text-unam-blue text-xs font-bold rounded-full uppercase tracking-wider">
-                  Materia Troncal
+                <span class="px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold rounded-full uppercase tracking-wider">
+                  Repositorio Vacío
                 </span>
-                <span class="px-2.5 py-1 bg-unam-greenLight text-unam-green text-xs font-bold rounded-full border border-unam-green/20">
-                  Sede Cerro Azul
+                <span class="px-2.5 py-1 bg-fb-canvas text-fb-secondary text-xs font-bold rounded-full border border-fb-border">
+                  Sin Materiales Aún
                 </span>
               </div>
             </div>
@@ -1309,378 +1309,35 @@
             <!-- Título y Resumen del Post -->
             <div class="mt-4 space-y-2">
               <h4 class="text-xl sm:text-2xl font-black text-fb-text tracking-tight leading-snug">
-                Teorías de la Comunicación, Procesos de Mediación y Matrices Socioculturales
+                Comunicación I
               </h4>
               <p class="text-fb-secondary text-sm sm:text-base leading-relaxed">
-                Fundamentos epistémicos y corrientes clásicas, críticas y latinoamericanas del campo comunicacional. Análisis de los modelos matemáticos y funcionales, la teoría crítica de las industrias culturales, los estudios culturales y la perspectiva situada de la comunicación en territorio comunitario.
+                Espacio reservado para el repositorio académico de la Cátedra Comunicación I (Tecnicatura en Comunicación Social — Extensión Áulica Cerro Azul). Actualmente no cuenta con materiales, consignas ni bibliografía cargada en el repositorio.
               </p>
             </div>
-
-            <!-- Estudiantes Integrantes / Participación Cátedra -->
-            <div class="mt-5 pt-4 border-t border-fb-border/70 flex flex-col md:flex-row md:items-center justify-between text-xs text-fb-secondary gap-3">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <span class="font-extrabold text-fb-text flex items-center gap-1">
-                  <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i>
-                  Estudiantes Integrantes (Producción y Cursado):
-                </span>
-                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Mario Prozapas</span>
-                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Cathalina Turcheñuk</span>
-                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Pedro Turcheñuk</span>
-                <span class="bg-fb-canvas hover:bg-fb-hover px-2.5 py-1 rounded-full text-fb-text font-semibold border border-fb-border transition">Marcelo Gimenez</span>
-              </div>
-              <div class="text-[11px] text-unam-blue font-bold bg-unam-active px-2.5 py-1 rounded-full border border-unam-blue/20 self-start md:self-auto flex-shrink-0">
-                4 Integrantes • Producción Colectiva
-              </div>
-            </div>
           </div>
 
-          <!-- Barra de Acciones del Post estilo Facebook / StyleX -->
-          <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
-            <div class="flex items-center gap-2 flex-wrap">
-              <button onclick="toggleDocumento('doc-com1', 'btn-text-com1')" class="inline-flex items-center gap-2 px-4 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
-                <i data-lucide="book-open" class="w-4 h-4"></i>
-                <span id="btn-text-com1" data-default-text="Desplegar Programa y Ejes Temáticos">Desplegar Programa y Ejes Temáticos</span>
-              </button>
-              <div class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm shadow-xs">
-                <i data-lucide="layers" class="w-4 h-4 text-unam-blue"></i>
-                <span>3 Ejes Curriculares</span>
-              </div>
-              <div class="inline-flex items-center gap-1.5 px-3 py-2 bg-white text-fb-secondary border border-fb-border rounded-xl font-medium text-xs sm:text-sm shadow-xs">
-                <i data-lucide="calendar" class="w-4 h-4 text-emerald-600"></i>
-                <span>1° Año • Ciclo 2026</span>
-              </div>
+          <!-- Estado Vacío (Empty State estilo Facebook / StyleX) -->
+          <div class="p-8 sm:p-12 text-center space-y-4 bg-fb-canvas/40">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-white border border-fb-border flex items-center justify-center text-fb-secondary shadow-xs">
+              <i data-lucide="folder-open" class="w-8 h-8 text-unam-blue/60"></i>
             </div>
-            <div class="hidden sm:flex items-center gap-2 text-xs font-bold text-unam-blue bg-unam-active px-3 py-1.5 rounded-xl">
-              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-              <span>Cátedra en Cursado Regular</span>
-            </div>
-          </div>
-
-          <!-- CONTENIDO DESPLEGABLE CON EL PROGRAMA Y EJES ACADÉMICOS (ESTILO STYLEX / FACEBOOK) -->
-          <div id="doc-com1" class="hidden p-5 sm:p-8 md:p-10 bg-white border-t border-fb-border space-y-10 academic-prose">
-            
-            <!-- Membrete Institucional Académico Oficial (StyleX Card) -->
-            <div class="bg-fb-canvas border border-fb-border rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs">
-              <div class="flex flex-col md:flex-row items-center justify-between gap-5">
-                <div class="flex items-center gap-3 sm:gap-4 bg-white px-4 py-2.5 rounded-xl shadow-xs border border-fb-border">
-                  <img 
-                    src="unam_imagotipo_horizontal.png" 
-                    alt="Universidad Nacional de Misiones" 
-                    title="Universidad Nacional de Misiones (UNaM)" 
-                    class="h-7 sm:h-9 w-auto object-contain"
-                  />
-                  <div class="h-7 sm:h-8 w-[1px] bg-fb-border"></div>
-                  <img 
-                    src="logo.png" 
-                    alt="Facultad de Humanidades y Ciencias Sociales - UNaM" 
-                    title="Facultad de Humanidades y Ciencias Sociales (FHyCS)" 
-                    class="h-9 sm:h-11 w-auto object-contain"
-                  />
-                </div>
-                <div class="text-center md:text-right space-y-1">
-                  <span class="inline-block text-[10px] uppercase font-black tracking-widest px-2.5 py-0.5 rounded-md bg-unam-blue text-white shadow-xs">
-                    Plan Curricular Oficial
-                  </span>
-                  <p class="text-xs font-extrabold text-fb-text">
-                    UNIVERSIDAD NACIONAL DE MISIONES
-                  </p>
-                  <p class="text-xs text-fb-secondary">
-                    Facultad de Humanidades y Ciencias Sociales (FHyCS)
-                  </p>
-                  <p class="text-xs font-bold text-unam-blue">
-                    Tecnicatura en Comunicación Social — Extensión Áulica Sede Cerro Azul
-                  </p>
-                  <p class="text-xs text-fb-secondary">
-                    Cátedra: Comunicación I — Ciclo Lectivo 2026
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Presentación y Fundamentación de la Materia -->
-            <div class="bg-unam-active/60 border-l-4 border-unam-blue p-5 sm:p-6 rounded-r-2xl border border-fb-border/70 space-y-3">
-              <div class="flex items-center gap-2">
-                <span class="text-[10px] uppercase font-bold tracking-wider text-unam-blue bg-white px-2 py-0.5 rounded-md border border-unam-blue/20 inline-block">
-                  Cátedra Comunicación I • Ciclo 2026
-                </span>
-              </div>
-              <h4 class="text-sm sm:text-base font-black uppercase tracking-wider text-unam-blue flex items-center gap-2">
-                <i data-lucide="compass" class="w-4 h-4 text-unam-blue"></i> Fundamentación Pedagógica y Enfoque de la Materia
-              </h4>
+            <div class="max-w-md mx-auto space-y-1.5">
+              <h5 class="text-base font-bold text-fb-text">
+                Repositorio de Comunicación I Vacío
+              </h5>
               <p class="text-xs sm:text-sm text-fb-secondary leading-relaxed">
-                <strong>Comunicación I</strong> constituye el espacio fundacional para la comprensión de los fenómenos comunicativos desde una perspectiva integral, crítica y situada. La materia propone superar las concepciones puramente técnico-instrumentales o mecanicistas de la información, para concebir a la comunicación como un proceso social de producción recíproca de sentidos, atravesado por relaciones de poder, configuraciones culturales e identidades comunitarias en constante disputa.
+                Aún no se han incorporado los materiales ni las consignas oficiales para esta cátedra. El repositorio se habilitará ni bien se carguen y procesen los contenidos correspondientes.
               </p>
             </div>
-
-            <!-- Ejes Temáticos del Programa Curricular -->
-            <div class="space-y-4">
-              <h4 class="text-lg font-extrabold text-fb-text flex items-center gap-2 pb-2 border-b border-fb-border">
-                <i data-lucide="bookmark" class="w-5 h-5 text-unam-blue"></i>
-                Ejes Temáticos y Contenidos Programáticos
-              </h4>
-              
-              <div class="grid md:grid-cols-3 gap-5">
-                <!-- Eje 1 -->
-                <div class="bg-white border border-fb-border rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:shadow-fb transition">
-                  <div class="space-y-3">
-                    <div class="w-10 h-10 rounded-xl bg-unam-active text-unam-blue flex items-center justify-center font-black text-sm">
-                      Eje 1
-                    </div>
-                    <h5 class="font-extrabold text-fb-text text-base leading-snug">
-                      Modelos Clásicos y Teoría Informacional
-                    </h5>
-                    <p class="text-xs text-fb-secondary leading-relaxed">
-                      Evolución histórica y surgimiento del campo científico de la comunicación. El modelo matemático informacional de Shannon y Weaver (emisor, canal, código, ruido y receptor). El paradigma funcionalista de Lasswell y la Mass Communication Research. Crítica a la linealidad estímulo-respuesta.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-fb-border text-[11px] font-bold text-unam-blue flex items-center gap-1.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-unam-sky"></i> Shannon, Weaver, Lasswell, Lazarsfeld
-                  </div>
-                </div>
-
-                <!-- Eje 2 -->
-                <div class="bg-white border border-fb-border rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:shadow-fb transition">
-                  <div class="space-y-3">
-                    <div class="w-10 h-10 rounded-xl bg-unam-greenLight text-unam-green flex items-center justify-center font-black text-sm">
-                      Eje 2
-                    </div>
-                    <h5 class="font-extrabold text-fb-text text-base leading-snug">
-                      Teoría Crítica e Industrias Culturales
-                    </h5>
-                    <p class="text-xs text-fb-secondary leading-relaxed">
-                      La Escuela de Frankfurt y el concepto de Industria Cultural (Adorno y Horkheimer). Reproducibilidad técnica del arte y experiencia estética (Walter Benjamin). Emergencia de los Estudios Culturales de Birmingham: Stuart Hall y los modelos de codificación/decodificación. Resignificación activa de las audiencias.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-fb-border text-[11px] font-bold text-unam-green flex items-center gap-1.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-unam-green"></i> Adorno, Horkheimer, Benjamin, Hall
-                  </div>
-                </div>
-
-                <!-- Eje 3 -->
-                <div class="bg-white border border-fb-border rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:shadow-fb transition">
-                  <div class="space-y-3">
-                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center font-black text-sm">
-                      Eje 3
-                    </div>
-                    <h5 class="font-extrabold text-fb-text text-base leading-snug">
-                      Comunicación Latinoamericana y Territorial
-                    </h5>
-                    <p class="text-xs text-fb-secondary leading-relaxed">
-                      El pensamiento comunicacional de nuestra región. De los medios a las mediaciones culturales (Jesús Martín-Barbero). Culturas híbridas y procesos de desterritorialización (García Canclini). Comunicación popular, dialógica y transformadora (Mario Kaplún). Aplicación e impacto en el entramado socio-comunitario de Misiones.
-                    </p>
-                  </div>
-                  <div class="mt-4 pt-3 border-t border-fb-border text-[11px] font-bold text-purple-700 flex items-center gap-1.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-purple-600"></i> Martín-Barbero, Canclini, Kaplún
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Matriz Comparativa de Paradigmas -->
-            <div class="space-y-4">
-              <h4 class="text-lg font-extrabold text-fb-text flex items-center gap-2 pb-2 border-b border-fb-border">
-                <i data-lucide="table-2" class="w-5 h-5 text-unam-blue"></i>
-                Matriz Comparativa de Paradigmas Comunicacionales
-              </h4>
-              <div class="overflow-x-auto rounded-2xl border border-fb-border shadow-xs">
-                <table class="w-full text-left text-xs sm:text-sm bg-white border-collapse">
-                  <thead class="bg-fb-canvas border-b border-fb-border text-fb-text font-black text-xs uppercase tracking-wider">
-                    <tr>
-                      <th class="p-3.5">Paradigma / Corriente</th>
-                      <th class="p-3.5">Autores Clave</th>
-                      <th class="p-3.5">Definición de Comunicación</th>
-                      <th class="p-3.5">Concepción del Receptor</th>
-                      <th class="p-3.5">Relevancia en Sede Cerro Azul</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-fb-border">
-                    <tr class="hover:bg-fb-hover/50 transition">
-                      <td class="p-3.5 font-bold text-fb-text">
-                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-blue-500 mr-1.5"></span>
-                        Informacional / Matemático
-                      </td>
-                      <td class="p-3.5 text-fb-secondary">Shannon, Weaver</td>
-                      <td class="p-3.5 text-fb-secondary">Transmisión lineal y óptima de señales a través de un canal técnico con codificación binaria.</td>
-                      <td class="p-3.5 text-fb-secondary">Destinatario pasivo / decodificador de impulsos.</td>
-                      <td class="p-3.5 text-fb-secondary">Comprender la infraestructura de telecomunicaciones y soportes digitales básicos.</td>
-                    </tr>
-                    <tr class="hover:bg-fb-hover/50 transition">
-                      <td class="p-3.5 font-bold text-fb-text">
-                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 mr-1.5"></span>
-                        Funcionalismo / Mass Communication
-                      </td>
-                      <td class="p-3.5 text-fb-secondary">Lasswell, Lazarsfeld</td>
-                      <td class="p-3.5 text-fb-secondary">Proceso de influencia unidireccional orientado a generar conductas y efectos mensurables en masa.</td>
-                      <td class="p-3.5 text-fb-secondary">Masa atomizada influenciable según estímulos mediáticos.</td>
-                      <td class="p-3.5 text-fb-secondary">Análisis crítico de campañas publicitarias y discursos propagandísticos.</td>
-                    </tr>
-                    <tr class="hover:bg-fb-hover/50 transition">
-                      <td class="p-3.5 font-bold text-fb-text">
-                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-500 mr-1.5"></span>
-                        Teoría Crítica / Frankfurt
-                      </td>
-                      <td class="p-3.5 text-fb-secondary">Adorno, Horkheimer, Benjamin</td>
-                      <td class="p-3.5 text-fb-secondary">Aparato de reproducción ideológica que mercantiliza la cultura para la dominación social.</td>
-                      <td class="p-3.5 text-fb-secondary">Consumidor estandarizado bajo alienación cultural.</td>
-                      <td class="p-3.5 text-fb-secondary">Desnaturalización de consumos audiovisuales y monopolios de medios hegemónicos.</td>
-                    </tr>
-                    <tr class="hover:bg-fb-hover/50 transition">
-                      <td class="p-3.5 font-bold text-fb-text">
-                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 mr-1.5"></span>
-                        Estudios Culturales
-                      </td>
-                      <td class="p-3.5 text-fb-secondary">Stuart Hall, Raymond Williams</td>
-                      <td class="p-3.5 text-fb-secondary">Lucha discursiva y hegemónica donde el sentido es codificado por emisores y negociado por audiencias.</td>
-                      <td class="p-3.5 text-fb-secondary">Sujeto activo capaz de lecturas dominantes, negociadas u oposicionales.</td>
-                      <td class="p-3.5 text-fb-secondary">Investigación de recepción comunitaria y prácticas de apropiación local.</td>
-                    </tr>
-                    <tr class="hover:bg-fb-hover/50 transition">
-                      <td class="p-3.5 font-bold text-fb-text">
-                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-unam-blue mr-1.5"></span>
-                        Mediaciones Latinoamericanas
-                      </td>
-                      <td class="p-3.5 text-fb-secondary">Martín-Barbero, Kaplún</td>
-                      <td class="p-3.5 text-fb-secondary">Práctica social e intersubjetiva donde la cultura y la memoria popular median toda interacción comunicativa.</td>
-                      <td class="p-3.5 text-fb-secondary">Interlocutor dialógico y productor colectivo de sentido histórico.</td>
-                      <td class="p-3.5 text-fb-secondary">Desarrollo territorial, radios comunitarias y proyectos populares en la provincia de Misiones.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <!-- Estado de Actividades y Trabajos Prácticos de la Materia -->
-            <div class="bg-fb-canvas rounded-2xl border border-fb-border p-6 space-y-4">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-unam-blue text-white flex items-center justify-center shadow-xs">
-                    <i data-lucide="folder-clock" class="w-5 h-5"></i>
-                  </div>
-                  <div>
-                    <h5 class="text-sm sm:text-base font-extrabold text-fb-text">
-                      Producciones Académicas y Trabajos Prácticos en Curso
-                    </h5>
-                    <p class="text-xs text-fb-secondary">
-                      Entregas y ejercitaciones asignadas para el cursado de Comunicación I (Ciclo 2026)
-                    </p>
-                  </div>
-                </div>
-                <span class="px-3 py-1 bg-amber-100 text-amber-800 border border-amber-200 rounded-full text-xs font-bold self-start sm:self-auto">
-                  Cursada en Progreso
-                </span>
-              </div>
-              <div class="grid sm:grid-cols-2 gap-4 pt-2">
-                <div class="p-4 bg-white rounded-xl border border-fb-border space-y-2 shadow-xs">
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-unam-blue">TP N° 1 — Comunicación I</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-unam-active text-unam-blue">Próxima Publicación</span>
-                  </div>
-                  <h6 class="text-xs font-bold text-fb-text">
-                    Cartografía de Modelos Teóricos y Estudio de Medios Locales
-                  </h6>
-                  <p class="text-[11px] text-fb-secondary leading-relaxed">
-                    Aplicación del modelo de codificación/decodificación y análisis de la circulación de noticias en emisoras y portales de Cerro Azul y la zona Centro de Misiones.
-                  </p>
-                </div>
-                <div class="p-4 bg-white rounded-xl border border-fb-border space-y-2 shadow-xs">
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold text-fb-secondary">Lecturas de Cátedra</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-fb-canvas text-fb-secondary border border-fb-border">Bibliografía</span>
-                  </div>
-                  <h6 class="text-xs font-bold text-fb-text">
-                    Textos de Cátedra y Corpus Bibliográfico
-                  </h6>
-                  <p class="text-[11px] text-fb-secondary leading-relaxed">
-                    Textos seleccionados de Jesús Martín-Barbero ("De los medios a las mediaciones"), Stuart Hall ("Codificar/Decodificar") y Mario Kaplún ("El comunicador popular").
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Botón de Ocultar Documento -->
-            <div class="text-center pt-4">
-              <button onclick="toggleDocumento('doc-com1', 'btn-text-com1')" class="inline-flex items-center gap-1.5 text-xs text-fb-secondary hover:text-fb-text font-bold bg-fb-canvas hover:bg-fb-border px-4 py-2 rounded-full border border-fb-border transition">
-                <i data-lucide="chevron-up" class="w-4 h-4"></i> Contraer documento
+            <div class="pt-2">
+              <button onclick="abrirModalSubir('tp', 'comunicacion1', 'Comunicación I')" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm shadow-xs transition">
+                <i data-lucide="upload-cloud" class="w-4 h-4 text-unam-blue"></i>
+                <span>Subir Material para Comunicación I</span>
               </button>
             </div>
-
           </div>
 
-          <!-- BARRA DE REACCIONES E INTERACCIONES SOCIALES ESTILO FACEBOOK / STYLEX (COMUNICACIÓN I) -->
-          <div class="border-t border-fb-border bg-white" id="social-block-post-comunicacion1">
-            <!-- Conteo de Reacciones, Comentarios y Compartidos -->
-            <div class="px-5 py-2.5 flex items-center justify-between text-fb-secondary text-xs border-b border-fb-border/60">
-              <div class="flex items-center gap-1.5">
-                <span class="flex -space-x-1">
-                  <span class="w-5 h-5 rounded-full bg-unam-blue text-white flex items-center justify-center text-[10px] shadow-xs">👍</span>
-                  <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
-                  <span class="w-5 h-5 rounded-full bg-sky-500 text-white flex items-center justify-center text-[10px] shadow-xs">💡</span>
-                </span>
-                <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-post-comunicacion1">35</span>
-              </div>
-              <div class="flex items-center gap-3 font-medium">
-                <button onclick="toggleComentarios('post-comunicacion1')" class="hover:underline cursor-pointer" id="comment-count-post-comunicacion1">0 comentarios</button>
-                <span>•</span>
-                <span id="share-count-post-comunicacion1">5 veces compartido</span>
-              </div>
-            </div>
-
-            <!-- Botones de Acción (Me gusta, Comentar, Compartir) -->
-            <div class="px-3 py-1 flex items-center justify-around text-xs font-bold text-fb-secondary">
-              <button onclick="toggleLike('post-comunicacion1')" id="btn-like-post-comunicacion1" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-unam-blue">
-                <i data-lucide="thumbs-up" class="w-4 h-4"></i>
-                <span id="btn-like-text-post-comunicacion1">Me gusta</span>
-              </button>
-              <button onclick="toggleComentarios('post-comunicacion1')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
-                <i data-lucide="message-square" class="w-4 h-4"></i>
-                <span>Comentar</span>
-              </button>
-              <button onclick="abrirModalCompartir('post-comunicacion1', 'Cátedra Comunicación I: Teorías, Procesos y Matrices', 'Comunicación I')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
-                <i data-lucide="share-2" class="w-4 h-4"></i>
-                <span>Compartir</span>
-              </button>
-            </div>
-
-            <!-- Caja Desplegable de Comentarios -->
-            <div id="caja-comentarios-post-comunicacion1" class="p-4 sm:p-5 bg-fb-canvas/50 border-t border-fb-border space-y-4">
-              <!-- Lista de Comentarios Dinámicos -->
-              <div class="space-y-3" id="lista-comentarios-post-comunicacion1"></div>
-
-              <!-- Input para Agregar Nuevo Comentario -->
-              <div class="pt-2 border-t border-fb-border/60">
-                <div class="flex items-start gap-2.5">
-                  <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1" id="avatar-comentador-post-comunicacion1">
-                    PT
-                  </div>
-                  <div class="flex-1 space-y-2">
-                    <div class="flex items-center gap-2 flex-wrap">
-                      <label class="text-[11px] font-bold text-fb-secondary">Comentar como:</label>
-                      <select id="autor-comentario-post-comunicacion1" onchange="cambiarAvatarComentador('post-comunicacion1')" class="bg-white border border-fb-border text-fb-text text-xs rounded-lg px-2 py-1 font-semibold outline-none focus:ring-1 focus:ring-unam-blue">
-                        <option value="Pedro Turcheñuk|PT|unam-blue">Pedro Turcheñuk</option>
-                        <option value="Mario Prozapas|MP|unam-dark">Mario Prozapas</option>
-                        <option value="Cathalina Turcheñuk|CT|unam-sky">Cathalina Turcheñuk</option>
-                        <option value="Marcelo Gimenez|MG|unam-green">Marcelo Gimenez</option>
-                        <option value="Cátedra / Docente|DOC|purple-600">Cátedra / Docente</option>
-                        <option value="Estudiante Invitado|EST|amber-600">Estudiante Invitado</option>
-                      </select>
-                    </div>
-                    <div class="relative flex items-center">
-                      <input 
-                        type="text" 
-                        id="input-comentario-post-comunicacion1" 
-                        placeholder="Escribe un comentario sobre los ejes temáticos o bibliografía..." 
-                        class="w-full bg-white border border-fb-border rounded-full pl-4 pr-12 py-2 text-xs text-fb-text placeholder-fb-secondary focus:outline-none focus:ring-2 focus:ring-unam-blue shadow-xs"
-                        onkeydown="if(event.key === 'Enter') agregarComentario('post-comunicacion1')"
-                      />
-                      <button onclick="agregarComentario('post-comunicacion1')" class="absolute right-1.5 p-1.5 rounded-full bg-unam-blue hover:bg-unam-dark text-white transition shadow-xs" title="Publicar Comentario">
-                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </article>
 
       </div>
@@ -2158,21 +1815,18 @@
     const DEFAULT_LIKES = {
       'post-lengua-tp1': { count: 48, liked: false },
       'post-lengua-tp2': { count: 19, liked: false },
-      'post-comunicacion1': { count: 35, liked: false },
       'post-simulado': { count: 48, liked: false }
     };
 
     const DEFAULT_SHARES = {
       'post-lengua-tp1': 6,
       'post-lengua-tp2': 3,
-      'post-comunicacion1': 5,
       'post-simulado': 6
     };
 
     const DEFAULT_COMMENTS = {
       'post-lengua-tp1': [],
       'post-lengua-tp2': [],
-      'post-comunicacion1': [],
       'post-simulado': []
     };
 
@@ -2726,7 +2380,7 @@
       trabajosGuardados.forEach(t => renderizarTarjetaTrabajo(t, true));
 
       // Actualizar contadores iniciales de posts predefinidos
-      ['post-lengua-tp1', 'post-lengua-tp2', 'post-comunicacion1', 'post-simulado'].forEach(id => {
+      ['post-lengua-tp1', 'post-lengua-tp2', 'post-simulado'].forEach(id => {
         actualizarContadoresUI(id);
       });
 
