@@ -138,11 +138,20 @@
           </a>
         </nav>
 
-        <!-- CTA Móvil / Contacto Rápido -->
+        <!-- CTA Móvil / Sesión Activa & Contacto Rápido -->
         <div class="flex items-center gap-2">
-          <a href="https://wa.me/5493754406435" target="_blank" rel="noopener" class="bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold px-4 py-2 rounded-full transition-all flex items-center gap-1.5 shadow-xs">
+          <!-- Botón de Sesión de Usuario Activo -->
+          <button id="btn-perfil-header" onclick="abrirModalLogin()" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-fb-canvas hover:bg-fb-hover border border-fb-border text-xs font-bold text-fb-text transition shadow-2xs cursor-pointer" title="Sesión activa / Cambiar usuario">
+            <div id="header-user-avatar" class="w-6 h-6 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center font-bold text-[10px] shadow-xs">
+              PT
+            </div>
+            <span id="header-user-name" class="hidden sm:inline truncate max-w-[90px]">Pedro</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-fb-secondary"></i>
+          </button>
+
+          <a href="https://wa.me/5493754406435" target="_blank" rel="noopener" class="bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold px-3.5 py-1.5 rounded-full transition-all flex items-center gap-1.5 shadow-xs">
             <i data-lucide="message-circle" class="w-4 h-4"></i>
-            <span class="hidden sm:inline">WhatsApp Grupo</span>
+            <span class="hidden sm:inline">WhatsApp</span>
           </a>
         </div>
       </div>
@@ -467,6 +476,102 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==================== MODAL DE INICIO DE SESIÓN / IDENTIDAD ACTIVA ==================== -->
+  <div id="modal-login" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-fb-border shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-150">
+      
+      <div class="p-5 sm:p-6 border-b border-fb-border flex items-center justify-between bg-fb-canvas/50">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-unam-active text-unam-blue flex items-center justify-center shadow-xs">
+            <i data-lucide="user-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-fb-text text-base sm:text-lg leading-tight">Iniciar Sesión / Identidad</h3>
+            <p class="text-xs text-fb-secondary">Tu sesión se mantendrá activa para comentar en el repositorio</p>
+          </div>
+        </div>
+        <button onclick="cerrarModalLogin()" class="w-8 h-8 rounded-full bg-fb-canvas hover:bg-fb-border flex items-center justify-center text-fb-secondary hover:text-fb-text transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 space-y-4 text-xs sm:text-sm">
+        <p class="font-bold text-fb-text text-xs uppercase tracking-wider text-unam-blue">
+          Elegí tu perfil del Grupo:
+        </p>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <button type="button" onclick="seleccionarUsuario('Pedro Turcheñuk', 'PT', 'from-unam-blue to-unam-sky', 'Equipo')" class="flex items-center gap-2.5 p-3 rounded-2xl border border-fb-border hover:border-unam-blue hover:bg-unam-active/40 text-left transition shadow-2xs group cursor-pointer">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center font-black text-xs flex-shrink-0 shadow-xs">
+              PT
+            </div>
+            <div class="min-w-0">
+              <p class="font-black text-xs text-fb-text truncate group-hover:text-unam-blue">Pedro T.</p>
+              <p class="text-[10px] text-fb-secondary">Coordinación</p>
+            </div>
+          </button>
+
+          <button type="button" onclick="seleccionarUsuario('Mario Prozapas', 'MP', 'from-unam-dark to-unam-blue', 'Equipo')" class="flex items-center gap-2.5 p-3 rounded-2xl border border-fb-border hover:border-unam-blue hover:bg-unam-active/40 text-left transition shadow-2xs group cursor-pointer">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-unam-dark to-unam-blue text-white flex items-center justify-center font-black text-xs flex-shrink-0 shadow-xs">
+              MP
+            </div>
+            <div class="min-w-0">
+              <p class="font-black text-xs text-fb-text truncate group-hover:text-unam-blue">Mario P.</p>
+              <p class="text-[10px] text-fb-secondary">Investigación</p>
+            </div>
+          </button>
+
+          <button type="button" onclick="seleccionarUsuario('Cathalina Turcheñuk', 'CT', 'from-unam-sky to-sky-400', 'Equipo')" class="flex items-center gap-2.5 p-3 rounded-2xl border border-fb-border hover:border-unam-blue hover:bg-unam-active/40 text-left transition shadow-2xs group cursor-pointer">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-unam-sky to-sky-400 text-white flex items-center justify-center font-black text-xs flex-shrink-0 shadow-xs">
+              CT
+            </div>
+            <div class="min-w-0">
+              <p class="font-black text-xs text-fb-text truncate group-hover:text-unam-blue">Cathalina T.</p>
+              <p class="text-[10px] text-fb-secondary">Redacción</p>
+            </div>
+          </button>
+
+          <button type="button" onclick="seleccionarUsuario('Marcelo Gimenez', 'MG', 'from-unam-green to-emerald-500', 'Equipo')" class="flex items-center gap-2.5 p-3 rounded-2xl border border-fb-border hover:border-unam-blue hover:bg-unam-active/40 text-left transition shadow-2xs group cursor-pointer">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-unam-green to-emerald-500 text-white flex items-center justify-center font-black text-xs flex-shrink-0 shadow-xs">
+              MG
+            </div>
+            <div class="min-w-0">
+              <p class="font-black text-xs text-fb-text truncate group-hover:text-unam-blue">Marcelo G.</p>
+              <p class="text-[10px] text-fb-secondary">Producción</p>
+            </div>
+          </button>
+        </div>
+
+        <div class="pt-2 border-t border-fb-border/70 space-y-2">
+          <p class="font-bold text-fb-text text-xs uppercase tracking-wider text-fb-secondary">
+            Otras opciones:
+          </p>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="seleccionarUsuario('Docente / Cátedra', 'DOC', 'from-purple-600 to-indigo-600', 'Docente')" class="flex-1 py-2 px-3 rounded-xl border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs transition text-center cursor-pointer">
+              Docente / Cátedra
+            </button>
+            <button type="button" onclick="mostrarInputOtroUsuario()" class="flex-1 py-2 px-3 rounded-xl border border-fb-border hover:bg-fb-canvas text-fb-text font-bold text-xs transition text-center cursor-pointer">
+              Otro Nombre
+            </button>
+          </div>
+
+          <div id="box-otro-usuario" class="hidden pt-2 space-y-2">
+            <input 
+              type="text" 
+              id="input-nombre-personalizado" 
+              placeholder="Escribe tu nombre y apellido..." 
+              class="w-full bg-white border border-fb-border rounded-xl px-3 py-2 text-xs text-fb-text focus:ring-2 focus:ring-unam-blue outline-none"
+              onkeydown="if(event.key === 'Enter') guardarUsuarioPersonalizado()"
+            />
+            <button type="button" onclick="guardarUsuarioPersonalizado()" class="w-full py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs transition shadow-2xs cursor-pointer">
+              Guardar e Iniciar Sesión
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== MODAL PARA SUBIR MATERIALES Y TRABAJOS PRÁCTICOS ==================== -->
   <div id="modal-subir-trabajo" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
@@ -986,20 +1091,125 @@
       }
     }
 
-    // Cambiar avatar visual del comentarista
-    function cambiarAvatarComentador(postId) {
-      const select = document.getElementById(`autor-comentario-${postId}`);
-      const avatar = document.getElementById(`avatar-comentador-${postId}`);
-      if (!select || !avatar) return;
-      const [name, initials, color] = select.value.split('|');
-      avatar.textContent = initials;
-      avatar.className = `w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1`;
+    // ==========================================
+    // SISTEMA DE SESIÓN / IDENTIDAD PERSISTENTE
+    // ==========================================
+    const USUARIO_DEFAULT = {
+      nombre: 'Pedro Turcheñuk',
+      initials: 'PT',
+      color: 'from-unam-blue to-unam-sky',
+      badge: 'Equipo'
+    };
+
+    function obtenerUsuarioActivo() {
+      try {
+        const stored = localStorage.getItem('unam_usuario_activo');
+        if (stored) {
+          const u = JSON.parse(stored);
+          if (u && u.nombre) return u;
+        }
+      } catch (e) {}
+      return USUARIO_DEFAULT;
     }
 
-    // Agregar nuevo comentario
+    function seleccionarUsuario(nombre, initials, color, badge) {
+      const usuario = {
+        nombre: nombre || 'Pedro Turcheñuk',
+        initials: initials || 'PT',
+        color: color || 'from-unam-blue to-unam-sky',
+        badge: badge || 'Equipo'
+      };
+      try {
+        localStorage.setItem('unam_usuario_activo', JSON.stringify(usuario));
+      } catch (e) {
+        console.error('Error guardando usuario en sesión:', e);
+      }
+      actualizarUIUsuarioActivo();
+      cerrarModalLogin();
+      mostrarToast(`¡Sesión iniciada como ${usuario.nombre}! 👤`, 'success');
+    }
+
+    function guardarUsuarioPersonalizado() {
+      const input = document.getElementById('input-nombre-personalizado');
+      if (!input) return;
+      const nombre = input.value.trim();
+      if (!nombre) {
+        input.focus();
+        return;
+      }
+      const palabras = nombre.split(' ').filter(p => p.length > 0);
+      let initials = 'U';
+      if (palabras.length >= 2) {
+        initials = (palabras[0][0] + palabras[1][0]).toUpperCase();
+      } else if (palabras.length === 1) {
+        initials = palabras[0].substring(0, 2).toUpperCase();
+      }
+
+      seleccionarUsuario(nombre, initials, 'from-unam-blue to-unam-sky', 'Estudiante');
+      input.value = '';
+    }
+
+    function mostrarInputOtroUsuario() {
+      const box = document.getElementById('box-otro-usuario');
+      if (box) {
+        box.classList.toggle('hidden');
+        if (!box.classList.contains('hidden')) {
+          const input = document.getElementById('input-nombre-personalizado');
+          if (input) input.focus();
+        }
+      }
+    }
+
+    function abrirModalLogin() {
+      const modal = document.getElementById('modal-login');
+      if (modal) {
+        modal.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    }
+
+    function cerrarModalLogin() {
+      const modal = document.getElementById('modal-login');
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function actualizarUIUsuarioActivo() {
+      const usuario = obtenerUsuarioActivo();
+
+      // Actualizar Header
+      const headerAvatar = document.getElementById('header-user-avatar');
+      if (headerAvatar) {
+        headerAvatar.textContent = usuario.initials || 'U';
+        headerAvatar.className = `w-6 h-6 rounded-full bg-gradient-to-tr ${usuario.color || 'from-unam-blue to-unam-sky'} text-white flex items-center justify-center font-bold text-[10px] shadow-xs`;
+      }
+
+      const headerName = document.getElementById('header-user-name');
+      if (headerName) {
+        const primerNombre = (usuario.nombre || 'Usuario').split(' ')[0];
+        headerName.textContent = primerNombre;
+      }
+
+      const btnPerfilHeader = document.getElementById('btn-perfil-header');
+      if (btnPerfilHeader) {
+        btnPerfilHeader.title = `Sesión activa: ${usuario.nombre} (Clic para cambiar)`;
+      }
+
+      // Actualizar nombres y avatares en todas las cajas de comentarios activas
+      document.querySelectorAll('.usuario-activo-nombre').forEach(el => {
+        el.textContent = usuario.nombre;
+      });
+
+      document.querySelectorAll('.usuario-activo-avatar').forEach(el => {
+        el.textContent = usuario.initials || 'U';
+        el.className = `w-7 h-7 rounded-full bg-gradient-to-tr ${usuario.color || 'from-unam-blue to-unam-sky'} usuario-activo-avatar text-white flex items-center justify-center font-black text-[10px] flex-shrink-0 shadow-xs`;
+      });
+    }
+
+    // Agregar nuevo comentario usando la identidad activa
     function agregarComentario(postId) {
       const input = document.getElementById(`input-comentario-${postId}`);
-      const select = document.getElementById(`autor-comentario-${postId}`);
       if (!input) return;
       const text = input.value.trim();
       if (!text) {
@@ -1007,33 +1217,22 @@
         return;
       }
 
-      let author = 'Pedro Turcheñuk';
-      let initials = 'PT';
-      let color = 'from-unam-blue to-unam-sky';
-      let badge = 'Equipo';
-
-      if (select) {
-        const parts = select.value.split('|');
-        author = parts[0] || 'Pedro Turcheñuk';
-        initials = parts[1] || 'PT';
-        if (parts[2]) color = parts[2];
-        if (parts[3]) badge = parts[3];
-      }
+      const usuario = obtenerUsuarioActivo();
 
       if (!socialComments[postId]) {
         socialComments[postId] = [];
       }
 
       socialComments[postId].push({
-        author,
-        initials,
-        color,
-        badge,
+        author: usuario.nombre,
+        initials: usuario.initials,
+        color: usuario.color,
+        badge: usuario.badge,
         time: 'Recién',
         text
       });
 
-      saveSocialStorage('unam_social_comments', socialComments);
+      saveSocialStorage('unam_social_comments_v2', socialComments);
       input.value = '';
       actualizarContadoresUI(postId);
       lucide.createIcons();
@@ -1311,6 +1510,8 @@
       const materiaNombre = t.materia === 'lengua' ? 'Lengua y Comunicación' : 
                            (t.materia === 'comunicacion1' ? 'Comunicación I' : 'Cátedra UNaM');
 
+      const usuarioActivo = obtenerUsuarioActivo();
+
       const card = document.createElement('article');
       card.className = "bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden";
       card.setAttribute('data-materia', t.materia);
@@ -1407,32 +1608,30 @@
 
           <!-- Caja de Comentarios (Oculta por defecto para no abultar el feed) -->
           <div id="caja-comentarios-${t.id}" class="hidden mt-3 pt-3 border-t border-fb-border/60 space-y-2.5">
+            <div class="flex items-center justify-between text-[11px] text-fb-secondary pb-1">
+              <span>
+                Comentando como: <strong class="text-fb-text usuario-activo-nombre">${usuarioActivo.nombre}</strong>
+              </span>
+              <button type="button" onclick="abrirModalLogin()" class="text-unam-blue hover:underline font-bold cursor-pointer">
+                Cambiar sesión
+              </button>
+            </div>
             <div class="space-y-2 text-xs" id="lista-comentarios-${t.id}"></div>
-            <div class="pt-1 flex flex-col sm:flex-row sm:items-center gap-2">
-              <div class="flex items-center gap-1.5 flex-shrink-0">
-                <span class="text-[11px] font-bold text-fb-secondary">Como:</span>
-                <select id="autor-comentario-${t.id}" class="bg-white border border-fb-border rounded-lg px-2 py-1 text-xs font-bold text-fb-text outline-none focus:ring-1 focus:ring-unam-blue">
-                  <option value="Pedro Turcheñuk|PT|from-unam-blue to-unam-sky|Equipo">Pedro Turcheñuk</option>
-                  <option value="Mario Prozapas|MP|from-unam-dark to-unam-blue|Equipo">Mario Prozapas</option>
-                  <option value="Cathalina Turcheñuk|CT|from-unam-sky to-sky-400|Equipo">Cathalina Turcheñuk</option>
-                  <option value="Marcelo Gimenez|MG|from-unam-green to-emerald-500|Equipo">Marcelo Gimenez</option>
-                  <option value="Docente / Cátedra|DOC|from-purple-600 to-indigo-600|Docente">Docente / Cátedra</option>
-                  <option value="Estudiante Invitado|EST|from-slate-500 to-slate-700|Invitado">Estudiante Invitado</option>
-                </select>
+            <div class="pt-1 flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-tr ${usuarioActivo.color} usuario-activo-avatar text-white flex items-center justify-center font-black text-[10px] flex-shrink-0 shadow-xs">
+                ${usuarioActivo.initials}
               </div>
-              <div class="flex-1 flex items-center gap-1.5">
-                <input 
-                  type="text" 
-                  id="input-comentario-${t.id}" 
-                  placeholder="Escribe una observación o aporte sobre este TP..." 
-                  class="flex-1 bg-fb-canvas border border-fb-border rounded-xl px-3 py-1.5 text-xs text-fb-text focus:bg-white focus:outline-none focus:ring-1 focus:ring-unam-blue transition"
-                  onkeydown="if(event.key === 'Enter') agregarComentario('${t.id}')"
-                />
-                <button onclick="agregarComentario('${t.id}')" class="px-3 py-1.5 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1 shadow-2xs">
-                  <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                  <span class="hidden sm:inline">Enviar</span>
-                </button>
-              </div>
+              <input 
+                type="text" 
+                id="input-comentario-${t.id}" 
+                placeholder="Escribe una observación o aporte sobre este trabajo..." 
+                class="flex-1 bg-fb-canvas border border-fb-border rounded-xl px-3 py-1.5 text-xs text-fb-text focus:bg-white focus:outline-none focus:ring-1 focus:ring-unam-blue transition"
+                onkeydown="if(event.key === 'Enter') agregarComentario('${t.id}')"
+              />
+              <button onclick="agregarComentario('${t.id}')" class="px-3 py-1.5 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1 shadow-2xs cursor-pointer">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <span class="hidden sm:inline">Enviar</span>
+              </button>
             </div>
           </div>
         </div>
@@ -1788,6 +1987,9 @@
     // INICIALIZACIÓN GENERAL AL CARGAR PÁGINA
     // ==========================================
     window.addEventListener('DOMContentLoaded', () => {
+      // Inicializar identidad y sesión activa
+      actualizarUIUsuarioActivo();
+
       // Cargar trabajos compartidos desde Supabase
       cargarTrabajosDesdeSupabase();
 
