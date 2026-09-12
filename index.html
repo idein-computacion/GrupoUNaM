@@ -230,32 +230,32 @@
         </div>
       </div>
 
-      <!-- FEED DE PUBLICACIONES (ESTILO STYLEX / FACEBOOK) -->
-      <div class="space-y-6" id="listaTrabajos">
+      <!-- FEED DE PUBLICACIONES Y TRABAJOS PRÁCTICOS -->
+      <div class="space-y-3 sm:space-y-4" id="listaTrabajos">
 
         <!-- TARJETA INFORMATIVA: CÁTEDRA COMUNICACIÓN I -->
         <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="comunicacion1">
-          <div class="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div class="flex items-center gap-3.5">
-              <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
-                <img src="logo.png" alt="Cátedra Comunicación I" class="w-full h-full object-contain" />
+          <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                <i data-lucide="clock" class="w-4 h-4"></i>
               </div>
               <div>
                 <div class="flex items-center gap-2 flex-wrap">
-                  <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug">
-                    Cátedra Comunicación I
-                  </h3>
-                  <span class="px-2.5 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[11px] font-bold rounded-full">
+                  <span class="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[11px] font-bold rounded-md uppercase tracking-wider">
                     En Preparación
                   </span>
+                  <h4 class="font-extrabold text-fb-text text-sm sm:text-base">
+                    Cátedra Comunicación I
+                  </h4>
                 </div>
                 <p class="text-xs text-fb-secondary mt-0.5">
                   Módulo disponible para incorporar consignas y bibliografía de la cátedra (Ciclo 2026).
                 </p>
               </div>
             </div>
-            <button onclick="abrirModalSubir('tp', 'comunicacion1', '')" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs shadow-xs transition flex-shrink-0">
-              <i data-lucide="upload-cloud" class="w-4 h-4 text-unam-blue"></i>
+            <button onclick="abrirModalSubir('tp', 'comunicacion1', '')" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs shadow-xs transition flex-shrink-0">
+              <i data-lucide="upload-cloud" class="w-3.5 h-3.5 text-unam-blue"></i>
               <span>Cargar Material</span>
             </button>
           </div>
@@ -912,8 +912,7 @@
       // Conteo de Comentarios
       const commentCountEl = document.getElementById(`comment-count-${postId}`);
       if (commentCountEl) {
-        const cLen = commentList.length;
-        commentCountEl.textContent = `${cLen} comentario${cLen === 1 ? '' : 's'}`;
+        commentCountEl.textContent = commentList.length;
       }
 
       // Conteo de Compartidos
@@ -1302,177 +1301,118 @@
       const lista = document.getElementById('listaTrabajos');
       if (!lista) return;
 
-      const materiaNombre = t.materia === 'lengua' ? 'Cátedra Lengua y Comunicación' : 
-                           (t.materia === 'comunicacion1' ? 'Cátedra Comunicación I' : 'Cátedra Universitaria UNaM');
+      const materiaNombre = t.materia === 'lengua' ? 'Lengua y Comunicación' : 
+                           (t.materia === 'comunicacion1' ? 'Comunicación I' : 'Cátedra UNaM');
 
       const card = document.createElement('article');
-      card.className = "bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200";
+      card.className = "bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden";
       card.setAttribute('data-materia', t.materia);
       card.setAttribute('data-subido', 'true');
       card.id = t.id;
 
       card.innerHTML = `
-        <div class="p-5 sm:p-6 bg-white border-b border-fb-border">
-          <div class="flex items-start justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
-                <img src="logo.png" alt="${materiaNombre}" class="w-full h-full object-contain" />
-              </div>
-              <div>
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug hover:text-unam-blue transition cursor-pointer">
-                    ${materiaNombre}
-                  </h3>
-                  <i data-lucide="badge-check" class="w-4 h-4 text-unam-sky fill-unam-sky/20"></i>
-                </div>
-                <p class="text-xs text-fb-secondary flex items-center gap-1.5 mt-0.5">
-                  <span>FHyCS — UNaM</span>
-                  <span>•</span>
-                  <span>${t.fecha || 'Septiembre 2026'}</span>
-                  <span>•</span>
-                  <i data-lucide="globe" class="w-3.5 h-3.5 text-fb-secondary" title="Acceso Abierto Público"></i>
-                </p>
-              </div>
+        <div class="p-4 sm:p-5">
+          <!-- Cabecera compacta: Tipo de TP, Asignatura y Opciones de Edición -->
+          <div class="flex items-center justify-between gap-3 pb-2.5 border-b border-fb-border/60">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="px-2.5 py-1 bg-unam-blue text-white text-xs font-black rounded-lg uppercase tracking-wider shadow-2xs">
+                ${t.tipo || 'Trabajo Práctico'}
+              </span>
+              <span class="text-xs font-bold text-fb-text">
+                ${materiaNombre}
+              </span>
+              <span class="text-xs text-fb-secondary hidden sm:inline">•</span>
+              <span class="text-xs text-fb-secondary">
+                ${t.fecha || 'Septiembre 2026'}
+              </span>
             </div>
-            <div class="flex items-center gap-1.5 flex-wrap justify-end">
-              <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full border border-emerald-200 flex items-center gap-1 shadow-xs">
-                <i data-lucide="cloud-check" class="w-3.5 h-3.5 text-emerald-600"></i> En la Nube
-              </span>
-              <span class="px-2.5 py-1 bg-unam-active text-unam-blue text-xs font-bold rounded-full uppercase tracking-wider">
-                ${t.tipo}
-              </span>
-              <button onclick="abrirModalEditar('${t.id}')" class="px-2.5 py-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-full font-bold text-xs flex items-center gap-1 shadow-xs transition" title="Modificar publicación o archivo">
-                <i data-lucide="pencil" class="w-3 h-3 text-unam-blue"></i>
-                <span>Editar</span>
+            
+            <div class="flex items-center gap-1 flex-shrink-0">
+              <button onclick="abrirModalEditar('${t.id}')" class="p-1.5 hover:bg-slate-100 text-slate-500 hover:text-slate-800 rounded-lg text-xs transition" title="Modificar publicación">
+                <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
               </button>
-              <button onclick="solicitarEliminarTrabajo('${t.id}', '${(t.titulo || '').replace(/'/g, "\\'")}')" class="px-2.5 py-1 bg-white hover:bg-rose-50 text-rose-600 border border-rose-200 rounded-full font-bold text-xs flex items-center gap-1 shadow-xs transition" title="Eliminar de Supabase">
-                <i data-lucide="trash-2" class="w-3 h-3 text-rose-600"></i>
-                <span>Eliminar</span>
+              <button onclick="solicitarEliminarTrabajo('${t.id}', '${(t.titulo || '').replace(/'/g, "\\'")}')" class="p-1.5 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded-lg text-xs transition" title="Eliminar de Supabase">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
               </button>
             </div>
           </div>
 
-          <div class="mt-4 space-y-2">
-            <h4 class="text-xl sm:text-2xl font-black text-fb-text tracking-tight leading-snug">
+          <!-- Contenido: Título del TP y Descripción condensada -->
+          <div class="py-2.5">
+            <h4 class="text-base sm:text-lg font-black text-fb-text tracking-tight leading-snug">
               ${t.titulo}
             </h4>
-            <p class="text-fb-secondary text-sm sm:text-base leading-relaxed">
+            ${t.descripcion ? `
+            <p class="text-fb-secondary text-xs sm:text-sm mt-1 leading-relaxed">
               ${t.descripcion}
             </p>
-          </div>
-
-          <div class="mt-5 pt-4 border-t border-fb-border/70 flex flex-col md:flex-row md:items-center justify-between text-xs text-fb-secondary gap-3">
-            <div class="flex items-center gap-1.5 flex-wrap">
-              <span class="font-extrabold text-fb-text flex items-center gap-1">
-                <i data-lucide="users" class="w-3.5 h-3.5 text-unam-blue"></i> Autores:
-              </span>
-              <span class="text-fb-text font-semibold">${t.autores}</span>
-            </div>
-            <div class="text-[11px] text-unam-green font-bold bg-unam-greenLight px-2.5 py-1 rounded-full border border-unam-green/20 self-start md:self-auto flex-shrink-0">
-              Producción Estudiantil
-            </div>
-          </div>
-        </div>
-
-        <!-- Archivo adjunto o enlace -->
-        ${t.archivo || t.enlace || t.archivoUrl ? `
-        <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-2 flex-wrap">
-            ${t.archivo ? `
-              <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-white text-fb-text border border-fb-border rounded-xl font-bold text-xs shadow-xs">
-                <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
-                <span class="max-w-[200px] truncate">${t.archivo}</span>
-                <span class="text-[10px] text-fb-secondary font-normal">${t.archivoTamano || ''}</span>
-              </span>
             ` : ''}
-            ${t.archivoUrl ? `
-              <a href="${t.archivoUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-unam-active text-unam-blue border border-unam-blue/30 rounded-xl font-bold text-xs transition shadow-xs">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                <span>Ver Archivo</span>
-              </a>
-              <a href="${t.archivoUrl}" download="${t.archivo || 'documento'}" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs transition shadow-xs">
-                <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                <span>Descargar</span>
-              </a>
-              <button onclick="copiarEnlaceArchivo('${t.archivoUrl}')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-white hover:bg-slate-100 text-slate-600 border border-slate-200 rounded-xl font-bold text-xs transition shadow-xs" title="Copiar enlace de descarga">
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          </div>
+
+          <!-- Fila de Archivo y Acciones Directas -->
+          <div class="pt-2.5 border-t border-fb-border/60 flex flex-wrap items-center justify-between gap-2.5">
+            <div class="flex items-center gap-2 flex-wrap">
+              ${t.archivo ? `
+                <span class="inline-flex items-center gap-1.5 text-xs font-bold text-fb-text bg-fb-canvas px-3 py-1.5 rounded-xl border border-fb-border">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5 text-rose-600"></i>
+                  <span class="max-w-[200px] sm:max-w-[280px] truncate">${t.archivo}</span>
+                  ${t.archivoTamano ? `<span class="text-[11px] text-fb-secondary font-normal">(${t.archivoTamano})</span>` : ''}
+                </span>
+              ` : ''}
+              
+              ${t.archivoUrl ? `
+                <a href="${t.archivoUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-unam-active text-unam-blue border border-unam-blue/30 rounded-xl font-bold text-xs transition shadow-2xs">
+                  <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                  <span>Ver Archivo</span>
+                </a>
+                <a href="${t.archivoUrl}" download="${t.archivo || 'trabajo_practico'}" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs transition shadow-2xs">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                  <span>Descargar</span>
+                </a>
+                <button onclick="copiarEnlaceArchivo('${t.archivoUrl}')" class="p-1.5 bg-white hover:bg-slate-100 text-slate-500 border border-slate-200 rounded-xl transition shadow-2xs" title="Copiar enlace directo">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              ` : ''}
+
+              ${t.enlace ? `
+                <a href="${t.enlace}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-unam-dark hover:bg-black text-white rounded-xl font-bold text-xs transition shadow-2xs">
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  <span>Abrir Enlace</span>
+                </a>
+              ` : ''}
+            </div>
+
+            <!-- Interacción Rápida y Limpia -->
+            <div class="flex items-center gap-1.5 text-xs text-fb-secondary">
+              <button onclick="toggleLike('${t.id}')" id="btn-like-${t.id}" class="hover:text-unam-blue px-2 py-1 rounded-lg hover:bg-fb-canvas flex items-center gap-1 transition font-semibold">
+                <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+                <span id="like-count-${t.id}">1</span>
               </button>
-            ` : ''}
-            ${t.enlace ? `
-              <a href="${t.enlace}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-unam-dark hover:bg-black text-white rounded-xl font-bold text-xs transition shadow-xs">
-                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                <span>Abrir Enlace</span>
-              </a>
-            ` : ''}
-          </div>
-        </div>
-        ` : ''}
-
-        <!-- Bloque Social Interactivo -->
-        <div class="border-t border-fb-border bg-white" id="social-block-${t.id}">
-          <div class="px-5 py-2.5 flex items-center justify-between text-fb-secondary text-xs border-b border-fb-border/60">
-            <div class="flex items-center gap-1.5">
-              <span class="flex -space-x-1">
-                <span class="w-5 h-5 rounded-full bg-unam-blue text-white flex items-center justify-center text-[10px] shadow-xs">👍</span>
-                <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow-xs">❤️</span>
-              </span>
-              <span class="font-semibold ml-1 cursor-pointer hover:underline" id="like-count-${t.id}">1</span>
-            </div>
-            <div class="flex items-center gap-3 font-medium">
-              <button onclick="toggleComentarios('${t.id}')" class="hover:underline cursor-pointer" id="comment-count-${t.id}">0 comentarios</button>
-              <span>•</span>
-              <span id="share-count-${t.id}">0 veces compartido</span>
+              <button onclick="toggleComentarios('${t.id}')" class="hover:text-fb-text px-2 py-1 rounded-lg hover:bg-fb-canvas flex items-center gap-1 transition font-semibold">
+                <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                <span id="comment-count-${t.id}">0</span>
+              </button>
+              <button onclick="abrirModalCompartir('${t.id}', '${t.titulo.replace(/'/g, "\\'")}', '${materiaNombre}')" class="hover:text-fb-text p-1.5 rounded-lg hover:bg-fb-canvas transition" title="Compartir">
+                <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+              </button>
             </div>
           </div>
 
-          <div class="px-3 py-1 flex items-center justify-around text-xs font-bold text-fb-secondary">
-            <button onclick="toggleLike('${t.id}')" id="btn-like-${t.id}" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-unam-blue">
-              <i data-lucide="thumbs-up" class="w-4 h-4"></i>
-              <span id="btn-like-text-${t.id}">Me gusta</span>
-            </button>
-            <button onclick="toggleComentarios('${t.id}')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
-              <i data-lucide="message-square" class="w-4 h-4"></i>
-              <span>Comentar</span>
-            </button>
-            <button onclick="abrirModalCompartir('${t.id}', '${t.titulo.replace(/'/g, "\\'")}', '${materiaNombre}')" class="flex-1 py-2 rounded-xl hover:bg-fb-canvas flex items-center justify-center gap-2 transition text-fb-secondary hover:text-fb-text">
-              <i data-lucide="share-2" class="w-4 h-4"></i>
-              <span>Compartir</span>
-            </button>
-          </div>
-
-          <div id="caja-comentarios-${t.id}" class="p-4 sm:p-5 bg-fb-canvas/50 border-t border-fb-border space-y-4">
-            <div class="space-y-3" id="lista-comentarios-${t.id}"></div>
-            <div class="pt-2 border-t border-fb-border/60">
-              <div class="flex items-start gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center text-xs font-bold flex-shrink-0 shadow-xs mt-1" id="avatar-comentador-${t.id}">
-                  PT
-                </div>
-                <div class="flex-1 space-y-2">
-                  <div class="flex items-center gap-2 flex-wrap">
-                    <label class="text-[11px] font-bold text-fb-secondary">Comentar como:</label>
-                    <select id="autor-comentario-${t.id}" onchange="cambiarAvatarComentador('${t.id}')" class="bg-white border border-fb-border text-fb-text text-xs rounded-lg px-2 py-1 font-semibold outline-none focus:ring-1 focus:ring-unam-blue">
-                      <option value="Pedro Turcheñuk|PT|unam-blue">Pedro Turcheñuk</option>
-                      <option value="Mario Prozapas|MP|unam-dark">Mario Prozapas</option>
-                      <option value="Cathalina Turcheñuk|CT|unam-sky">Cathalina Turcheñuk</option>
-                      <option value="Marcelo Gimenez|MG|unam-green">Marcelo Gimenez</option>
-                      <option value="Cátedra / Docente|DOC|purple-600">Cátedra / Docente</option>
-                      <option value="Estudiante Invitado|EST|amber-600">Estudiante Invitado</option>
-                    </select>
-                  </div>
-                  <div class="relative flex items-center">
-                    <input 
-                      type="text" 
-                      id="input-comentario-${t.id}" 
-                      placeholder="Escribe un comentario o devolución sobre este trabajo..." 
-                      class="w-full bg-white border border-fb-border rounded-full pl-4 pr-12 py-2 text-xs text-fb-text placeholder-fb-secondary focus:outline-none focus:ring-2 focus:ring-unam-blue shadow-xs"
-                      onkeydown="if(event.key === 'Enter') agregarComentario('${t.id}')"
-                    />
-                    <button onclick="agregarComentario('${t.id}')" class="absolute right-1.5 p-1.5 rounded-full bg-unam-blue hover:bg-unam-dark text-white transition shadow-xs" title="Publicar Comentario">
-                      <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+          <!-- Caja de Comentarios (Oculta por defecto para no abultar el feed) -->
+          <div id="caja-comentarios-${t.id}" class="hidden mt-3 pt-3 border-t border-fb-border/60 space-y-2.5">
+            <div class="space-y-2 text-xs" id="lista-comentarios-${t.id}"></div>
+            <div class="pt-1 flex items-center gap-2">
+              <input 
+                type="text" 
+                id="input-comentario-${t.id}" 
+                placeholder="Escribe un comentario sobre este trabajo..." 
+                class="flex-1 bg-fb-canvas border border-fb-border rounded-xl px-3 py-2 text-xs text-fb-text focus:bg-white focus:outline-none focus:ring-1 focus:ring-unam-blue transition"
+                onkeydown="if(event.key === 'Enter') agregarComentario('${t.id}')"
+              />
+              <button onclick="agregarComentario('${t.id}')" class="px-3 py-2 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1 shadow-2xs">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <span class="hidden sm:inline">Enviar</span>
+              </button>
             </div>
           </div>
         </div>
