@@ -931,18 +931,21 @@
       const list = socialComments[postId] || [];
       
       if (list.length === 0) {
-        container.innerHTML = '<p class="text-[11px] text-fb-secondary italic text-center py-2">Sé el primero en dejar un comentario o reflexión sobre este trabajo.</p>';
+        container.innerHTML = '<p class="text-[11px] text-fb-secondary italic text-center py-2">Sé el primero en dejar una observación o aporte sobre este trabajo.</p>';
         return;
       }
 
       container.innerHTML = list.map(c => `
-        <div class="flex items-start gap-2.5 text-xs animate-in fade-in duration-150">
-          <div class="w-8 h-8 rounded-full bg-gradient-to-tr ${c.color || 'from-unam-blue to-unam-sky'} text-white flex items-center justify-center font-bold text-[11px] flex-shrink-0 shadow-xs mt-0.5">
+        <div class="flex items-start gap-2 text-xs animate-in fade-in duration-150">
+          <div class="w-7 h-7 rounded-full bg-gradient-to-tr ${c.color || 'from-unam-blue to-unam-sky'} text-white flex items-center justify-center font-bold text-[10px] flex-shrink-0 shadow-xs mt-0.5">
             ${c.initials || 'EST'}
           </div>
-          <div class="flex-1 bg-white border border-fb-border rounded-2xl px-3.5 py-2 shadow-2xs">
+          <div class="flex-1 bg-white border border-fb-border rounded-xl px-3 py-2 shadow-2xs">
             <div class="flex items-center justify-between gap-2 mb-0.5">
-              <span class="font-extrabold text-fb-text">${c.author}</span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="font-extrabold text-fb-text">${c.author}</span>
+                ${c.badge ? `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full ${c.badge === 'Equipo' ? 'bg-unam-active text-unam-blue border border-unam-blue/20' : (c.badge === 'Docente' ? 'bg-purple-50 text-purple-700 border border-purple-200' : 'bg-fb-canvas text-fb-secondary')}">${c.badge}</span>` : ''}
+              </div>
               <span class="text-[10px] text-fb-secondary">${c.time}</span>
             </div>
             <p class="text-fb-text leading-relaxed font-sans">${c.text}</p>
@@ -1007,11 +1010,14 @@
       let author = 'Pedro Turcheñuk';
       let initials = 'PT';
       let color = 'from-unam-blue to-unam-sky';
+      let badge = 'Equipo';
 
       if (select) {
         const parts = select.value.split('|');
-        author = parts[0];
-        initials = parts[1];
+        author = parts[0] || 'Pedro Turcheñuk';
+        initials = parts[1] || 'PT';
+        if (parts[2]) color = parts[2];
+        if (parts[3]) badge = parts[3];
       }
 
       if (!socialComments[postId]) {
@@ -1022,6 +1028,7 @@
         author,
         initials,
         color,
+        badge,
         time: 'Recién',
         text
       });
@@ -1401,18 +1408,31 @@
           <!-- Caja de Comentarios (Oculta por defecto para no abultar el feed) -->
           <div id="caja-comentarios-${t.id}" class="hidden mt-3 pt-3 border-t border-fb-border/60 space-y-2.5">
             <div class="space-y-2 text-xs" id="lista-comentarios-${t.id}"></div>
-            <div class="pt-1 flex items-center gap-2">
-              <input 
-                type="text" 
-                id="input-comentario-${t.id}" 
-                placeholder="Escribe un comentario sobre este trabajo..." 
-                class="flex-1 bg-fb-canvas border border-fb-border rounded-xl px-3 py-2 text-xs text-fb-text focus:bg-white focus:outline-none focus:ring-1 focus:ring-unam-blue transition"
-                onkeydown="if(event.key === 'Enter') agregarComentario('${t.id}')"
-              />
-              <button onclick="agregarComentario('${t.id}')" class="px-3 py-2 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1 shadow-2xs">
-                <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                <span class="hidden sm:inline">Enviar</span>
-              </button>
+            <div class="pt-1 flex flex-col sm:flex-row sm:items-center gap-2">
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <span class="text-[11px] font-bold text-fb-secondary">Como:</span>
+                <select id="autor-comentario-${t.id}" class="bg-white border border-fb-border rounded-lg px-2 py-1 text-xs font-bold text-fb-text outline-none focus:ring-1 focus:ring-unam-blue">
+                  <option value="Pedro Turcheñuk|PT|from-unam-blue to-unam-sky|Equipo">Pedro Turcheñuk</option>
+                  <option value="Mario Prozapas|MP|from-unam-dark to-unam-blue|Equipo">Mario Prozapas</option>
+                  <option value="Cathalina Turcheñuk|CT|from-unam-sky to-sky-400|Equipo">Cathalina Turcheñuk</option>
+                  <option value="Marcelo Gimenez|MG|from-unam-green to-emerald-500|Equipo">Marcelo Gimenez</option>
+                  <option value="Docente / Cátedra|DOC|from-purple-600 to-indigo-600|Docente">Docente / Cátedra</option>
+                  <option value="Estudiante Invitado|EST|from-slate-500 to-slate-700|Invitado">Estudiante Invitado</option>
+                </select>
+              </div>
+              <div class="flex-1 flex items-center gap-1.5">
+                <input 
+                  type="text" 
+                  id="input-comentario-${t.id}" 
+                  placeholder="Escribe una observación o aporte sobre este TP..." 
+                  class="flex-1 bg-fb-canvas border border-fb-border rounded-xl px-3 py-1.5 text-xs text-fb-text focus:bg-white focus:outline-none focus:ring-1 focus:ring-unam-blue transition"
+                  onkeydown="if(event.key === 'Enter') agregarComentario('${t.id}')"
+                />
+                <button onclick="agregarComentario('${t.id}')" class="px-3 py-1.5 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1 shadow-2xs">
+                  <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                  <span class="hidden sm:inline">Enviar</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
