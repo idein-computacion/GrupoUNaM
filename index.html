@@ -56,6 +56,9 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Supabase JS Client (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
     
@@ -2087,8 +2090,18 @@
     }
 
     // ==========================================
+    // INTEGRACIÓN CON SUPABASE (NUBE DE ARCHIVOS Y BD)
+    // ==========================================
+    const SUPABASE_URL = 'https://ursqzhdjrftqzqgypape.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_xDlaN1u1NB-4tmToxnP1Sw_JcsCDcb6';
+    const supabaseClient = (window.supabase && window.supabase.createClient) 
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) 
+      : null;
+
+    // ==========================================
     // SISTEMA PARA SUBIR TRABAJOS Y MATERIALES
     // ==========================================
+    let archivoRealFile = null;
     let archivoSubidoActual = null;
 
     function abrirModalSubir(tipo = 'tp', materiaPref = 'lengua', tpPref = 'TP N° 2') {
@@ -2112,6 +2125,7 @@
       const form = document.getElementById('form-subir-trabajo');
       if (form) form.reset();
       archivoSubidoActual = null;
+      archivoRealFile = null;
       document.getElementById('dropzone-contenido')?.classList.remove('hidden');
       document.getElementById('dropzone-seleccionado')?.classList.add('hidden');
     }
@@ -2119,6 +2133,7 @@
     function manejarArchivoSeleccionado(input) {
       if (input.files && input.files[0]) {
         const file = input.files[0];
+        archivoRealFile = file;
         archivoSubidoActual = {
           name: file.name,
           size: `${Math.round(file.size / 1024)} KB`,
@@ -2132,8 +2147,12 @@
       }
     }
 
-    function guardarNuevoTrabajo(e) {
+    async function guardarNuevoTrabajo(e) {
       e.preventDefault();
+      const form = e.target;
+      const btnSubmit = form.querySelector('button[type="submit"]');
+      const originalBtnHTML = btnSubmit ? btnSubmit.innerHTML : 'Publicar en Repositorio';
+
       const materia = document.getElementById('subir-materia').value;
       const tipo = document.getElementById('subir-tipo').value;
       const titulo = document.getElementById('subir-titulo').value.trim();
@@ -2146,36 +2165,108 @@
         return;
       }
 
-      const id = 'trabajo-nuevo-' + Date.now();
-      const nuevoTrabajo = {
-        id,
-        materia,
-        tipo,
-        titulo,
-        descripcion,
-        autores,
-        enlace,
-        archivo: archivoSubidoActual ? archivoSubidoActual.name : null,
-        archivoTamano: archivoSubidoActual ? archivoSubidoActual.size : null,
-        fecha: 'Septiembre 2026'
-      };
+      if (btnSubmit) {
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = `<span class="flex items-center gap-2"><svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> Subiendo a la nube...</span>`;
+      }
 
-      // Guardar en localStorage
-      const trabajos = getSocialStorage('unam_trabajos_subidos', []);
-      trabajos.unshift(nuevoTrabajo);
-      saveSocialStorage('unam_trabajos_subidos', trabajos);
+      let archivoUrl = null;
+      let archivoNombre = null;
+      let archivoTamano = null;
 
-      // Iniciar likes y comentarios para el nuevo post
-      socialLikes[id] = { count: 1, liked: true };
-      socialShares[id] = 0;
-      socialComments[id] = [];
-      saveSocialStorage('unam_social_likes', socialLikes);
+      try {
+        // 1. Subida del archivo a Supabase Storage (si se adjuntó un archivo)
+        if (archivoRealFile && supabaseClient) {
+          mostrarToast('Subiendo archivo a Supabase Storage...', 'info');
+          const cleanFileName = archivoRealFile.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9._-]/g, "_");
+          const storagePath = `${Date.now()}_${cleanFileName}`;
 
-      // Renderizar en el feed
-      renderizarTarjetaTrabajo(nuevoTrabajo, true);
-      cerrarModalSubir();
-      mostrarToast('¡Trabajo publicado con éxito en el repositorio! 🚀', 'success');
-      window.location.hash = id;
+          const { data: uploadData, error: uploadError } = await supabaseClient.storage
+            .from('materiales')
+            .upload(storagePath, archivoRealFile, {
+              cacheControl: '3600',
+              upsert: false
+            });
+
+          if (uploadError) {
+            console.error('Error en Supabase Storage:', uploadError);
+            throw new Error('Fallo al subir a Storage: ' + (uploadError.message || 'Error desconocido'));
+          }
+
+          const { data: publicUrlData } = supabaseClient.storage
+            .from('materiales')
+            .getPublicUrl(storagePath);
+
+          archivoUrl = publicUrlData.publicUrl;
+          archivoNombre = archivoRealFile.name;
+          archivoTamano = `${Math.round(archivoRealFile.size / 1024)} KB`;
+        }
+
+        const id = 'trabajo-' + Date.now();
+        const nuevoTrabajo = {
+          id,
+          materia,
+          tipo,
+          titulo,
+          descripcion,
+          autores,
+          enlace,
+          archivo_url: archivoUrl,
+          archivo_nombre: archivoNombre,
+          archivo_tamano: archivoTamano,
+          fecha: 'Septiembre 2026'
+        };
+
+        // 2. Guardar registro en la base de datos de Supabase para que todos lo vean
+        if (supabaseClient) {
+          const { error: dbError } = await supabaseClient
+            .from('trabajos')
+            .insert([nuevoTrabajo]);
+
+          if (dbError) {
+            console.warn('Aviso al guardar en BD:', dbError);
+          }
+        }
+
+        // 3. Guardar en localStorage como respaldo local
+        const trabajos = getSocialStorage('unam_trabajos_subidos', []);
+        trabajos.unshift(nuevoTrabajo);
+        saveSocialStorage('unam_trabajos_subidos', trabajos);
+
+        // 4. Iniciar contadores sociales
+        socialLikes[id] = { count: 1, liked: true };
+        socialShares[id] = 0;
+        socialComments[id] = [];
+        saveSocialStorage('unam_social_likes', socialLikes);
+
+        // 5. Renderizar de inmediato en el feed
+        renderizarTarjetaTrabajo({
+          id,
+          materia,
+          tipo,
+          titulo,
+          descripcion,
+          autores,
+          enlace,
+          archivo: archivoNombre,
+          archivoTamano,
+          archivoUrl,
+          fecha: 'Septiembre 2026'
+        }, true);
+
+        cerrarModalSubir();
+        mostrarToast('¡Material subido a la nube y publicado para todo el grupo! 🚀', 'success');
+        window.location.hash = id;
+
+      } catch (err) {
+        console.error('Error general al subir:', err);
+        mostrarToast('Error al publicar: ' + (err.message || 'Inténtalo de nuevo'), 'error');
+      } finally {
+        if (btnSubmit) {
+          btnSubmit.disabled = false;
+          btnSubmit.innerHTML = originalBtnHTML;
+        }
+      }
     }
 
     function renderizarTarjetaTrabajo(t, prepend = false) {
@@ -2246,24 +2337,36 @@
         </div>
 
         <!-- Archivo adjunto o enlace -->
-        ${t.archivo || t.enlace ? `
+        ${t.archivo || t.enlace || t.archivoUrl ? `
         <div class="px-5 py-3 bg-fb-canvas/60 border-b border-fb-border flex flex-wrap items-center justify-between gap-3">
           <div class="flex items-center gap-2 flex-wrap">
             ${t.archivo ? `
-              <span class="inline-flex items-center gap-2 px-3.5 py-2 bg-white text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm shadow-xs">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-white text-fb-text border border-fb-border rounded-xl font-bold text-xs shadow-xs">
                 <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
-                <span>${t.archivo}</span>
+                <span class="max-w-[200px] truncate">${t.archivo}</span>
                 <span class="text-[10px] text-fb-secondary font-normal">${t.archivoTamano || ''}</span>
               </span>
             ` : ''}
+            ${t.archivoUrl ? `
+              <a href="${t.archivoUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-unam-active text-unam-blue border border-unam-blue/30 rounded-xl font-bold text-xs transition shadow-xs">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                <span>Ver Archivo</span>
+              </a>
+              <a href="${t.archivoUrl}" download="${t.archivo || 'documento'}" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs transition shadow-xs">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Descargar</span>
+              </a>
+            ` : ''}
             ${t.enlace ? `
-              <a href="${t.enlace}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-2 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs sm:text-sm transition-all shadow-xs">
-                <i data-lucide="external-link" class="w-4 h-4"></i>
-                <span>Abrir Enlace de Cátedra</span>
+              <a href="${t.enlace}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-unam-dark hover:bg-black text-white rounded-xl font-bold text-xs transition shadow-xs">
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                <span>Abrir Enlace</span>
               </a>
             ` : ''}
           </div>
-          <span class="text-xs font-bold text-unam-blue bg-unam-active px-3 py-1.5 rounded-xl">Material Oficial Adjunto</span>
+          <span class="text-xs font-bold text-unam-blue bg-unam-active px-3 py-1 rounded-xl flex items-center gap-1">
+            <i data-lucide="cloud-check" class="w-3.5 h-3.5 text-emerald-600"></i> Almacenado en la Nube
+          </span>
         </div>
         ` : ''}
 
@@ -2372,12 +2475,50 @@
     }
 
     // ==========================================
+    // CARGAR TRABAJOS COMPARTIDOS DESDE SUPABASE
+    // ==========================================
+    async function cargarTrabajosDesdeSupabase() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient
+          .from('trabajos')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (data && data.length > 0) {
+          // Filtrar para no duplicar si ya están renderizados
+          const idsExistentes = new Set(Array.from(document.querySelectorAll('#listaTrabajos > article')).map(el => el.id));
+          
+          data.forEach(t => {
+            if (!idsExistentes.has(t.id)) {
+              renderizarTarjetaTrabajo({
+                id: t.id,
+                materia: t.materia,
+                tipo: t.tipo,
+                titulo: t.titulo,
+                descripcion: t.descripcion,
+                autores: t.autores,
+                enlace: t.enlace,
+                archivo: t.archivo_nombre,
+                archivoTamano: t.archivo_tamano,
+                archivoUrl: t.archivo_url,
+                fecha: t.fecha || 'Septiembre 2026'
+              }, false);
+            }
+          });
+          lucide.createIcons();
+        }
+      } catch (e) {
+        console.warn('No se pudieron recuperar trabajos de Supabase:', e);
+      }
+    }
+
+    // ==========================================
     // INICIALIZACIÓN GENERAL AL CARGAR PÁGINA
     // ==========================================
     window.addEventListener('DOMContentLoaded', () => {
-      // Cargar trabajos dinámicos previos desde localStorage
-      const trabajosGuardados = getSocialStorage('unam_trabajos_subidos', []);
-      trabajosGuardados.forEach(t => renderizarTarjetaTrabajo(t, true));
+      // Cargar trabajos compartidos desde Supabase
+      cargarTrabajosDesdeSupabase();
 
       // Actualizar contadores iniciales de posts predefinidos
       ['post-lengua-tp1', 'post-lengua-tp2', 'post-simulado'].forEach(id => {
