@@ -205,31 +205,27 @@
         </div>
       </div>
 
-      <!-- CAJA COMPOSITOR ESTILO FACEBOOK / STYLEX PARA SUBIR NUEVOS MATERIALES Y TRABAJOS -->
+      <!-- CAJA DE ACCESO RÁPIDO PARA COMPARTIR MATERIALES -->
       <div class="bg-white rounded-2xl border border-fb-border shadow-fb p-4 sm:p-5 mb-6">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center font-black text-xs shadow-xs flex-shrink-0">
             UNaM
           </div>
           <button onclick="abrirModalSubir()" class="flex-1 bg-fb-canvas hover:bg-fb-hover text-fb-secondary hover:text-fb-text text-left px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-fb-border transition-all flex items-center justify-between shadow-xs">
-            <span class="truncate">¿Tenés un nuevo Trabajo Práctico o material para subir al repositorio?</span>
+            <span class="truncate">¿Tenés un nuevo trabajo o archivo para compartir con el grupo?</span>
             <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold text-unam-blue bg-unam-active px-3 py-1 rounded-full flex-shrink-0 ml-2 border border-unam-blue/20">
-              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Nueva Entrega
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Publicar
             </span>
           </button>
         </div>
-        <div class="mt-3.5 pt-3 border-t border-fb-border flex items-center justify-around text-xs font-bold text-fb-secondary flex-wrap gap-2">
-          <button onclick="abrirModalSubir('tp')" class="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-unam-blue">
+        <div class="mt-3.5 pt-3 border-t border-fb-border flex items-center justify-around text-xs font-bold text-fb-secondary gap-2">
+          <button onclick="abrirModalSubir('tp')" class="flex items-center gap-2 py-1.5 px-3.5 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-unam-blue">
             <i data-lucide="file-up" class="w-4 h-4 text-unam-blue"></i>
             <span>Subir Trabajo Práctico</span>
           </button>
-          <button onclick="abrirModalSubir('material')" class="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-rose-600">
+          <button onclick="abrirModalSubir('material')" class="flex items-center gap-2 py-1.5 px-3.5 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-rose-600">
             <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
-            <span>Adjuntar PDF / Material</span>
-          </button>
-          <button onclick="abrirModalSubir('proximo')" class="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-emerald-600">
-            <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
-            <span>Cargar Próximo TP (TP2, TP3...)</span>
+            <span>Adjuntar Documento / PDF</span>
           </button>
         </div>
       </div>
@@ -237,183 +233,108 @@
       <!-- FEED DE PUBLICACIONES (ESTILO STYLEX / FACEBOOK) -->
       <div class="space-y-6" id="listaTrabajos">
 
-        <!-- TARJETA DE LA MATERIA: COMUNICACIÓN I (REPOSITORIO VACÍO) -->
+        <!-- TARJETA INFORMATIVA: CÁTEDRA COMUNICACIÓN I -->
         <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="comunicacion1">
-          
-          <!-- Encabezado del Post -->
-          <div class="p-5 sm:p-6 bg-white border-b border-fb-border">
-            <div class="flex items-start justify-between gap-3">
-              
-              <!-- Avatar y Datos del Autor / Cátedra -->
-              <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
-                  <img 
-                    src="logo.png" 
-                    alt="Cátedra Comunicación I" 
-                    class="w-full h-full object-contain" 
-                  />
-                </div>
-                <div>
-                  <div class="flex items-center gap-1.5 flex-wrap">
-                    <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug hover:text-unam-blue transition cursor-pointer">
-                      Cátedra Comunicación I
-                    </h3>
-                    <i data-lucide="badge-check" class="w-4 h-4 text-unam-sky fill-unam-sky/20"></i>
-                  </div>
-                  <p class="text-xs text-fb-secondary flex items-center gap-1.5 mt-0.5">
-                    <span>FHyCS — UNaM</span>
-                    <span>•</span>
-                    <span>Sede Cerro Azul</span>
-                    <span>•</span>
-                    <span>Ciclo 2026</span>
-                  </p>
-                </div>
+          <div class="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 rounded-full border border-fb-border p-1 bg-white shadow-xs flex items-center justify-center flex-shrink-0">
+                <img src="logo.png" alt="Cátedra Comunicación I" class="w-full h-full object-contain" />
               </div>
-
-              <!-- Badges de Categoría -->
-              <div class="flex items-center gap-2 flex-wrap justify-end">
-                <span class="px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold rounded-full uppercase tracking-wider">
-                  Repositorio Vacío
-                </span>
-                <span class="px-2.5 py-1 bg-fb-canvas text-fb-secondary text-xs font-bold rounded-full border border-fb-border">
-                  Sin Materiales Aún
-                </span>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="font-extrabold text-fb-text text-base sm:text-lg leading-snug">
+                    Cátedra Comunicación I
+                  </h3>
+                  <span class="px-2.5 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[11px] font-bold rounded-full">
+                    En Preparación
+                  </span>
+                </div>
+                <p class="text-xs text-fb-secondary mt-0.5">
+                  Módulo disponible para incorporar consignas y bibliografía de la cátedra (Ciclo 2026).
+                </p>
               </div>
             </div>
-
-            <!-- Título y Resumen del Post -->
-            <div class="mt-4 space-y-2">
-              <h4 class="text-xl sm:text-2xl font-black text-fb-text tracking-tight leading-snug">
-                Comunicación I
-              </h4>
-              <p class="text-fb-secondary text-sm sm:text-base leading-relaxed">
-                Espacio reservado para el repositorio académico de la Cátedra Comunicación I (Tecnicatura en Comunicación Social — Extensión Áulica Cerro Azul). Actualmente no cuenta con materiales, consignas ni bibliografía cargada en el repositorio.
-              </p>
-            </div>
-          </div>
-
-          <!-- Estado Vacío (Empty State estilo Facebook / StyleX) -->
-          <div class="p-8 sm:p-12 text-center space-y-4 bg-fb-canvas/40">
-            <div class="w-16 h-16 mx-auto rounded-2xl bg-white border border-fb-border flex items-center justify-center text-fb-secondary shadow-xs">
-              <i data-lucide="folder-open" class="w-8 h-8 text-unam-blue/60"></i>
-            </div>
-            <div class="max-w-md mx-auto space-y-1.5">
-              <h5 class="text-base font-bold text-fb-text">
-                Repositorio de Comunicación I Vacío
-              </h5>
-              <p class="text-xs sm:text-sm text-fb-secondary leading-relaxed">
-                Aún no se han incorporado los materiales ni las consignas oficiales para esta cátedra. El repositorio se habilitará ni bien se carguen y procesen los contenidos correspondientes.
-              </p>
-            </div>
-            <div class="pt-2">
-              <button onclick="abrirModalSubir('tp', 'comunicacion1', '')" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs sm:text-sm shadow-xs transition">
-                <i data-lucide="upload-cloud" class="w-4 h-4 text-unam-blue"></i>
-                <span>Subir Material para Comunicación I</span>
-              </button>
-            </div>
-          </div>
-
-        </article>
-
-      </div>
-    </section>
-
-    <!-- ==================== INFORMACIÓN INSTITUCIONAL (PERFIL DE PÁGINA STYLEX / FACEBOOK) ==================== -->
+            <button onclick="abrirModalSubir('tp', 'comunicacion1', '')" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs shadow-xs transition flex-shrink-0">
+              <i data-lucide="upload-cloud" class="w-4 h-4 text-unam-blue"></i>
+              <span>Cargar Material</span>
+            </button>
+              <!-- ==================== INFORMACIÓN INSTITUCIONAL Y CÁTEDRAS ==================== -->
     <section id="institucional" class="mb-12">
       <div class="bg-white rounded-2xl border border-fb-border shadow-fb p-6 sm:p-8 space-y-6">
         
-        <!-- Franja de Logos Oficiales en Alta Definición -->
-        <div class="bg-fb-canvas rounded-2xl p-5 sm:p-6 border border-fb-border flex flex-col sm:flex-row items-center justify-around gap-6">
-          <!-- 1. Universidad Nacional de Misiones -->
-          <div class="flex items-center gap-4">
-            <img 
-              src="unam_imagotipo_horizontal.png" 
-              alt="Universidad Nacional de Misiones" 
-              title="Universidad Nacional de Misiones (UNaM)"
-              class="h-11 sm:h-14 w-auto object-contain"
-            />
-            <div class="text-left hidden md:block border-l border-fb-border pl-3.5">
-              <p class="text-xs font-bold uppercase tracking-wider text-unam-blue">UNaM</p>
-              <p class="text-xs text-fb-secondary">Universidad Nacional</p>
-            </div>
-          </div>
-
-          <!-- Divisor -->
-          <div class="h-10 w-[1px] bg-fb-border hidden sm:block"></div>
-
-          <!-- 2. Facultad de Humanidades y Ciencias Sociales -->
-          <div class="flex items-center gap-4">
-            <img 
-              src="logo.png" 
-              alt="Facultad de Humanidades y Ciencias Sociales - UNaM" 
-              title="Facultad de Humanidades y Ciencias Sociales (FHyCS)"
-              class="h-12 sm:h-16 w-auto object-contain"
-            />
-            <div class="text-left">
-              <p class="text-xs font-bold uppercase tracking-wider text-unam-blue">FHyCS • Sede Cerro Azul</p>
-              <p class="text-xs text-fb-secondary">Departamento de Comunicación Social</p>
-            </div>
-          </div>
-        </div>
-
         <div class="border-b border-fb-border pb-5">
           <span class="text-xs font-bold text-unam-blue uppercase tracking-widest flex items-center gap-1.5">
-            <i data-lucide="award" class="w-4 h-4 text-unam-sky"></i> Marco Académico Oficial
+            <i data-lucide="award" class="w-4 h-4 text-unam-sky"></i> Marco Académico e Institucional
           </span>
           <h3 class="text-2xl sm:text-3xl font-black text-fb-text tracking-tight mt-1">
-            Perfil Profesional y Alcances del Título
+            Tecnicatura en Comunicación Social
           </h3>
           <p class="text-fb-secondary text-sm sm:text-base mt-2 max-w-3xl leading-relaxed">
-            La Tecnicatura en Comunicación Social es una propuesta de formación universitaria de pregrado de la Facultad de Humanidades y Ciencias Sociales (UNaM) con sede en Cerro Azul, orientada al desarrollo territorial y mediático de la provincia de Misiones.
+            Propuesta de formación universitaria de pregrado de la Facultad de Humanidades y Ciencias Sociales (UNaM — Sede Cerro Azul), orientada a la producción de contenidos, el desarrollo territorial y la alfabetización mediática en Misiones.
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6 text-sm">
+          <!-- Alcances e Incumbencias -->
           <div class="space-y-4 bg-fb-canvas p-6 rounded-2xl border border-fb-border hover:shadow-fb-card transition">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-unam-active text-unam-blue flex items-center justify-center flex-shrink-0 shadow-xs">
                 <i data-lucide="compass" class="w-5 h-5"></i>
               </div>
-              <h4 class="font-bold text-fb-text text-base">Alcances e Incumbencias</h4>
+              <h4 class="font-bold text-fb-text text-base">Competencias y Alcances</h4>
             </div>
             <ul class="space-y-2.5 text-xs sm:text-sm text-fb-secondary list-disc list-inside leading-relaxed">
-              <li>Diseño, redacción y gestión de piezas comunicacionales en formatos gráficos, radiales, audiovisuales y transmedia digitales.</li>
-              <li>Diagnóstico y ejecución de planes de comunicación en municipios, cooperativas, instituciones públicas y organismos comunitarios locales.</li>
-              <li>Gestión de redes sociales, comunicación comunitaria y facilitación de procesos participativos en territorio.</li>
-              <li>Operación técnica de coberturas informativas y producción de géneros periodísticos con perspectiva regional.</li>
+              <li>Diseño, redacción y gestión de producciones gráficas, audiovisuales y transmedia.</li>
+              <li>Diagnóstico y ejecución de planes de comunicación institucional y comunitaria.</li>
+              <li>Gestión de redes digitales y facilitación de dinámicas participativas en territorio.</li>
+              <li>Coberturas informativas y producción de géneros discursivos con anclaje regional.</li>
             </ul>
           </div>
 
+          <!-- Cátedras y Datos de Sede -->
           <div class="space-y-4 bg-fb-canvas p-6 rounded-2xl border border-fb-border hover:shadow-fb-card transition">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-unam-greenLight text-unam-green flex items-center justify-center flex-shrink-0 shadow-xs">
-                <i data-lucide="landmark" class="w-5 h-5"></i>
+                <i data-lucide="book-open-check" class="w-5 h-5"></i>
               </div>
-              <h4 class="font-bold text-fb-text text-base">Autoridades y Articulación Institucional</h4>
+              <h4 class="font-bold text-fb-text text-base">Cátedras y Espacio Áulico (2026)</h4>
             </div>
-            <div class="space-y-2.5 text-xs sm:text-sm text-fb-secondary">
-              <p><strong class="text-fb-text">Universidad:</strong> Universidad Nacional de Misiones (UNaM)</p>
-              <p><strong class="text-fb-text">Facultad:</strong> Facultad de Humanidades y Ciencias Sociales (FHyCS)</p>
-              <p><strong class="text-fb-text">Sede Académica:</strong> Extensión Áulica Cerro Azul, Misiones</p>
-              <p><strong class="text-fb-text">Departamento:</strong> Departamento de Comunicación Social</p>
-              <p><strong class="text-fb-text">Cátedras Actuales:</strong> Lengua y Comunicación | Comunicación I (Ciclo 2026)</p>
+            <div class="space-y-3 text-xs sm:text-sm text-fb-secondary">
+              <div class="flex items-start gap-2.5">
+                <div class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+                <div>
+                  <p class="font-bold text-fb-text">Lengua y Comunicación</p>
+                  <p class="text-xs">Cátedra activa con trabajos prácticos, análisis discursivos y lecturas.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <div class="w-2 h-2 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div>
+                <div>
+                  <p class="font-bold text-fb-text">Comunicación I</p>
+                  <p class="text-xs">Módulo en articulación curricular para la incorporación de consignas.</p>
+                </div>
+              </div>
+              <div class="pt-2 border-t border-fb-border flex items-center justify-between text-xs text-fb-secondary">
+                <span><strong>Sede:</strong> Cerro Azul, Misiones</span>
+                <span class="text-unam-green font-bold bg-unam-greenLight px-2 py-0.5 rounded-full">Universidad Pública</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== EQUIPO DE ESTUDIANTES (DIRECTORIO ESTILO FACEBOOK / STYLEX) ==================== -->
+    <!-- ==================== EQUIPO DE ESTUDIANTES ==================== -->
     <section id="equipo" class="mb-12">
       <div class="text-center max-w-2xl mx-auto mb-8">
         <span class="text-xs font-bold uppercase tracking-wider text-unam-blue flex items-center justify-center gap-1.5">
-          <i data-lucide="users" class="w-4 h-4 text-unam-sky"></i> Comunidad de Estudiantes
+          <i data-lucide="users" class="w-4 h-4 text-unam-sky"></i> Equipo Colaborativo
         </span>
         <h2 class="text-2xl sm:text-3xl font-black text-fb-text tracking-tight mt-1">
           Integrantes del Grupo de Trabajo
         </h2>
         <p class="text-fb-secondary text-xs sm:text-sm mt-2">
-          Estudiantes regulares de la Tecnicatura en Comunicación Social (UNaM - Cerro Azul), abocados a la producción colectiva, el registro periodístico y la alfabetización digital abierta.
+          Estudiantes regulares de la Tecnicatura abocados a la investigación, producción discursiva y gestión de contenidos abiertos.
         </p>
       </div>
 
@@ -426,11 +347,9 @@
               PT
             </div>
             <h4 class="text-base font-black text-fb-text">Pedro Turcheñuk</h4>
-            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
-              Estudiante Tec. en Comunicación Social
-            </span>
+            <p class="text-xs font-semibold text-unam-blue mb-2">Coordinación & Repositorio Digital</p>
             <p class="text-xs text-fb-secondary leading-relaxed mb-4">
-              Producción de contenidos, articulación territorial y coordinación técnica de repositorio digital.
+              Producción de contenidos, articulación territorial y soporte técnico del archivo colaborativo.
             </p>
           </div>
           <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
@@ -450,11 +369,9 @@
               MP
             </div>
             <h4 class="text-base font-black text-fb-text">Mario Prozapas</h4>
-            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
-              Estudiante Tec. en Comunicación Social
-            </span>
+            <p class="text-xs font-semibold text-unam-blue mb-2">Investigación & Análisis Discursivo</p>
             <p class="text-xs text-fb-secondary leading-relaxed mb-4">
-              Investigación periodística, relevamiento temático y análisis discursivo situado.
+              Relevamiento temático, registro de fuentes y análisis crítico situado de problemáticas regionales.
             </p>
           </div>
           <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
@@ -471,11 +388,9 @@
               CT
             </div>
             <h4 class="text-base font-black text-fb-text">Cathalina Turcheñuk</h4>
-            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
-              Estudiante Tec. en Comunicación Social
-            </span>
+            <p class="text-xs font-semibold text-unam-blue mb-2">Redacción & Cultura Visual</p>
             <p class="text-xs text-fb-secondary leading-relaxed mb-4">
-              Redacción institucional, comunicación digital, dinámicas de divulgación y cultura visual.
+              Redacción institucional, comunicación digital, dinamización visual y divulgación comunitaria.
             </p>
           </div>
           <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
@@ -492,11 +407,9 @@
               MG
             </div>
             <h4 class="text-base font-black text-fb-text">Marcelo Gimenez</h4>
-            <span class="text-[11px] font-bold text-unam-blue bg-unam-active px-2.5 py-0.5 rounded-full inline-block mb-2 border border-unam-blue/20">
-              Estudiante Tec. en Comunicación Social
-            </span>
+            <p class="text-xs font-semibold text-unam-blue mb-2">Producción & Archivo de Campo</p>
             <p class="text-xs text-fb-secondary leading-relaxed mb-4">
-              Producción comunicacional, apoyo en documentación de campo y archivo colectivo.
+              Producción de piezas comunicacionales, registro territorial y conservación del archivo colectivo.
             </p>
           </div>
           <div class="space-y-2 pt-3 border-t border-fb-border text-xs">
@@ -1486,9 +1399,6 @@
               </a>
             ` : ''}
           </div>
-          <span class="text-xs font-bold text-unam-blue bg-unam-active px-3 py-1 rounded-xl flex items-center gap-1">
-            <i data-lucide="cloud-check" class="w-3.5 h-3.5 text-emerald-600"></i> Almacenado en la Nube
-          </span>
         </div>
         ` : ''}
 
