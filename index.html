@@ -217,25 +217,9 @@
         </div>
       </div>
 
-      <!-- Pestañas de Materias (Carpetas del Drive) -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-4 scrollbar-none">
-        <button type="button" onclick="cambiarCarpetaDrive('lengua')" id="btn-drive-lengua" class="btn-carpeta-drive active flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer bg-unam-blue text-white border-unam-blue">
-          <i data-lucide="folder" class="w-4 h-4"></i>
-          <span>Lengua y Comunicación</span>
-          <span id="badge-count-lengua" class="ml-1 px-2 py-0.5 text-[10px] rounded-full bg-white/20 text-white font-black">0</span>
-        </button>
-
-        <button type="button" onclick="cambiarCarpetaDrive('comunicacion1')" id="btn-drive-comunicacion1" class="btn-carpeta-drive flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer bg-white text-fb-secondary hover:text-fb-text border-fb-border hover:bg-fb-canvas">
-          <i data-lucide="folder" class="w-4 h-4 text-amber-500"></i>
-          <span>Comunicación I</span>
-          <span id="badge-count-comunicacion1" class="ml-1 px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-600 font-black">0</span>
-        </button>
-
-        <button type="button" onclick="cambiarCarpetaDrive('catedra')" id="btn-drive-catedra" class="btn-carpeta-drive flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer bg-white text-fb-secondary hover:text-fb-text border-fb-border hover:bg-fb-canvas">
-          <i data-lucide="folder" class="w-4 h-4 text-unam-sky"></i>
-          <span>Cátedra & Institucional</span>
-          <span id="badge-count-catedra" class="ml-1 px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-600 font-black">0</span>
-        </button>
+      <!-- Pestañas de Materias (Carpetas del Drive) con soporte dinámico para agregar materias -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-4 scrollbar-none" id="contenedor-pestanas-drive">
+        <!-- Generado dinámicamente por renderizarPestanasDrive() -->
       </div>
 
       <!-- Contenedor Principal del Drive (Carpeta Activa) -->
@@ -348,13 +332,16 @@
         <!-- Filtro Dinámico por Materia estilo Facebook Chips / Selector -->
         <div class="flex items-center gap-2">
           <label for="filtroMateria" class="text-xs font-bold text-fb-secondary">Filtrar Asignatura:</label>
-          <select id="filtroMateria" onchange="filtrarTrabajos()" class="bg-white border border-fb-border text-fb-text text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-unam-blue focus:border-unam-blue block p-2.5 font-bold shadow-xs outline-none transition">
+          <select id="filtroMateria" onchange="filtrarTrabajos()" class="bg-white border border-fb-border text-fb-text text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-unam-blue focus:border-unam-blue block p-2.5 font-bold shadow-xs outline-none transition cursor-pointer">
             <option value="todas" selected>Todas las Publicaciones</option>
             <option value="subidos">📂 Subidos por Alumnos / Grupo</option>
             <option value="lengua">Lengua y Comunicación</option>
-            <option value="comunicacion1">Comunicación I (Vacío)</option>
-            <option value="proximas" disabled>— Próximas materias del plan —</option>
+            <option value="comunicacion1">Comunicación I</option>
+            <option value="catedra">Cátedra & Institucional</option>
           </select>
+          <button type="button" onclick="abrirModalNuevaMateria()" class="p-2.5 rounded-xl border border-fb-border hover:border-unam-blue hover:bg-unam-active text-unam-blue transition shadow-xs cursor-pointer" title="Agregar nueva materia a la carrera">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+          </button>
         </div>
       </div>
 
@@ -364,7 +351,7 @@
           <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-unam-blue to-unam-sky text-white flex items-center justify-center font-black text-xs shadow-xs flex-shrink-0">
             UNaM
           </div>
-          <button onclick="abrirModalSubir()" class="flex-1 bg-fb-canvas hover:bg-fb-hover text-fb-secondary hover:text-fb-text text-left px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-fb-border transition-all flex items-center justify-between shadow-xs">
+          <button onclick="abrirModalSubir()" class="flex-1 bg-fb-canvas hover:bg-fb-hover text-fb-secondary hover:text-fb-text text-left px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-fb-border transition-all flex items-center justify-between shadow-xs cursor-pointer">
             <span class="truncate">¿Tenés un nuevo trabajo o archivo para compartir con el grupo?</span>
             <span class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-bold text-unam-blue bg-unam-active px-3 py-1 rounded-full flex-shrink-0 ml-2 border border-unam-blue/20">
               <i data-lucide="plus" class="w-3.5 h-3.5"></i> Publicar
@@ -372,11 +359,11 @@
           </button>
         </div>
         <div class="mt-3.5 pt-3 border-t border-fb-border flex items-center justify-around text-xs font-bold text-fb-secondary gap-2">
-          <button onclick="abrirModalSubir('tp')" class="flex items-center gap-2 py-1.5 px-3.5 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-unam-blue">
+          <button onclick="abrirModalSubir('tp')" class="flex items-center gap-2 py-1.5 px-3.5 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-unam-blue cursor-pointer">
             <i data-lucide="file-up" class="w-4 h-4 text-unam-blue"></i>
             <span>Subir Trabajo Práctico</span>
           </button>
-          <button onclick="abrirModalSubir('material')" class="flex items-center gap-2 py-1.5 px-3.5 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-rose-600">
+          <button onclick="abrirModalSubir('material')" class="flex items-center gap-2 py-1.5 px-3.5 rounded-xl hover:bg-fb-canvas transition text-fb-secondary hover:text-rose-600 cursor-pointer">
             <i data-lucide="file-text" class="w-4 h-4 text-rose-600"></i>
             <span>Adjuntar Documento / PDF</span>
           </button>
@@ -386,31 +373,99 @@
       <!-- FEED DE PUBLICACIONES Y TRABAJOS PRÁCTICOS -->
       <div class="space-y-3 sm:space-y-4" id="listaTrabajos">
 
-        <!-- TARJETA INFORMATIVA: CÁTEDRA COMUNICACIÓN I -->
-        <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="comunicacion1">
-          <div class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 border border-amber-200 flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                <i data-lucide="clock" class="w-4 h-4"></i>
+        <!-- PUBLICACIÓN OFICIAL: CÁTEDRA COMUNICACIÓN I -->
+        <article class="bg-white rounded-2xl border border-fb-border shadow-fb hover:shadow-fb-card transition-all overflow-hidden" data-materia="comunicacion1" id="post-comunicacion1-intro">
+          <div class="p-4 sm:p-5">
+            <!-- Cabecera compacta: Tipo, Asignatura y Opciones -->
+            <div class="flex items-center justify-between gap-3 pb-2.5 border-b border-fb-border/60">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-2.5 py-1 bg-amber-600 text-white text-xs font-black rounded-lg uppercase tracking-wider shadow-2xs">
+                  Módulo Cátedra
+                </span>
+                <span class="text-xs font-bold text-fb-text">
+                  Comunicación I
+                </span>
+                <span class="text-xs text-fb-secondary hidden sm:inline">•</span>
+                <span class="text-xs text-fb-secondary">
+                  Ciclo Lectivo 2026
+                </span>
               </div>
-              <div>
-                <div class="flex items-center gap-2 flex-wrap">
-                  <span class="px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200 text-[11px] font-bold rounded-md uppercase tracking-wider">
-                    En Preparación
-                  </span>
-                  <h4 class="font-extrabold text-fb-text text-sm sm:text-base">
-                    Cátedra Comunicación I
-                  </h4>
-                </div>
-                <p class="text-xs text-fb-secondary mt-0.5">
-                  Módulo disponible para incorporar consignas y bibliografía de la cátedra (Ciclo 2026).
-                </p>
+              
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                <button onclick="abrirModalSubir('tp', 'comunicacion1', 'TP 1')" class="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-lg text-xs font-bold transition cursor-pointer">
+                  <i data-lucide="plus" class="w-3 h-3"></i>
+                  <span>Subir TP</span>
+                </button>
               </div>
             </div>
-            <button onclick="abrirModalSubir('tp', 'comunicacion1', '')" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs shadow-xs transition flex-shrink-0">
-              <i data-lucide="upload-cloud" class="w-3.5 h-3.5 text-unam-blue"></i>
-              <span>Cargar Material</span>
-            </button>
+
+            <!-- Contenido: Título y Descripción -->
+            <div class="py-2.5">
+              <h4 class="text-base sm:text-lg font-black text-fb-text tracking-tight leading-snug">
+                Programa de Cátedra & Ejes Temáticos: Medios, Sociedad y Opinión Pública
+              </h4>
+              <p class="text-fb-secondary text-xs sm:text-sm mt-1 leading-relaxed">
+                Fundamentos teóricos de la comunicación masiva, modelos de análisis mediático y construcción de sentido social en el territorio de Misiones. Espacio habilitado para consultas y entregas.
+              </p>
+            </div>
+
+            <!-- Fila de Archivo y Acciones Directas -->
+            <div class="pt-2.5 border-t border-fb-border/60 flex flex-wrap items-center justify-between gap-2.5">
+              <div class="flex items-center gap-2 flex-wrap">
+                <button onclick="cambiarCarpetaDrive('comunicacion1'); window.location.hash = 'drive-materiales';" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300/60 rounded-xl font-bold text-xs transition shadow-2xs cursor-pointer">
+                  <i data-lucide="folder-open" class="w-3.5 h-3.5 text-amber-600"></i>
+                  <span>Abrir Drive de Comunicación I</span>
+                </button>
+                <button onclick="abrirModalSubir('material', 'comunicacion1')" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-fb-canvas text-fb-text border border-fb-border rounded-xl font-bold text-xs transition shadow-2xs cursor-pointer">
+                  <i data-lucide="upload-cloud" class="w-3.5 h-3.5 text-unam-blue"></i>
+                  <span>Adjuntar Archivo</span>
+                </button>
+              </div>
+
+              <!-- Interacción Rápida (Me gusta, Comentarios, Compartir) -->
+              <div class="flex items-center gap-1.5 text-xs text-fb-secondary">
+                <button onclick="toggleLike('post-comunicacion1-intro')" id="btn-like-post-comunicacion1-intro" class="hover:text-unam-blue px-2 py-1 rounded-lg hover:bg-fb-canvas flex items-center gap-1 transition font-semibold cursor-pointer">
+                  <i data-lucide="thumbs-up" class="w-3.5 h-3.5"></i>
+                  <span id="like-count-post-comunicacion1-intro">1</span>
+                </button>
+                <button onclick="toggleComentarios('post-comunicacion1-intro')" class="hover:text-fb-text px-2 py-1 rounded-lg hover:bg-fb-canvas flex items-center gap-1 transition font-semibold cursor-pointer">
+                  <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                  <span id="comment-count-post-comunicacion1-intro">0</span>
+                </button>
+                <button onclick="abrirModalCompartir('post-comunicacion1-intro', 'Programa de Cátedra Comunicación I', 'Comunicación I')" class="hover:text-fb-text p-1.5 rounded-lg hover:bg-fb-canvas transition cursor-pointer" title="Compartir">
+                  <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Caja de Comentarios (Con identidad de usuario activa) -->
+            <div id="caja-comentarios-post-comunicacion1-intro" class="hidden mt-3 pt-3 border-t border-fb-border/60 space-y-2.5">
+              <div class="flex items-center justify-between text-[11px] text-fb-secondary pb-1">
+                <span>
+                  Comentando como: <strong class="text-fb-text usuario-activo-nombre">Pedro Turcheñuk</strong>
+                </span>
+                <button type="button" onclick="abrirModalLogin()" class="text-unam-blue hover:underline font-bold cursor-pointer">
+                  Cambiar sesión
+                </button>
+              </div>
+              <div class="space-y-2 text-xs" id="lista-comentarios-post-comunicacion1-intro"></div>
+              <div class="pt-1 flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-gradient-to-tr usuario-activo-avatar text-white flex items-center justify-center font-black text-[10px] flex-shrink-0 shadow-xs">
+                  PT
+                </div>
+                <input 
+                  type="text" 
+                  id="input-comentario-post-comunicacion1-intro" 
+                  placeholder="Escribe una consulta o aporte sobre Comunicación I..." 
+                  class="flex-1 bg-fb-canvas border border-fb-border rounded-xl px-3 py-1.5 text-xs text-fb-text focus:bg-white focus:outline-none focus:ring-1 focus:ring-unam-blue transition"
+                  onkeydown="if(event.key === 'Enter') agregarComentario('post-comunicacion1-intro')"
+                />
+                <button onclick="agregarComentario('post-comunicacion1-intro')" class="px-3 py-1.5 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1 shadow-2xs cursor-pointer">
+                  <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                  <span class="hidden sm:inline">Enviar</span>
+                </button>
+              </div>
+            </div>
           </div>
         </article>
 
@@ -714,6 +769,96 @@
           </div>
         </div>
       </div>
+    </div>
+  <!-- ==================== MODAL PARA AGREGAR NUEVA MATERIA ==================== -->
+  <div id="modal-nueva-materia" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-fb-border shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-150">
+      
+      <div class="p-5 sm:p-6 border-b border-fb-border flex items-center justify-between bg-fb-canvas/50">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-unam-active text-unam-blue flex items-center justify-center shadow-xs">
+            <i data-lucide="book-plus" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-fb-text text-base sm:text-lg leading-tight">Agregar Nueva Materia</h3>
+            <p class="text-xs text-fb-secondary">Crea una nueva asignatura en el Repositorio y Drive</p>
+          </div>
+        </div>
+        <button type="button" onclick="cerrarModalNuevaMateria()" class="w-8 h-8 rounded-full bg-fb-canvas hover:bg-fb-border flex items-center justify-center text-fb-secondary hover:text-fb-text transition cursor-pointer">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form id="form-nueva-materia" onsubmit="guardarNuevaMateria(event)" class="p-5 sm:p-6 space-y-4 text-xs sm:text-sm">
+        <div class="space-y-1.5">
+          <label for="input-nombre-materia" class="font-bold text-fb-text flex items-center gap-1.5">
+            <i data-lucide="graduation-cap" class="w-4 h-4 text-unam-blue"></i>
+            <span>Nombre de la Materia:</span>
+          </label>
+          <input 
+            type="text" 
+            id="input-nombre-materia" 
+            required 
+            placeholder="Ej: Semiótica, Taller de Gráfica, Historia..." 
+            class="w-full bg-white border border-fb-border rounded-xl px-3.5 py-2 text-xs font-semibold focus:ring-2 focus:ring-unam-blue outline-none shadow-xs"
+            oninput="actualizarSugerenciaCodigoMateria(this.value)"
+          />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="space-y-1.5">
+            <label for="input-codigo-materia" class="font-bold text-fb-text flex items-center gap-1.5">
+              <i data-lucide="hash" class="w-4 h-4 text-fb-secondary"></i>
+              <span>Código / Clave:</span>
+            </label>
+            <input 
+              type="text" 
+              id="input-codigo-materia" 
+              required 
+              placeholder="ej: semiotica" 
+              class="w-full bg-fb-canvas border border-fb-border rounded-xl px-3 py-2 text-xs font-mono font-bold focus:bg-white focus:ring-2 focus:ring-unam-blue outline-none shadow-xs"
+            />
+          </div>
+
+          <div class="space-y-1.5">
+            <label for="input-color-materia" class="font-bold text-fb-text flex items-center gap-1.5">
+              <i data-lucide="palette" class="w-4 h-4 text-purple-600"></i>
+              <span>Color Carpeta:</span>
+            </label>
+            <select id="input-color-materia" class="w-full bg-white border border-fb-border rounded-xl px-3 py-2 text-xs font-semibold focus:ring-2 focus:ring-unam-blue outline-none shadow-xs cursor-pointer">
+              <option value="blue">Azul UNaM</option>
+              <option value="amber">Ámbar / Dorado</option>
+              <option value="emerald">Verde Esmeralda</option>
+              <option value="purple">Púrpura</option>
+              <option value="rose">Rosa / Carmín</option>
+              <option value="sky">Celeste</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="input-descripcion-materia" class="font-bold text-fb-text flex items-center gap-1.5">
+            <i data-lucide="align-left" class="w-4 h-4 text-fb-secondary"></i>
+            <span>Descripción breve / Año:</span>
+          </label>
+          <input 
+            type="text" 
+            id="input-descripcion-materia" 
+            placeholder="Ej: 1° Año - 2° Cuatrimestre • Cátedra activa" 
+            class="w-full bg-white border border-fb-border rounded-xl px-3.5 py-2 text-xs focus:ring-2 focus:ring-unam-blue outline-none shadow-xs"
+          />
+        </div>
+
+        <div class="pt-2 flex items-center gap-2">
+          <button type="button" onclick="cerrarModalNuevaMateria()" class="flex-1 py-2.5 px-4 rounded-xl border border-fb-border hover:bg-fb-canvas text-fb-secondary font-bold text-xs transition cursor-pointer">
+            Cancelar
+          </button>
+          <button type="submit" class="flex-1 py-2.5 px-4 bg-unam-blue hover:bg-unam-dark text-white rounded-xl font-bold text-xs transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Crear Materia</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -1091,15 +1236,18 @@
     // ==========================================
 
     const DEFAULT_LIKES = {
-      'post-simulado': { count: 48, liked: false }
+      'post-simulado': { count: 48, liked: false },
+      'post-comunicacion1-intro': { count: 12, liked: false }
     };
 
     const DEFAULT_SHARES = {
-      'post-simulado': 6
+      'post-simulado': 6,
+      'post-comunicacion1-intro': 3
     };
 
     const DEFAULT_COMMENTS = {
-      'post-simulado': []
+      'post-simulado': [],
+      'post-comunicacion1-intro': []
     };
 
     // Inicializar datos en localStorage si no existen
@@ -1468,33 +1616,258 @@
       : null;
 
     // ==========================================
+    // GESTIÓN DINÁMICA DE MATERIAS & ASIGNATURAS
+    // ==========================================
+    const MATERIAS_DEFAULT = [
+      {
+        id: 'lengua',
+        nombre: 'Lengua y Comunicación',
+        color: 'blue',
+        descripcion: 'Cátedra activa • Producción discursiva y análisis textual'
+      },
+      {
+        id: 'comunicacion1',
+        nombre: 'Comunicación I',
+        color: 'amber',
+        descripcion: 'Cátedra de teorías de la comunicación, modelos mediáticos y opinión pública'
+      },
+      {
+        id: 'catedra',
+        nombre: 'Cátedra & Institucional',
+        color: 'sky',
+        descripcion: 'Espacio transversal para programas, normativas y material institucional'
+      }
+    ];
+
+    function obtenerMaterias() {
+      try {
+        const stored = localStorage.getItem('unam_materias_lista_v2');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return MATERIAS_DEFAULT;
+    }
+
+    function guardarMaterias(lista) {
+      try {
+        localStorage.setItem('unam_materias_lista_v2', JSON.stringify(lista));
+      } catch (e) {
+        console.error('Error guardando materias:', e);
+      }
+      actualizarUIMaterias();
+    }
+
+    function obtenerNombreMateria(id) {
+      const materias = obtenerMaterias();
+      const encontrada = materias.find(m => m.id === id);
+      if (encontrada) return encontrada.nombre;
+      if (id === 'lengua') return 'Lengua y Comunicación';
+      if (id === 'comunicacion1') return 'Comunicación I';
+      if (id === 'catedra') return 'Cátedra & Institucional';
+      return id || 'Cátedra UNaM';
+    }
+
+    function actualizarSugerenciaCodigoMateria(nombre) {
+      const inputCodigo = document.getElementById('input-codigo-materia');
+      if (!inputCodigo) return;
+      const slug = (nombre || '')
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/g, "")
+        .substring(0, 18);
+      inputCodigo.value = slug;
+    }
+
+    function abrirModalNuevaMateria() {
+      const modal = document.getElementById('modal-nueva-materia');
+      if (modal) {
+        modal.classList.remove('hidden');
+        lucide.createIcons();
+        const input = document.getElementById('input-nombre-materia');
+        if (input) input.focus();
+      }
+    }
+
+    function cerrarModalNuevaMateria() {
+      const modal = document.getElementById('modal-nueva-materia');
+      if (modal) modal.classList.add('hidden');
+      const form = document.getElementById('form-nueva-materia');
+      if (form) form.reset();
+    }
+
+    function guardarNuevaMateria(e) {
+      if (e) e.preventDefault();
+      const inputNombre = document.getElementById('input-nombre-materia');
+      const inputCodigo = document.getElementById('input-codigo-materia');
+      const inputColor = document.getElementById('input-color-materia');
+      const inputDesc = document.getElementById('input-descripcion-materia');
+
+      const nombre = inputNombre ? inputNombre.value.trim() : '';
+      let codigo = inputCodigo ? inputCodigo.value.trim().toLowerCase() : '';
+      const color = inputColor ? inputColor.value : 'blue';
+      const descripcion = inputDesc ? inputDesc.value.trim() : '';
+
+      if (!nombre) {
+        mostrarToast('Escribe el nombre de la materia', 'error');
+        return;
+      }
+      if (!codigo) {
+        codigo = nombre.toLowerCase().replace(/[^a-z0-9]/g, '').substring(0, 18);
+      }
+
+      const materias = obtenerMaterias();
+      if (materias.some(m => m.id === codigo)) {
+        mostrarToast('Ya existe una materia con ese código o clave.', 'error');
+        return;
+      }
+
+      const nuevaMateria = {
+        id: codigo,
+        nombre,
+        color,
+        descripcion,
+        esPersonalizada: true
+      };
+
+      materias.push(nuevaMateria);
+      guardarMaterias(materias);
+      cerrarModalNuevaMateria();
+
+      // Cambiar inmediatamente la vista del Drive a la nueva materia
+      cambiarCarpetaDrive(codigo);
+      window.location.hash = 'drive-materiales';
+
+      mostrarToast(`¡Materia "${nombre}" agregada con éxito! Ya puedes subir archivos y TPs. 📚`, 'success');
+    }
+
+    function eliminarMateriaPersonalizada(id, nombre) {
+      if (!confirm(`¿Seguro que deseas eliminar la materia "${nombre}" del repositorio?`)) return;
+      let materias = obtenerMaterias();
+      materias = materias.filter(m => m.id !== id);
+      guardarMaterias(materias);
+      if (materiaActualDrive === id) {
+        cambiarCarpetaDrive('lengua');
+      }
+      mostrarToast(`Materia "${nombre}" eliminada.`, 'info');
+    }
+
+    function renderizarPestanasDrive() {
+      const contenedor = document.getElementById('contenedor-pestanas-drive');
+      if (!contenedor) return;
+
+      const materias = obtenerMaterias();
+      const items = Object.values(window.trabajosCache || {});
+
+      const colorIconMap = {
+        'blue': 'text-unam-blue',
+        'amber': 'text-amber-500',
+        'emerald': 'text-emerald-500',
+        'purple': 'text-purple-600',
+        'rose': 'text-rose-500',
+        'sky': 'text-unam-sky'
+      };
+
+      let html = materias.map(m => {
+        const esActiva = materiaActualDrive === m.id;
+        const iconColor = esActiva ? 'text-white' : (colorIconMap[m.color] || 'text-unam-blue');
+        const count = items.filter(t => (t.materia === m.id || (!t.materia && m.id === 'catedra')) && (t.archivo_url || t.archivoUrl)).length;
+        
+        const btnClass = esActiva
+          ? 'btn-carpeta-drive active flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer bg-unam-blue text-white border-unam-blue flex-shrink-0'
+          : 'btn-carpeta-drive flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer bg-white text-fb-secondary hover:text-fb-text border-fb-border hover:bg-fb-canvas flex-shrink-0';
+
+        const badgeClass = esActiva
+          ? 'ml-1 px-2 py-0.5 text-[10px] rounded-full bg-white/20 text-white font-black'
+          : 'ml-1 px-2 py-0.5 text-[10px] rounded-full bg-slate-100 text-slate-600 font-black';
+
+        return `
+          <div class="inline-flex items-center gap-1 flex-shrink-0">
+            <button type="button" onclick="cambiarCarpetaDrive('${m.id}')" id="btn-drive-${m.id}" class="${btnClass}">
+              <i data-lucide="folder" class="w-4 h-4 ${iconColor}"></i>
+              <span class="truncate max-w-[160px] sm:max-w-none">${m.nombre}</span>
+              <span id="badge-count-${m.id}" class="${badgeClass}">${count}</span>
+            </button>
+            ${m.esPersonalizada ? `
+              <button type="button" onclick="eliminarMateriaPersonalizada('${m.id}', '${m.nombre.replace(/'/g, "\\'")}')" class="p-1.5 hover:bg-rose-50 text-slate-400 hover:text-rose-600 rounded-xl transition cursor-pointer" title="Eliminar materia">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+              </button>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+
+      // Botón para agregar nueva materia
+      html += `
+        <button type="button" onclick="abrirModalNuevaMateria()" class="flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl border border-dashed border-unam-blue/50 text-unam-blue hover:bg-unam-active/50 font-bold text-xs transition-all flex-shrink-0 cursor-pointer shadow-2xs">
+          <i data-lucide="plus-circle" class="w-4 h-4"></i>
+          <span>Nueva Materia</span>
+        </button>
+      `;
+
+      contenedor.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    function actualizarSelectsMaterias() {
+      const materias = obtenerMaterias();
+
+      // 1. Filtro en el feed
+      const selectFiltro = document.getElementById('filtroMateria');
+      if (selectFiltro) {
+        const valActual = selectFiltro.value || 'todas';
+        let html = `
+          <option value="todas" ${valActual === 'todas' ? 'selected' : ''}>Todas las Publicaciones</option>
+          <option value="subidos" ${valActual === 'subidos' ? 'selected' : ''}>📂 Subidos por Alumnos / Grupo</option>
+        `;
+        materias.forEach(m => {
+          html += `<option value="${m.id}" ${valActual === m.id ? 'selected' : ''}>${m.nombre}</option>`;
+        });
+        selectFiltro.innerHTML = html;
+      }
+
+      // 2. Select en Modal Subir
+      const selectSubir = document.getElementById('subir-materia');
+      if (selectSubir) {
+        const valActual = selectSubir.value || 'lengua';
+        let html = '';
+        materias.forEach(m => {
+          html += `<option value="${m.id}" ${valActual === m.id ? 'selected' : ''}>${m.nombre}</option>`;
+        });
+        selectSubir.innerHTML = html;
+      }
+
+      // 3. Select en Modal Editar
+      const selectEditar = document.getElementById('editar-materia');
+      if (selectEditar) {
+        const valActual = selectEditar.value || 'lengua';
+        let html = '';
+        materias.forEach(m => {
+          html += `<option value="${m.id}" ${valActual === m.id ? 'selected' : ''}>${m.nombre}</option>`;
+        });
+        selectEditar.innerHTML = html;
+      }
+    }
+
+    function actualizarUIMaterias() {
+      renderizarPestanasDrive();
+      actualizarSelectsMaterias();
+      renderizarArchivosDrive();
+    }
+
+    // ==========================================
     // SISTEMA DE DRIVE / REPOSITORIO DE MATERIALES
     // ==========================================
     let materiaActualDrive = 'lengua';
     let vistaActualDrive = 'grid'; // 'grid' o 'list'
 
-    const NOMBRES_MATERIAS_DRIVE = {
-      'lengua': 'Lengua y Comunicación',
-      'comunicacion1': 'Comunicación I',
-      'catedra': 'Cátedra & Institucional'
-    };
-
     function cambiarCarpetaDrive(materia) {
       materiaActualDrive = materia;
+      renderizarPestanasDrive();
 
-      // Actualizar estilo visual de las pestañas
-      ['lengua', 'comunicacion1', 'catedra'].forEach(m => {
-        const btn = document.getElementById(`btn-drive-${m}`);
-        if (btn) {
-          if (m === materia) {
-            btn.className = 'btn-carpeta-drive active flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer bg-unam-blue text-white border-unam-blue';
-          } else {
-            btn.className = 'btn-carpeta-drive flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border font-bold text-xs sm:text-sm transition-all shadow-xs cursor-pointer bg-white text-fb-secondary hover:text-fb-text border-fb-border hover:bg-fb-canvas';
-          }
-        }
-      });
-
-      const nombreMateria = NOMBRES_MATERIAS_DRIVE[materia] || 'Materia';
+      const nombreMateria = obtenerNombreMateria(materia);
       const tituloCarpeta = document.getElementById('drive-carpeta-titulo');
       if (tituloCarpeta) tituloCarpeta.textContent = nombreMateria;
 
@@ -1579,17 +1952,13 @@
       const items = Object.values(window.trabajosCache || {});
       const query = (document.getElementById('input-buscar-drive')?.value || '').toLowerCase().trim();
 
-      // Contadores para las insignias en pestañas
-      const countLengua = items.filter(t => t.materia === 'lengua' && (t.archivo_url || t.archivoUrl)).length;
-      const countCom1 = items.filter(t => t.materia === 'comunicacion1' && (t.archivo_url || t.archivoUrl)).length;
-      const countCatedra = items.filter(t => (t.materia === 'catedra' || !t.materia) && (t.archivo_url || t.archivoUrl)).length;
-
-      const badgeL = document.getElementById('badge-count-lengua');
-      if (badgeL) badgeL.textContent = countLengua;
-      const badgeC1 = document.getElementById('badge-count-comunicacion1');
-      if (badgeC1) badgeC1.textContent = countCom1;
-      const badgeCat = document.getElementById('badge-count-catedra');
-      if (badgeCat) badgeCat.textContent = countCatedra;
+      // Contadores para las insignias en pestañas dinámicas
+      const materias = obtenerMaterias();
+      materias.forEach(m => {
+        const c = items.filter(t => (t.materia === m.id || (!t.materia && m.id === 'catedra')) && (t.archivo_url || t.archivoUrl)).length;
+        const badge = document.getElementById(`badge-count-${m.id}`);
+        if (badge) badge.textContent = c;
+      });
 
       // Filtrar archivos de la materia activa
       let archivosMateria = items.filter(t => {
@@ -1613,7 +1982,7 @@
 
       // Estado cuando no hay archivos
       if (archivosMateria.length === 0) {
-        const nombreMat = NOMBRES_MATERIAS_DRIVE[materiaActualDrive] || 'esta materia';
+        const nombreMat = obtenerNombreMateria(materiaActualDrive);
         contenedor.innerHTML = `
           <div class="py-10 text-center flex flex-col items-center justify-center space-y-3 bg-fb-canvas/50 rounded-2xl border border-dashed border-fb-border">
             <div class="w-14 h-14 rounded-2xl bg-white border border-fb-border text-fb-secondary flex items-center justify-center shadow-xs">
@@ -1808,7 +2177,7 @@
       const statusText = document.getElementById('drive-upload-status');
       const filenameText = document.getElementById('drive-upload-filename');
       const usuarioActivo = obtenerUsuarioActivo();
-      const nombreMateria = NOMBRES_MATERIAS_DRIVE[materiaActualDrive] || 'Materia';
+      const nombreMateria = obtenerNombreMateria(materiaActualDrive);
 
       if (progressBox) progressBox.classList.remove('hidden');
 
@@ -2058,8 +2427,7 @@
       const lista = document.getElementById('listaTrabajos');
       if (!lista) return;
 
-      const materiaNombre = t.materia === 'lengua' ? 'Lengua y Comunicación' : 
-                           (t.materia === 'comunicacion1' ? 'Comunicación I' : 'Cátedra UNaM');
+      const materiaNombre = obtenerNombreMateria(t.materia);
 
       const usuarioActivo = obtenerUsuarioActivo();
 
@@ -2545,14 +2913,14 @@
       // Inicializar identidad y sesión activa
       actualizarUIUsuarioActivo();
 
-      // Inicializar Drive de materiales
-      renderizarArchivosDrive();
+      // Inicializar materias dinámicas, pestañas de Drive y selectores
+      actualizarUIMaterias();
 
       // Cargar trabajos compartidos desde Supabase
       cargarTrabajosDesdeSupabase();
 
       // Actualizar contadores iniciales de posts predefinidos
-      ['post-simulado'].forEach(id => {
+      ['post-simulado', 'post-comunicacion1-intro'].forEach(id => {
         actualizarContadoresUI(id);
       });
 
