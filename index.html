@@ -1824,6 +1824,127 @@
     </div>
   </div>
 
+  <!-- ==================== MODAL DE EDITAR TRABAJO / ARCHIVO ==================== -->
+  <div id="modal-editar" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-fb-border shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-150 max-h-[90vh] flex flex-col">
+      <div class="p-5 border-b border-fb-border flex items-center justify-between bg-fb-canvas/50 flex-shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-unam-blue text-white flex items-center justify-center shadow-xs">
+            <i data-lucide="pencil" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h4 class="font-black text-fb-text text-base">Modificar Trabajo / Material</h4>
+            <p class="text-[11px] text-fb-secondary">Actualiza los datos o reemplaza el archivo en Supabase</p>
+          </div>
+        </div>
+        <button onclick="cerrarModalEditar()" class="w-8 h-8 rounded-full bg-fb-canvas hover:bg-fb-border flex items-center justify-center text-fb-secondary hover:text-fb-text transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form id="form-editar-trabajo" onsubmit="guardarEdicionTrabajo(event)" class="p-5 space-y-4 text-xs overflow-y-auto flex-1">
+        <input type="hidden" id="editar-id" />
+        <input type="hidden" id="editar-archivo-url-actual" />
+        <input type="hidden" id="editar-archivo-nombre-actual" />
+        <input type="hidden" id="editar-archivo-tamano-actual" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="space-y-1.5">
+            <label for="editar-materia" class="font-bold text-fb-text">Asignatura / Cátedra:</label>
+            <select id="editar-materia" class="w-full bg-white border border-fb-border rounded-xl p-2.5 text-xs text-fb-text font-semibold outline-none focus:ring-2 focus:ring-unam-blue">
+              <option value="lengua">Lengua y Comunicación</option>
+              <option value="comunicacion1">Comunicación I</option>
+            </select>
+          </div>
+          <div class="space-y-1.5">
+            <label for="editar-tipo" class="font-bold text-fb-text">Tipo de Publicación:</label>
+            <input type="text" id="editar-tipo" required class="w-full bg-white border border-fb-border rounded-xl p-2.5 text-xs text-fb-text outline-none focus:ring-2 focus:ring-unam-blue" />
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="editar-titulo" class="font-bold text-fb-text">Título del Trabajo o Material:</label>
+          <input type="text" id="editar-titulo" required class="w-full bg-white border border-fb-border rounded-xl p-2.5 text-xs text-fb-text outline-none focus:ring-2 focus:ring-unam-blue font-bold" />
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="editar-descripcion" class="font-bold text-fb-text">Descripción:</label>
+          <textarea id="editar-descripcion" rows="3" required class="w-full bg-white border border-fb-border rounded-xl p-2.5 text-xs text-fb-text outline-none focus:ring-2 focus:ring-unam-blue resize-none"></textarea>
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="editar-autores" class="font-bold text-fb-text">Estudiantes Autores / Integrantes:</label>
+          <input type="text" id="editar-autores" required class="w-full bg-white border border-fb-border rounded-xl p-2.5 text-xs text-fb-text outline-none focus:ring-2 focus:ring-unam-blue" />
+        </div>
+
+        <!-- Archivo adjunto actual y opción para reemplazar -->
+        <div class="space-y-2 p-3 bg-fb-canvas rounded-2xl border border-fb-border">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-fb-text flex items-center gap-1.5">
+              <i data-lucide="paperclip" class="w-3.5 h-3.5 text-rose-600"></i> Archivo Almacenado:
+            </span>
+            <span id="editar-archivo-badge" class="text-[10px] text-fb-secondary font-mono bg-white px-2 py-0.5 rounded border border-fb-border truncate max-w-[200px]">Ninguno</span>
+          </div>
+
+          <div class="border-2 border-dashed border-fb-border hover:border-unam-blue/60 rounded-xl p-3 text-center bg-white transition cursor-pointer" onclick="document.getElementById('editar-archivo-input').click()">
+            <input type="file" id="editar-archivo-input" accept=".pdf,.doc,.docx,.ppt,.pptx,.odt,.txt,.png,.jpg" class="hidden" onchange="manejarArchivoEdicion(this)" />
+            <div id="dropzone-editar-contenido" class="space-y-1">
+              <i data-lucide="upload" class="w-5 h-5 mx-auto text-unam-blue/70"></i>
+              <p class="text-[11px] font-bold text-slate-700">Haz clic si deseas reemplazar el archivo</p>
+              <p class="text-[10px] text-fb-secondary">Dejar vacío para mantener el archivo actual</p>
+            </div>
+            <div id="dropzone-editar-seleccionado" class="hidden text-xs font-bold text-emerald-700 flex items-center justify-center gap-1.5">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+              <span id="nombre-archivo-edicion" class="truncate max-w-[220px]">nuevo-archivo.docx</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-1.5">
+          <label for="editar-enlace" class="font-bold text-fb-text">Enlace Externo (Opcional Drive / OneDrive):</label>
+          <input type="url" id="editar-enlace" placeholder="https://..." class="w-full bg-white border border-fb-border rounded-xl p-2.5 text-xs text-fb-text outline-none focus:ring-1 focus:ring-unam-blue" />
+        </div>
+
+        <div class="pt-3 border-t border-fb-border flex items-center justify-end gap-2.5">
+          <button type="button" onclick="cerrarModalEditar()" class="px-4 py-2 rounded-xl text-xs font-bold text-fb-secondary hover:bg-fb-canvas transition">
+            Cancelar
+          </button>
+          <button type="submit" id="btn-guardar-edicion" class="px-5 py-2.5 bg-unam-blue hover:bg-unam-dark text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="save" class="w-4 h-4"></i> Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL DE CONFIRMACIÓN DE ELIMINACIÓN ==================== -->
+  <div id="modal-eliminar" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-fb-border shadow-2xl w-full max-w-sm overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-5 text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto shadow-xs">
+          <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+        </div>
+        <h4 class="font-black text-slate-900 text-base">¿Eliminar Trabajo y Archivo?</h4>
+        <p class="text-xs text-slate-600" id="eliminar-trabajo-titulo">
+          ¿Seguro que deseas eliminar esta publicación?
+        </p>
+        <p class="text-[11px] text-rose-600 font-semibold bg-rose-50 p-2.5 rounded-xl border border-rose-100">
+          ⚠️ Se borrará permanentemente de la base de datos y del almacenamiento en Supabase Storage.
+        </p>
+        <input type="hidden" id="eliminar-trabajo-id" />
+      </div>
+
+      <div class="p-4 bg-slate-50 border-t border-fb-border flex items-center justify-end gap-2">
+        <button type="button" onclick="cerrarModalEliminar()" class="flex-1 py-2 rounded-xl text-xs font-bold text-fb-secondary hover:bg-slate-200 transition">
+          Cancelar
+        </button>
+        <button type="button" id="btn-confirmar-eliminar" onclick="confirmarEliminarTrabajo()" class="flex-1 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs">
+          <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Sí, Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- ==================== CONTENEDOR DE NOTIFICACIONES TOAST ==================== -->
   <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-none"></div>
 
@@ -2366,16 +2487,21 @@
                 </p>
               </div>
             </div>
-            <div class="flex items-center gap-2 flex-wrap justify-end">
+            <div class="flex items-center gap-1.5 flex-wrap justify-end">
               <span class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-full border border-emerald-200 flex items-center gap-1 shadow-xs">
                 <i data-lucide="cloud-check" class="w-3.5 h-3.5 text-emerald-600"></i> En la Nube
               </span>
               <span class="px-2.5 py-1 bg-unam-active text-unam-blue text-xs font-bold rounded-full uppercase tracking-wider">
                 ${t.tipo}
               </span>
-              <span class="px-2.5 py-1 bg-unam-greenLight text-unam-green text-xs font-bold rounded-full border border-unam-green/20">
-                Sede Cerro Azul
-              </span>
+              <button onclick="abrirModalEditar('${t.id}')" class="px-2.5 py-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-full font-bold text-xs flex items-center gap-1 shadow-xs transition" title="Modificar publicación o archivo">
+                <i data-lucide="pencil" class="w-3 h-3 text-unam-blue"></i>
+                <span>Editar</span>
+              </button>
+              <button onclick="solicitarEliminarTrabajo('${t.id}', '${(t.titulo || '').replace(/'/g, "\\'")}')" class="px-2.5 py-1 bg-white hover:bg-rose-50 text-rose-600 border border-rose-200 rounded-full font-bold text-xs flex items-center gap-1 shadow-xs transition" title="Eliminar de Supabase">
+                <i data-lucide="trash-2" class="w-3 h-3 text-rose-600"></i>
+                <span>Eliminar</span>
+              </button>
             </div>
           </div>
 
@@ -2632,27 +2758,284 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-2 self-end md:self-center flex-shrink-0">
-            <a href="${url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl border border-fb-border bg-white hover:bg-fb-canvas text-fb-text text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+          <div class="flex items-center gap-1.5 self-end md:self-center flex-shrink-0">
+            <a href="${url}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-xl border border-fb-border bg-white hover:bg-fb-canvas text-fb-text text-xs font-bold transition flex items-center gap-1 shadow-xs" title="Ver archivo">
               <i data-lucide="eye" class="w-3.5 h-3.5 text-slate-600"></i>
               <span>Ver</span>
             </a>
-            <a href="${url}" download="${nombre}" class="px-3.5 py-1.5 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+            <a href="${url}" download="${nombre}" class="px-3 py-1.5 rounded-xl bg-unam-blue hover:bg-unam-dark text-white text-xs font-bold transition flex items-center gap-1 shadow-xs" title="Descargar archivo">
               <i data-lucide="download" class="w-3.5 h-3.5"></i>
               <span>Descargar</span>
             </a>
-            <button onclick="copiarEnlaceArchivo('${url}')" title="Copiar enlace de descarga directa" class="p-2 rounded-xl border border-fb-border bg-white hover:bg-fb-canvas text-fb-secondary hover:text-unam-blue transition shadow-xs">
+            <button onclick="copiarEnlaceArchivo('${url}')" title="Copiar enlace directo" class="p-2 rounded-xl border border-fb-border bg-white hover:bg-fb-canvas text-fb-secondary hover:text-unam-blue transition shadow-xs">
               <i data-lucide="copy" class="w-3.5 h-3.5"></i>
             </button>
-            <a href="#${t.id}" class="px-3 py-1.5 rounded-xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold transition flex items-center gap-1 shadow-xs" title="Ir a la publicación">
+            <button onclick="abrirModalEditar('${t.id}')" title="Modificar datos o reemplazar archivo" class="p-2 rounded-xl border border-slate-200 bg-white hover:bg-amber-50 text-slate-600 hover:text-amber-700 transition shadow-xs">
+              <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="solicitarEliminarTrabajo('${t.id}', '${(t.titulo || '').replace(/'/g, "\\'")}')" title="Eliminar archivo y publicación" class="p-2 rounded-xl border border-rose-200 bg-white hover:bg-rose-50 text-rose-500 hover:text-rose-700 transition shadow-xs">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+            <a href="#${t.id}" class="p-2 rounded-xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold transition flex items-center shadow-xs" title="Ver en Feed">
               <i data-lucide="newspaper" class="w-3.5 h-3.5 text-emerald-600"></i>
-              <span>Ver en Feed</span>
             </a>
           </div>
         `;
         contenedor.appendChild(item);
       });
       lucide.createIcons();
+    }
+
+    // Cache global de trabajos dinámicos para edición y borrado
+    window.trabajosCache = {};
+
+    // ==========================================
+    // MODAL Y LÓGICA DE EDICIÓN / MODIFICACIÓN
+    // ==========================================
+    let archivoEdicionFile = null;
+
+    function abrirModalEditar(id) {
+      const t = window.trabajosCache[id];
+      if (!t) {
+        mostrarToast('No se encontraron los datos del trabajo a editar', 'error');
+        return;
+      }
+
+      document.getElementById('editar-id').value = t.id;
+      document.getElementById('editar-materia').value = t.materia || 'lengua';
+      document.getElementById('editar-tipo').value = t.tipo || '';
+      document.getElementById('editar-titulo').value = t.titulo || '';
+      document.getElementById('editar-descripcion').value = t.descripcion || '';
+      document.getElementById('editar-autores').value = t.autores || '';
+      document.getElementById('editar-enlace').value = t.enlace || '';
+
+      document.getElementById('editar-archivo-url-actual').value = t.archivo_url || t.archivoUrl || '';
+      document.getElementById('editar-archivo-nombre-actual').value = t.archivo_nombre || t.archivo || '';
+      document.getElementById('editar-archivo-tamano-actual').value = t.archivo_tamano || t.archivoTamano || '';
+
+      const badge = document.getElementById('editar-archivo-badge');
+      const nombreActual = t.archivo_nombre || t.archivo;
+      if (nombreActual) {
+        badge.textContent = `${nombreActual} (${t.archivo_tamano || t.archivoTamano || ''})`;
+      } else {
+        badge.textContent = 'Sin archivo adjunto';
+      }
+
+      // Resetear dropzone de reemplazo
+      archivoEdicionFile = null;
+      document.getElementById('editar-archivo-input').value = '';
+      document.getElementById('dropzone-editar-contenido').classList.remove('hidden');
+      document.getElementById('dropzone-editar-seleccionado').classList.add('hidden');
+
+      const modal = document.getElementById('modal-editar');
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function cerrarModalEditar() {
+      const modal = document.getElementById('modal-editar');
+      if (modal) modal.classList.add('hidden');
+      archivoEdicionFile = null;
+    }
+
+    function manejarArchivoEdicion(input) {
+      if (input.files && input.files[0]) {
+        archivoEdicionFile = input.files[0];
+        document.getElementById('dropzone-editar-contenido').classList.add('hidden');
+        const selectContainer = document.getElementById('dropzone-editar-seleccionado');
+        selectContainer.classList.remove('hidden');
+        document.getElementById('nombre-archivo-edicion').textContent = `${archivoEdicionFile.name} (${Math.round(archivoEdicionFile.size / 1024)} KB)`;
+        lucide.createIcons();
+      }
+    }
+
+    async function guardarEdicionTrabajo(event) {
+      event.preventDefault();
+      const btn = document.getElementById('btn-guardar-edicion');
+      const originalHTML = btn.innerHTML;
+
+      const id = document.getElementById('editar-id').value;
+      const materia = document.getElementById('editar-materia').value;
+      const tipo = document.getElementById('editar-tipo').value.trim();
+      const titulo = document.getElementById('editar-titulo').value.trim();
+      const descripcion = document.getElementById('editar-descripcion').value.trim();
+      const autores = document.getElementById('editar-autores').value.trim();
+      const enlace = document.getElementById('editar-enlace').value.trim();
+
+      let archivo_url = document.getElementById('editar-archivo-url-actual').value;
+      let archivo_nombre = document.getElementById('editar-archivo-nombre-actual').value;
+      let archivo_tamano = document.getElementById('editar-archivo-tamano-actual').value;
+
+      try {
+        btn.disabled = true;
+        btn.innerHTML = `<span class="flex items-center gap-1.5"><svg class="animate-spin h-3.5 w-3.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> Actualizando...</span>`;
+
+        // 1. Si se eligió un nuevo archivo, subirlo a Supabase Storage y reemplazar el anterior
+        if (archivoEdicionFile && supabaseClient) {
+          mostrarToast('Subiendo nuevo archivo a Supabase Storage...', 'info');
+          const cleanFileName = archivoEdicionFile.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9._-]/g, "_");
+          const storagePath = `${Date.now()}_${cleanFileName}`;
+
+          const { error: uploadError } = await supabaseClient.storage
+            .from('materiales')
+            .upload(storagePath, archivoEdicionFile, { upsert: false });
+
+          if (uploadError) throw new Error('Error al subir nuevo archivo: ' + uploadError.message);
+
+          const { data: publicUrlData } = supabaseClient.storage
+            .from('materiales')
+            .getPublicUrl(storagePath);
+
+          // Opcional: borrar el archivo viejo de Storage si existía
+          if (archivo_url) {
+            try {
+              const oldPath = decodeURIComponent(archivo_url.split('/materiales/').pop());
+              if (oldPath) await supabaseClient.storage.from('materiales').remove([oldPath]);
+            } catch (errOld) {
+              console.warn('No se pudo remover archivo antiguo:', errOld);
+            }
+          }
+
+          archivo_url = publicUrlData.publicUrl;
+          archivo_nombre = archivoEdicionFile.name;
+          archivo_tamano = `${Math.round(archivoEdicionFile.size / 1024)} KB`;
+        }
+
+        const datosActualizados = {
+          materia,
+          tipo,
+          titulo,
+          descripcion,
+          autores,
+          enlace,
+          archivo_url,
+          archivo_nombre,
+          archivo_tamano
+        };
+
+        // 2. Actualizar registro en Supabase PostgreSQL
+        if (supabaseClient) {
+          const { error: dbError } = await supabaseClient
+            .from('trabajos')
+            .update(datosActualizados)
+            .eq('id', id);
+
+          if (dbError) throw new Error('Error al actualizar en BD: ' + dbError.message);
+        }
+
+        // 3. Actualizar memoria local
+        if (window.trabajosCache[id]) {
+          Object.assign(window.trabajosCache[id], datosActualizados);
+        }
+
+        // 4. Re-renderizar tarjeta en el feed
+        const cardVieja = document.getElementById(id);
+        if (cardVieja) {
+          cardVieja.remove();
+        }
+        renderizarTarjetaTrabajo({
+          id,
+          materia,
+          tipo,
+          titulo,
+          descripcion,
+          autores,
+          enlace,
+          archivo: archivo_nombre,
+          archivoTamano: archivo_tamano,
+          archivoUrl: archivo_url,
+          fecha: 'Septiembre 2026'
+        }, true);
+
+        // 5. Actualizar explorador de archivos
+        actualizarListaArchivosComunidad(Object.values(window.trabajosCache));
+
+        cerrarModalEditar();
+        mostrarToast('¡Trabajo y archivo modificados con éxito! ✏️', 'success');
+        window.location.hash = id;
+
+      } catch (err) {
+        console.error('Error al editar trabajo:', err);
+        mostrarToast('Error al modificar: ' + (err.message || 'Inténtalo de nuevo'), 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+      }
+    }
+
+    // ==========================================
+    // MODAL Y LÓGICA DE ELIMINACIÓN
+    // ==========================================
+    function solicitarEliminarTrabajo(id, titulo) {
+      document.getElementById('eliminar-trabajo-id').value = id;
+      document.getElementById('eliminar-trabajo-titulo').innerHTML = `¿Seguro que deseas eliminar la publicación: <br/><strong class="text-slate-900 font-bold text-xs mt-1 inline-block">"${titulo}"</strong>?`;
+      const modal = document.getElementById('modal-eliminar');
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function cerrarModalEliminar() {
+      const modal = document.getElementById('modal-eliminar');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    async function confirmarEliminarTrabajo() {
+      const btn = document.getElementById('btn-confirmar-eliminar');
+      const originalHTML = btn.innerHTML;
+      const id = document.getElementById('eliminar-trabajo-id').value;
+      if (!id) return;
+
+      const t = window.trabajosCache[id];
+
+      try {
+        btn.disabled = true;
+        btn.innerHTML = `<span class="flex items-center gap-1.5"><svg class="animate-spin h-3.5 w-3.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg> Eliminando...</span>`;
+
+        // 1. Si tenía archivo en Supabase Storage, eliminarlo
+        const url = t ? (t.archivo_url || t.archivoUrl) : null;
+        if (url && supabaseClient) {
+          try {
+            const storagePath = decodeURIComponent(url.split('/materiales/').pop());
+            if (storagePath) {
+              await supabaseClient.storage.from('materiales').remove([storagePath]);
+            }
+          } catch (errStorage) {
+            console.warn('Aviso al eliminar archivo físico de Supabase Storage:', errStorage);
+          }
+        }
+
+        // 2. Eliminar fila en base de datos Supabase
+        if (supabaseClient) {
+          const { error: dbError } = await supabaseClient
+            .from('trabajos')
+            .delete()
+            .eq('id', id);
+
+          if (dbError) throw new Error('Error en BD: ' + dbError.message);
+        }
+
+        // 3. Remover de la memoria y del DOM con animación
+        delete window.trabajosCache[id];
+
+        const card = document.getElementById(id);
+        if (card) {
+          card.classList.add('opacity-0', 'scale-95', 'transition-all', 'duration-300');
+          setTimeout(() => card.remove(), 300);
+        }
+
+        // 4. Actualizar lista de archivos y contadores
+        actualizarListaArchivosComunidad(Object.values(window.trabajosCache));
+
+        cerrarModalEliminar();
+        mostrarToast('¡Publicación y archivo eliminados de Supabase! 🗑️', 'success');
+
+      } catch (err) {
+        console.error('Error al eliminar trabajo:', err);
+        mostrarToast('Error al eliminar: ' + (err.message || 'Inténtalo de nuevo'), 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalHTML;
+      }
     }
 
     // ==========================================
@@ -2672,6 +3055,11 @@
         }
 
         if (data && data.length > 0) {
+          // Guardar en cache global
+          data.forEach(item => {
+            window.trabajosCache[item.id] = item;
+          });
+
           // 1. Actualizar el panel de archivos compartidos
           actualizarListaArchivosComunidad(data);
 
